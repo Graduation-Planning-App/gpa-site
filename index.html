@@ -1,57 +1,101 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
-    <title>GPA - Home</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript
-      ><link rel="stylesheet" href="assets/css/noscript.css"
-    /></noscript>
+    <title>Graduation Planning App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Sans Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Sans Pro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body {
+  background-image: url('https://newmibridges.michigan.gov/resource/1657970840000/ISD_Icons/landing-page/group-3.svg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+    body,h1,h2,h3,h4,h5,h6 {font-family: 'Source Sans Pro', sans-serif}
+    .w3-bar,h1,button {font-family: 'Source Sans Pro', sans-serif}
+    .fa-anchor,.fa-coffee {font-size:300}
+    </style>
   </head>
-  <body class="is-preload">
-    <div id="wrapper">
-      <div id="bg"></div>
-      <div id="overlay"></div>
-      <div id="main">
-        <!-- Header -->
-        <header id="header">
-          <h1>GPA</h1>
-          <h5>The Graduation Planning App</h5>
-          <nav>
-            <ul>
-              <li>
-                <span class="label">Twitter</span>
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-facebook-f"
-                  ><span class="label">Login</span></a
-                >
-              </li>
-            </ul>
-          </nav>
-        </header>
+  <!-- Navbar -->
+  <div class="w3-top">
+  <div class="w3-bar w3-pale-blue w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="./index.html" class="w3-bar-item w3-button w3-padding-large w3-white"><b>GPA</b></a>
+    <a href="./MyCourseSequence.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Course Sequence</a>
+    <a href="./FindCourses.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Find Courses</a>
+    <a href="./Resources.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Resources</a>
+   
+  </div>
+   <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="./index.html" class="w3-bar-item w3-button w3-padding-large">GPA</a>
+    <a href="./MyCourseSequence.html" class="w3-bar-item w3-button w3-padding-large">My Course Sequence</a>
+    <a href="./FindCourses.html" class="w3-bar-item w3-button w3-padding-large">Find Courses</a>
+    <a href="./Resources.html" class="w3-bar-item w3-button w3-padding-large">Resources</a>
+  </div>
+<body>
 
-        <!-- Footer -->
-        <footer id="footer">
-          <span class="copyright">&copy; 2023 Graudation Planning App</span>
-        </footer>
-      </div>
+
+</div>
+
+<!-- Header -->
+<header class="w3-animate-opacity w3-container w3-center w3-text-white" style="padding:300px 60px">
+  <h1 class="w3-margin w3-jumbo">GPA</h1>
+  <p class="w3-xlarge">Graduation Planning App</p>
+  <button class="w3-button w3-round w3-light-grey w3-padding-medium w3-medium w3-margin-top">Login</button>
+  <button class="w3-button w3-round w3-light-grey w3-padding-medium w3-medium w3-margin-top">Sign Up</button>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Why GPA?</h1>
+      <h5 class="w3-padding-32">With GPA - the Graduation Planning App - we aim to make finding your courses as easy as A-B-C. Our app will help you plan your classes by suggesting course sequences, showing your major requirements, and even helping you find more classes that suit your interests.
+         We want to make exploring college courses an easy and enjoyable experience…unlike your finals. 
     </div>
-    <script>
-      window.onload = function () {
-        document.body.classList.remove('is-preload');
-      };
-      window.ontouchmove = function () {
-        return false;
-      };
-      window.onorientationchange = function () {
-        document.body.scrollTop = 0;
-      };
-    </script>
-  </body>
+
+    <div class="w3-third w3-center">
+      <img src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1606190/graduation-cap-clipart-xl.png" alt="Graduation cap clipart. Free download transparent .PNG
+       | Creazilla" data-noaft="1" style="width: 400px; height: 380px; margin: 0px;">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="w3-container w3-panel w3-black w3-center w3-opacity w3-padding-64">
+  <i class="fa fa-quote-right w3-xxlarge w3-margin-right"></i>
+    <h1 class="w3-margin w3-xlarge">“Education is our passport to the future, for tomorrow belongs to the people who prepare for it today.”
+—Malcolm X</h1>
+</div>
+
+<!-- Footer. This section contains an ad for W3Schools Spaces. You can leave it to support us. -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity"> 
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>This website was made with W3schools Spaces. Make your own free website today!</p>
+ 
+ <!-- Footer end. -->
+ </footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
 </html>
+
