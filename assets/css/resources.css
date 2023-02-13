@@ -1,4 +1,6 @@
 ul {
   overflow: hidden;
   overflow-y: scroll;
+  max-height: 50%;
+  list-style-type: none;
 }
