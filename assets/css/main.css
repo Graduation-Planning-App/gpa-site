@@ -5,3 +5,16 @@
 .top {
   padding-top: 2%;
 }
+
+ul {
+  padding-top: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 80vh;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
