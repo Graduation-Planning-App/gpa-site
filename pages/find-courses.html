@@ -112,6 +112,7 @@
     </div>
 
     <div class="row top">
+      <!--Sidebar-->
       <div class="col-2 sidebar center">
         <h5>Next Quarter</h5>
         <ul>
@@ -157,12 +158,14 @@
         </div>
       </div>
 
+      <!--Main Content-->
       <div class="col-10">
         <form class="center" action="">
           <input type="text" placeholder="Find a course.." />
           <button type="submit" class="submit">Search</button>
         </form>
 
+        <!--Search Tool-->
         <div class="table">
           <table class="table">
             <tr>
@@ -180,8 +183,12 @@
 
         <div class="spacer"></div>
 
+        <!--Search Results-->
         <div class="center">
-          <button type="button" class="collapsible">Open Section 1</button>
+          <button type="button" class="collapsible">
+            <span class="left course-name">Course Name</span>
+            <span class="right">T/Th 1:00-1:50</span>
+          </button>
           <div class="content">
             <table>
               <tr>
@@ -200,7 +207,10 @@
               </tr>
             </table>
           </div>
-          <button type="button" class="collapsible">Open Section 2</button>
+          <button type="button" class="collapsible">
+            <span class="left course-name">Course Name</span>
+            <span class="right conflict">MWF 9:00-10:30</span>
+          </button>
           <div class="content">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -209,7 +219,10 @@
               nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
-          <button type="button" class="collapsible">Open Section 3</button>
+          <button type="button" class="collapsible">
+            <span class="left course-name">Course Name</span>
+            <span class="right">MWF 12:00-1:00</span>
+          </button>
           <div class="content">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do

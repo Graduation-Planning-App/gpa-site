@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.left {
+  text-align: left;
+  margin-left: 0;
+}
+
+.right {
+  text-align: right;
+}
+
 .top {
   padding-top: 2%;
 }
@@ -25,4 +34,8 @@ a {
 
 .complete {
   color: rgb(10, 170, 10);
+}
+
+.conflict {
+  color: red;
 }
