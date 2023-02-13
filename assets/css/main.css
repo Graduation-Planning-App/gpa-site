@@ -18,3 +18,11 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.spacer {
+  padding: 2%;
+}
+
+.complete {
+  color: rgb(10, 170, 10);
+}

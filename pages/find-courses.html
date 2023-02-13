@@ -4,7 +4,8 @@
     <title>Graduation Planning App</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/find-courses.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <!--Bootstrap-->
     <link
@@ -113,17 +114,93 @@
     <div class="row top">
       <div class="col-2 sidebar center">
         <h5>Next Quarter</h5>
-        <div class="indent">
-          <ul>
-            <li>DEP#### (3)</li>
-            <li>DEP#### (5)</li>
-            <li>DEP#### (1)</li>
-            <li>DEP#### (5)</li>
+        <ul>
+          <li>DEP#### (3)</li>
+          <li>DEP#### (5)</li>
+          <li>DEP#### (1)</li>
+          <li>DEP#### (5)</li>
+        </ul>
+      </div>
+      <div class="col-10">
+        <form class="center" action="">
+          <input type="text" placeholder="Find a course.." />
+          <button type="submit" class="submit">Submit</button>
+        </form>
+
+        <div class="table">
+          <table class="table">
+            <tr>
+              <td><b>Times: </b>All</td>
+              <td><b>Quarters: </b>Spring</td>
+              <td><b>Show Predicted Offerings?: </b>Yes</td>
+            </tr>
+            <tr>
+              <td><b>Departments: </b>All</td>
+              <td><b>Years: </b>2023</td>
+              <td><b>Electives: </b>No</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="center">
+          <button type="button" class="collapsible">Open Section 1</button>
+          <div class="content">
+            <table>
+              <tr>
+                <td>Professor First LastName</td>
+                <td>Required for: Computer Science</td>
+              </tr>
+              <tr>
+                <td>Tues/Thur 1:00-1:50</td>
+                <td>
+                  Prerequisites:<br /><span class="complete">DEP####</span>
+                </td>
+              </tr>
+              <tr>
+                <td>OMH 138</td>
+                <td>Recommended: Spring 2023</td>
+              </tr>
+            </table>
+          </div>
+          <button type="button" class="collapsible">Open Section 2</button>
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <button type="button" class="collapsible">Open Section 3</button>
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="col-10 center">
-        <h1>Main Content</h1>
-      </div>
     </div>
+
+    <script>
+      var coll = document.getElementsByClassName('collapsible');
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener('click', function () {
+          this.classList.toggle('active');
+          var content = this.nextElementSibling;
+          if (content.style.display === 'block') {
+            content.style.display = 'none';
+          } else {
+            content.style.display = 'block';
+          }
+        });
+      }
+    </script>
   </body>
 </html>
