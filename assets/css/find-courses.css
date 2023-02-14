@@ -1,3 +1,5 @@
+
+
 .sidebar {
   padding-top: 5%;
 }
@@ -7,6 +9,7 @@ input[type='text'] {
   margin: 2em;
   border-radius: 4px;
   border: 1px solid #ccc;
+  
 }
 
 .submit {
@@ -22,6 +25,7 @@ input[type='text'] {
   width: 65%;
   background-color: orange;
   margin: 0 auto;
+  border: 5px solid green;
 }
 
 .collapsible {
@@ -58,3 +62,4 @@ input[type='text'] {
 .course-name {
   font-size: 1.2em;
 }
+
