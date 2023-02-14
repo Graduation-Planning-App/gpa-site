@@ -1,9 +1,9 @@
 .button1 {
   background-color: #4CAF50;
-  border: none;
+  border-radius: 4px;
   color: white;
   float:right;
-  padding: 16px 32px;
+  padding: 15px 30px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
@@ -12,8 +12,4 @@
   cursor: pointer;
    min-width: 50px;  
    max-width: 300px;
-}
-.button1:hover {
-  background-color: #4CAF50;
-  color: white;
 }
