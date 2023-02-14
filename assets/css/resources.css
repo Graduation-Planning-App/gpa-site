@@ -1,0 +1,19 @@
+.button1 {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  float:right;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+   min-width: 50px;  
+   max-width: 300px;
+}
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
