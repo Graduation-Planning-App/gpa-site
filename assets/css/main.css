@@ -4,7 +4,8 @@
 }
 
 .hover-accent:hover {
-  background-color: #0065fc !important;
+  background-color: #0065fc;
+  color: white;
 }
 
 .center {
