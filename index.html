@@ -9,78 +9,89 @@
   </head>
 
   <body>
-    <!-- Navbar -->
-    <div class="w3-top">
-      <div class="w3-bar w3-pale-blue w3-card w3-left-align w3-large">
-        <a
-          class="
-            w3-bar-item
-            w3-button
-            w3-hide-medium
-            w3-hide-large
-            w3-right
-            w3-padding-large
-            w3-hover-white
-            w3-large
-            w3-blue
-          "
-          href="javascript:void(0);"
-          onclick="myFunction()"
-          title="Toggle Navigation Menu"
-          ><i class="fa fa-bars"></i
-        ></a>
-        <a
-          href="./index.html"
-          class="w3-bar-item w3-button w3-padding-large w3-white"
-          ><b>GPA</b></a
-        >
-        <a
-          href="./pages/my-course-sequence.html"
-          class="
-            w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white
-          "
-          >My Course Sequence</a
-        >
-        <a
-          href="./pages/find-courses.html"
-          class="
-            w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white
-          "
-          >Find Courses</a
-        >
-        <a
-          href="./pages/resources.html"
-          class="
-            w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white
-          "
-          >Resources</a
-        >
-      </div>
-      <!-- Navbar on small screens -->
-      <div
-        id="navDemo"
-        class="
-          w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large
-        "
-      >
-        <a href="./index.html" class="w3-bar-item w3-button w3-padding-large"
-          >GPA</a
-        >
-        <a
-          href="./pages/my-course-sequence.html"
-          class="w3-bar-item w3-button w3-padding-large"
-          >My Course Sequence</a
-        >
-        <a
-          href="./pages/find-courses.html"
-          class="w3-bar-item w3-button w3-padding-large"
-          >Find Courses</a
-        >
-        <a
-          href="./pages/resources.html"
-          class="w3-bar-item w3-button w3-padding-large"
-          >Resources</a
-        >
+    <!--Navbar-->
+    <div class="row">
+      <div class="col">
+        <div class="w3-bar w3-card w3-left-align w3-large nav">
+          <a
+            class="
+              w3-bar-item
+              w3-button
+              w3-hide-medium
+              w3-hide-large
+              w3-right
+              w3-padding-large
+              hover-accent
+              w3-large w3-blue
+            "
+            href="javascript:void(0);"
+            onclick="myFunction()"
+            title="Toggle Navigation Menu"
+            ><i class="fa fa-bars"></i
+          ></a>
+          <a
+            href="./index.html"
+            class="w3-bar-item w3-button w3-padding-large w3-white"
+            ><b>GPA</b></a
+          >
+          <a
+            href="./my-course-sequence.html"
+            class="
+              w3-bar-item w3-button w3-hide-small w3-padding-large
+              hover-accent
+            "
+            >My Course Sequence</a
+          >
+          <a
+            href="./find-courses.html"
+            class="
+              w3-bar-item w3-button w3-hide-small w3-padding-large
+              hover-accent
+            "
+            >Find Courses</a
+          >
+          <a
+            href="./resources.html"
+            class="
+              w3-bar-item w3-button w3-hide-small w3-padding-large
+              hover-accent
+            "
+            >Resources</a
+          >
+          <!-- Navbar on small screens -->
+          <div
+            id="navDemo"
+            class="
+              w3-bar-block
+              w3-white
+              w3-hide
+              w3-hide-large
+              w3-hide-medium
+              w3-large
+            "
+          >
+            <a
+              href="./index.html"
+              class="w3-bar-item w3-button w3-padding-large"
+              >GPA</a
+            >
+            <a
+              href="./my-course-sequence.html"
+              class="w3-bar-item w3-button w3-padding-large"
+              >My Course Sequence</a
+            >
+            <a
+              href="./find-courses.html"
+              class="w3-bar-item w3-button w3-padding-large"
+              >Find Courses</a
+            >
+            <a
+              href="./resources.html"
+              class="w3-bar-item w3-button w3-padding-large"
+              >Resources</a
+            >
+          </div>
+        </div>
       </div>
     </div>
 
@@ -89,8 +100,15 @@
       class="w3-animate-opacity w3-container w3-center w3-text-white"
       style="padding: 300px 60px"
     >
-      <h1 class="w3-margin w3-jumbo w3-panel" style="text-shadow:1px 1px 0 #444">GPA</h1>
-      <p class="w3-xlarge w3-panel" style="text-shadow:1px 1px 0 #444">Graduation Planning App</p>
+      <h1
+        class="w3-margin w3-jumbo w3-panel"
+        style="text-shadow: 1px 1px 0 #444"
+      >
+        GPA
+      </h1>
+      <p class="w3-xlarge w3-panel" style="text-shadow: 1px 1px 0 #444">
+        Graduation Planning App
+      </p>
       <button
         class="
           button
@@ -118,14 +136,14 @@
         <span>Sign Up</span>
       </button>
     </header>
-<br><br><br><br>
+    <br /><br /><br /><br />
     <!-- First Grid -->
     <div class="w3-row-padding w3-padding-64 w3-container">
       <div class="w3-content">
         <div class="w3-twothird">
-          <h1><span >Why GPA?</span></h1>
+          <h1><span>Why GPA?</span></h1>
           <p class="w3-padding-32">
-            <span >
+            <span>
               With GPA - the Graduation Planning App - we aim to make finding
               your courses as easy as A-B-C. Our app will help you plan your
               classes by suggesting course sequences, showing your major
