@@ -26,7 +26,6 @@
 }
 
 ul {
-  padding-top: 10px;
   overflow: hidden;
   overflow-y: scroll;
   max-height: 80vh;

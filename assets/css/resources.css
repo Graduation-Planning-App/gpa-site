@@ -1,15 +1,11 @@
-.button1 {
-  background-color: #4CAF50;
-  border-radius: 4px;
-  color: white;
-  float:right;
-  padding: 15px 30px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-   min-width: 50px;  
-   max-width: 300px;
+#course-list {
+  padding-top: 10px;
+}
+
+li {
+  color: #690fe4;
+}
+
+li:hover {
+  color: #bb0ff9;
 }
