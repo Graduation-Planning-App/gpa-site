@@ -1,3 +1,12 @@
+.nav {
+  background-color: #2509f4;
+  color: white;
+}
+
+.hover-accent:hover {
+  background-color: #0065fc !important;
+}
+
 .center {
   text-align: center;
 }
