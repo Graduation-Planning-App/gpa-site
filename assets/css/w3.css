@@ -1212,6 +1212,7 @@ a {
 .w3-right {
   float: right !important;
 }
+
 .w3-transparent,
 .w3-hover-none:hover {
   background-color: transparent !important;

@@ -11,6 +11,14 @@ body {
   font-size: 300;
 }
 
+.button {
+  background-color: #bb0ff9 !important;
+}
+
+.button:hover {
+  background-color: #690fe4 !important;
+}
+
 .button span {
   cursor: pointer;
   display: inline-block;
