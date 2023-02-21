@@ -1,3 +1,11 @@
+.buildplan {
+  float: right;
+  background-color: rgb(9, 159, 7);
+  color: rgb(15, 79, 11);
+  border: 2px solid #074309;
+}
+
+
 #course-list {
   padding-top: 10px;
 }
@@ -9,3 +17,4 @@ li {
 li:hover {
   color: #bb0ff9;
 }
+
