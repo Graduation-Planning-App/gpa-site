@@ -1,20 +1,24 @@
 .buildplan {
   float: right;
-  background-color: rgb(9, 159, 7);
-  color: rgb(15, 79, 11);
-  border: 2px solid #074309;
+  background-color: #006e31;
 }
-
 
 #course-list {
   padding-top: 10px;
 }
 
+.sidebar {
+  background-color: #021b2e;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 1);
+}
+#resources-head {
+  color: white;
+}
+
 li {
-  color: #690fe4;
+  color: #d2c6c4;
 }
 
 li:hover {
-  color: #bb0ff9;
+  color: white;
 }
-
