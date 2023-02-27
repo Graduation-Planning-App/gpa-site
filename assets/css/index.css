@@ -12,11 +12,12 @@ body {
 }
 
 .button {
-  background-color: #bb0ff9 !important;
+  background-color: #bb0f00 !important;
+  color: white !important;
 }
 
 .button:hover {
-  background-color: #690fe4 !important;
+  background-color: #021b2e !important;
 }
 
 .button span {
