@@ -4,6 +4,8 @@
 
 To run web container run `npx lite-server`
 
+# Color Pallete
+
 Academic Blue
 Hex: #21B2EB
 RGBA: (33, 178, 235, 92)
