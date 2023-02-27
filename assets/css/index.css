@@ -50,6 +50,14 @@ body {
   padding: 0%;
 }
 
+header {
+  padding-top: 25vh; /*Overrides inline styling*/
+}
+
 #splash-description {
-  font-size: 1.2em;
+  font-size: 5em !important;
+}
+
+#cta-bottom {
+  font-size: 8em;
 }
