@@ -1,7 +1,6 @@
-
-
 .sidebar {
   padding-top: 5%;
+  color: black;
 }
 
 input[type='text'] {
@@ -9,7 +8,6 @@ input[type='text'] {
   margin: 2em;
   border-radius: 4px;
   border: 1px solid #ccc;
-  
 }
 
 .submit {
@@ -23,13 +21,12 @@ input[type='text'] {
 
 .table table {
   width: 65%;
-  background-color: orange;
   margin: 0 auto;
   border: 5px solid green;
 }
 
 .collapsible {
-  background-color: #999;
+  background-color: #021b2e;
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -42,13 +39,14 @@ input[type='text'] {
 
 .active,
 .collapsible:hover {
-  background-color: #999;
+  background-color: #21b2eb;
 }
 
 .content {
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+  color: #021b2e;
   max-width: 65%;
   margin: 0 auto;
 }
@@ -62,4 +60,3 @@ input[type='text'] {
 .course-name {
   font-size: 1.2em;
 }
-
