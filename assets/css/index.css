@@ -58,3 +58,8 @@ header {
 #splash-description {
   font-size: 1.4em;
 }
+
+.quote {
+  margin-top: 30vh;
+  margin-bottom: 20vh;
+}
