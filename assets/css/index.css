@@ -1,8 +1,9 @@
 body {
-  background-image: url('../images/bg.svg');
-  /*https://newmibridges.michigan.gov/resource/1657970840000/ISD_Icons/landing-page/group-3.svg*/
+  background-image: url(https://mcdn.wallpapersafari.com/medium/80/34/Gh1sOM.png);
+  /*https://mcdn.wallpapersafari.com/medium/39/45/aQqu6m.jpg*/
+  
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-size: cover;
 }
 
