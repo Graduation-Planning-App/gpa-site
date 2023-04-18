@@ -39,7 +39,10 @@
           ></a>
           <a
             href="../index.html"
-            class="w3-bar-item w3-button w3-padding-large w3-white"
+            class="
+              w3-bar-item w3-button w3-hide-small w3-padding-large
+              hover-accent
+            "
             ><b>GPA</b></a
           >
           <a
@@ -52,10 +55,7 @@
           >
           <a
             href="./find-courses.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
+            class="w3-bar-item w3-button w3-padding-large w3-white"
             >Find Courses</a
           >
           <a
@@ -145,25 +145,175 @@
 
       <!--Main Content-->
       <div class="col-10">
-        <form class="center" action="">
-          <input type="text" placeholder="Find a course.." />
-          <button type="submit" class="submit">Search</button>
-        </form>
 
         <!--Search Tool-->
-        <div class="table">
-          <table class="table">
-            <tr>
-              <td><b>Times: </b>All</td>
-              <td><b>Quarters: </b>Spring</td>
-              <td><b>Show Predicted Offerings?: </b>Yes</td>
-            </tr>
-            <tr>
-              <td><b>Departments: </b>All</td>
-              <td><b>Years: </b>2023</td>
-              <td><b>Electives: </b>No</td>
-            </tr>
-          </table>
+        <div class="container">
+          <form class="row g-3">
+            <div class="container col-7">
+              <fieldset>
+                <legend>Course</legend>
+                <div class="container row">
+                  <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Discipline</button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Course Title">
+                  </div>
+                </div>
+                <div class="container row">
+                  <div class="container col-4">
+                    <label for="inputEmail4" class="form-label">CRN:</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                  </div>
+                  <div class="container col-4">
+                    <label for="inputEmail4" class="form-label">Credits:</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                  </div>
+                </div>
+                <div class="container row">
+                </div> 
+              </fieldset>
+            </div>
+            <div class="container col-5">
+              <fieldset>
+                <legend>Time</legend>
+                <div class="container row justify-content-evenly">
+                  <div class="container col-6">
+                    <label for="inputEmail4" class="form-label">Term:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="1">Autumn</option>
+                      <option value="2">Winter</option>
+                      <option value="3">Spring</option>
+                      <option value="4">Summer</option>
+                    </select>
+                  </div>
+                  <div class="container col-6">
+                    <label for="inputEmail4" class="form-label">From:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="1">9:00AM</option>
+                      <option value="2">10:00AM</option>
+                      <option value="3">11:00AM</option>
+                      <option value="4">12:00PM</option>
+                      <option value="4">1:00PM</option>
+                      <option value="4">2:00PM</option>
+                      <option value="4">3:00PM</option>
+                      <option value="4">4:00PM</option>
+                      <option value="4">5:00PM</option>
+                    </select>
+                  </div>
+                  <div class="container col-6">
+                    <label for="inputEmail4" class="form-label">Year:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="1">2022</option>
+                      <option value="2">2023</option>
+                    </select>
+                  </div>
+                  <div class="container col-6">
+                    <label for="inputEmail4" class="form-label">To:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="1">10:00AM</option>
+                      <option value="2">11:00AM</option>
+                      <option value="3">12:00PM</option>
+                      <option value="4">1:00PM</option>
+                      <option value="5">2:00PM</option>
+                      <option value="6">3:00PM</option>
+                      <option value="7">4:00PM</option>
+                      <option value="8">5:00PM</option>
+                      <option value="9">6:00PM</option>
+                      <option value="10">7:00PM</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="container-fluid col-12">
+              <fieldset>
+                <legend>Attributes</legend>
+                <div class="container row justify-content-evenly">
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Upper Division
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ways of Knowing in Quantitative Reasoning
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Cultural Understanding and Engagement
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="container row justify-content-evenly">
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Writing "W" Class
+                      </label>
+                    </div>  
+                  </div>
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ways of Knowing in the Arts
+                      </label>
+                    </div>  
+                  </div>
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ways of Knowing in the Humanities
+                      </label>
+                    </div> 
+                  </div>
+                </div>
+                <div class="container row justify-content-evenly">
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ways of Knowing in the Sciences
+                      </label>
+                    </div>  
+                  </div>
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ways of Knowing in the Social Sciences
+                      </label>
+                    </div>   
+                  </div>
+                  <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ways of Engaging
+                      </label>               
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>  
+            <button class="btn">Search</button>
+          </form>
         </div>
 
         <div class="spacer"></div>
