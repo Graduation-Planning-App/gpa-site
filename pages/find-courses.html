@@ -147,172 +147,174 @@
       <div class="col-10">
 
         <!--Search Tool-->
-        <div class="container">
-          <form class="row g-3">
-            <div class="container col-7">
-              <fieldset>
-                <legend>Course</legend>
-                <div class="container row">
-                  <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Discipline</button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Course Title">
+        <div class="container pt-4">
+          <form>
+            <div class="row mb-3 row-gap-3">
+              <div class="col">
+                <fieldset>
+                  <legend>Course</legend>
+                  <div class="row mb-3 justify-content-evenly">
+                    <div class="col">
+                      <div class="d-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col-2">Title:</label>
+                        <input class="form-control" id="inputEmail4" type="search">
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="container row">
-                  <div class="container col-4">
-                    <label for="inputEmail4" class="form-label">CRN:</label>
-                    <input type="email" class="form-control" id="inputEmail4">
+                  <div class="row">
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">Discipline:</label>
+                        <select class="form-select form-select-lg col-5" aria-label=".form-select-lg example">
+                          <option value="CSC">CSC</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">CRN:</label>
+                        <input class="form-control col" id="inputEmail4">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">Credits:</label>
+                        <input class="form-control col" value="5" type="number" min="0" max="5">
+                      </div>
+                    </div>
                   </div>
-                  <div class="container col-4">
-                    <label for="inputEmail4" class="form-label">Credits:</label>
-                    <input type="email" class="form-control" id="inputEmail4">
+                </fieldset>
+              </div>
+              <div class="col">
+                <fieldset>
+                  <legend>Time</legend>
+                  <div class="row mb-3 justify-content-evenly">
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">Term:</label>
+                        <select class="form-select form-select-lg mb-3">
+                          <option value="Autumn">Autumn</option>
+                          <option value="Winter">Winter</option>
+                          <option value="Spring">Spring</option>
+                          <option value="Summer">Summer</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">Year:</label>
+                        <select class="form-select form-select-lg mb-3">
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="container row">
-                </div> 
-              </fieldset>
+                  <div class="row justify-content-evenly">
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">From:</label>
+                        <input type="time" class="form-control" value="09:00" min="09:00" max="18:00">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-inline-flex align-items-center">
+                        <label for="inputEmail4" class="form-label col">To:</label>
+                        <input type="time" class="form-control" value="10:00" min="10:00" max="20:00">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
             </div>
-            <div class="container col-5">
-              <fieldset>
-                <legend>Time</legend>
-                <div class="container row justify-content-evenly">
-                  <div class="container col-6">
-                    <label for="inputEmail4" class="form-label">Term:</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option value="1">Autumn</option>
-                      <option value="2">Winter</option>
-                      <option value="3">Spring</option>
-                      <option value="4">Summer</option>
-                    </select>
+            <div class="row mb-3">
+              <div class="container-fluid col-12">
+                <fieldset>
+                  <legend>Attributes</legend>
+                  <div class="container row justify-content-evenly">
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Upper Division
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ways of Knowing in Quantitative Reasoning
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Cultural Understanding and Engagement
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="container col-6">
-                    <label for="inputEmail4" class="form-label">From:</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option value="1">9:00AM</option>
-                      <option value="2">10:00AM</option>
-                      <option value="3">11:00AM</option>
-                      <option value="4">12:00PM</option>
-                      <option value="4">1:00PM</option>
-                      <option value="4">2:00PM</option>
-                      <option value="4">3:00PM</option>
-                      <option value="4">4:00PM</option>
-                      <option value="4">5:00PM</option>
-                    </select>
+                  <div class="container row justify-content-evenly">
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Writing "W" Class
+                        </label>
+                      </div>  
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ways of Knowing in the Arts
+                        </label>
+                      </div>  
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ways of Knowing in the Humanities
+                        </label>
+                      </div> 
+                    </div>
                   </div>
-                  <div class="container col-6">
-                    <label for="inputEmail4" class="form-label">Year:</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option value="1">2022</option>
-                      <option value="2">2023</option>
-                    </select>
+                  <div class="container row justify-content-evenly">
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ways of Knowing in the Sciences
+                        </label>
+                      </div>  
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ways of Knowing in the Social Sciences
+                        </label>
+                      </div>   
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ways of Engaging
+                        </label>               
+                      </div>
+                    </div>
                   </div>
-                  <div class="container col-6">
-                    <label for="inputEmail4" class="form-label">To:</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option value="1">10:00AM</option>
-                      <option value="2">11:00AM</option>
-                      <option value="3">12:00PM</option>
-                      <option value="4">1:00PM</option>
-                      <option value="5">2:00PM</option>
-                      <option value="6">3:00PM</option>
-                      <option value="7">4:00PM</option>
-                      <option value="8">5:00PM</option>
-                      <option value="9">6:00PM</option>
-                      <option value="10">7:00PM</option>
-                    </select>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
             </div>
-            <div class="container-fluid col-12">
-              <fieldset>
-                <legend>Attributes</legend>
-                <div class="container row justify-content-evenly">
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Upper Division
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Ways of Knowing in Quantitative Reasoning
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Cultural Understanding and Engagement
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="container row justify-content-evenly">
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Writing "W" Class
-                      </label>
-                    </div>  
-                  </div>
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Ways of Knowing in the Arts
-                      </label>
-                    </div>  
-                  </div>
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Ways of Knowing in the Humanities
-                      </label>
-                    </div> 
-                  </div>
-                </div>
-                <div class="container row justify-content-evenly">
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Ways of Knowing in the Sciences
-                      </label>
-                    </div>  
-                  </div>
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Ways of Knowing in the Social Sciences
-                      </label>
-                    </div>   
-                  </div>
-                  <div class="col-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Ways of Engaging
-                      </label>               
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-            </div>  
-            <button class="btn">Search</button>
+            <div class="container row justify-content-center">
+              <button class="btn">Search</button>
+            </div>
           </form>
         </div>
 
@@ -320,52 +322,7 @@
 
         <!--Search Results-->
         <div class="center">
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course Name</span>
-            <span class="right">T/Th 1:00-1:50</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First LastName</td>
-                <td>Required for: Computer Science</td>
-              </tr>
-              <tr>
-                <td>Tues/Thur 1:00-1:50</td>
-                <td>
-                  Prerequisites:<br /><span class="complete">DEP####</span>
-                </td>
-              </tr>
-              <tr>
-                <td>OMH 138</td>
-                <td>Recommended: Spring 2023</td>
-              </tr>
-            </table>
-          </div>
-          <button type="button" class="collapsible conflict">
-            <span class="left course-name">Course Name</span>
-            <span class="right">MWF 9:00-10:30</span>
-          </button>
-          <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course Name</span>
-            <span class="right">MWF 12:00-1:00</span>
-          </button>
-          <div class="content">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
+
         </div>
       </div>
     </div>
