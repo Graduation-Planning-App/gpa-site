@@ -1,5 +1,28 @@
-// Gets unfiltered list of courses on page load
+// put search results div in variable
+const searchResults = document.getElementById('searchResults');
 
+// Gets unfiltered list of courses on page load
+document.addEventListener("DOMContentLoaded", async (e) => {
+    const data = {
+        "title":"",
+        "discipline":"",
+        "crn":"", 
+        "year":"", 
+        "term":"", 
+        "credits":"", 
+        "attributes":[],
+        "start_time":"",
+        "end_time":"",
+        "instruct_methods":"", 
+        "instructors":""
+    };
+    const response = await sendSearch(data);
+    const result = await response.json();
+
+    // Display results on screen
+    displayResults(result);
+    return;
+});
 
 // Sends GET request to api on search
 const searchForm = document.getElementById('searchForm');
@@ -37,8 +60,13 @@ searchForm.addEventListener('submit', async (e) => {
         "instruct_methods":"", 
         "instructors":instructor.value
     };
+    const response = await sendSearch(data);
 
-    return await sendSearch(data);
+    const result = await response.json();
+
+    // Display results on screen
+    displayResults(result);
+    return 
 });
 
 // Sends request to api
@@ -48,14 +76,44 @@ async function sendSearch(data) {
             method: "GET",
         }
     )
-    console.log(await response.json());
     return response;
 }
+
+// Displays results on the results div
+function displayResults(result) {
+    // clear previous results
+    document.getElementById('searchResults').innerHTML = "";
+    // put results of search into the search results div
+    for (let i = 0; i < result.rows.length; i++) {
+        let course_info = searchResults.appendChild(document.createElement("div"));
+        course_info.classList = "row mb-3";
+        course_info.innerHTML = result.rows[i].course_title;
+    }
+}
+
+// checks all attribute boxes
+const selectAllAttributes = document.getElementById('selectAllAttributes');
+selectAllAttributes.addEventListener('click', (e) => {
+    e.preventDefault();
+    const checkBoxes = document.getElementsByClassName('form-check-input');
+    for (let i = 0; i < checkBoxes.length; i++) {
+        checkBoxes[i].checked = true;
+    }
+});
+
+// deselects all attributes
+const deselectAllAttributes = document.getElementById('removeAllAttributes');
+deselectAllAttributes.addEventListener('click', (e) => {
+    e.preventDefault();
+    const checkBoxes = document.getElementsByClassName('form-check-input');
+    for (let i = 0; i < checkBoxes.length; i++) {
+        checkBoxes[i].checked = false;
+    }
+});
 
 // Leftover code from prior page implementation (may still be useful)
 var coll = document.getElementsByClassName('collapsible');
       var i;
-
       for (i = 0; i < coll.length; i++) {
         coll[i].addEventListener('click', function () {
           this.classList.toggle('active');
