@@ -71,7 +71,8 @@ searchForm.addEventListener('submit', async (e) => {
 
 // Sends request to api
 async function sendSearch(data) {
-    const response = await fetch( "http://localhost:3000/api/courses/search?input=" + encodeURIComponent(JSON.stringify(data)),
+    // TODO: for production, replace http://localhost:3000 with the url of the api
+    const response = await fetch("http://localhost:3000/api/courses/search?input=" + encodeURIComponent(JSON.stringify(data)),
         {
             method: "GET",
         }
