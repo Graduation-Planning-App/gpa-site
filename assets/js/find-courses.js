@@ -1,8 +1,47 @@
-// put search results div in variable
+/****************** Re-usable HTML Components **************************/
+
+const courseResultTemplate = document.createElement('template');
+
+courseResultTemplate.innerHTML = `
+    <div class="row mb-3 mx-3">
+        <slot name="courseName">Placeholder</slot>
+    </div>
+`;
+
+class CourseResult extends HTMLElement {
+    constructor() {
+        super();
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(courseResultTemplate.content.cloneNode(true));
+    }
+}
+  
+customElements.define('course-result', CourseResult);
+
+/***************** Page Logic *****************************************/
+
+// search results
 const searchResults = document.getElementById('searchResults');
+// search form
+const searchForm = document.getElementById('searchForm');
 
 // Gets unfiltered list of courses on page load
 document.addEventListener("DOMContentLoaded", async (e) => {
+    const tAndD = await getTeachersAndDisciplines();
+    // Add teachers and discipline codes to their selects
+    const teachers = document.getElementById('inputInstructor');
+    const disciplines = document.getElementById('inputDiscipline');
+    for (let i = 0; i < tAndD.teachers.length; i++) {
+        let option = teachers.appendChild(document.createElement("option"));
+        option.value = tAndD.teachers[i].name;
+        option.innerHTML = tAndD.teachers[i].name;
+    }
+    for (let i = 0; i < tAndD.disciplines.length; i++) {
+        let option = disciplines.appendChild(document.createElement("option"));
+        option.value = tAndD.disciplines[i].discipline_code;
+        option.innerHTML = tAndD.disciplines[i].discipline_code;
+    }
+
     const data = {
         "title":"",
         "discipline":"",
@@ -17,15 +56,13 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         "instructors":""
     };
     const response = await sendSearch(data);
-    const result = await response.json();
 
     // Display results on screen
-    displayResults(result);
+    displayResults(response);
     return;
 });
 
 // Sends GET request to api on search
-const searchForm = document.getElementById('searchForm');
 searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -62,33 +99,47 @@ searchForm.addEventListener('submit', async (e) => {
     };
     const response = await sendSearch(data);
 
-    const result = await response.json();
-
     // Display results on screen
-    displayResults(result);
+    displayResults(response);
     return 
 });
 
 // Sends request to api
 async function sendSearch(data) {
     // TODO: for production, replace http://localhost:3000 with the url of the api
-    const response = await fetch("http://localhost:3000/api/courses/search?input=" + encodeURIComponent(JSON.stringify(data)),
-        {
-            method: "GET",
-        }
-    )
-    return response;
+    const response = await fetch(
+        "http://localhost:3000" + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(data)),
+        { method: "GET" }
+    );
+    return await response.json();
+}
+
+// Gets teachers and discipline codes
+async function getTeachersAndDisciplines() {
+    let retVal = {};
+    // TODO: for production, replace http://localhost:3000 with the url of the api
+    const teachers = await fetch(
+        "http://localhost:3000" + "/api/courses/teachers",
+        { method: "GET" }
+    );
+    // TODO: for production, replace http://localhost:3000 with the url of the api
+    const disciplines = await fetch(
+        "http://localhost:3000" + "/api/courses/disciplines",
+        { method: "GET" }
+    );
+    retVal.teachers = await teachers.json();
+    retVal.disciplines = await disciplines.json();
+    return retVal;
 }
 
 // Displays results on the results div
 function displayResults(result) {
     // clear previous results
-    document.getElementById('searchResults').innerHTML = "";
+    searchResults.innerHTML = "";
     // put results of search into the search results div
     for (let i = 0; i < result.rows.length; i++) {
-        let course_info = searchResults.appendChild(document.createElement("div"));
-        course_info.classList = "row mb-3";
-        course_info.innerHTML = result.rows[i].course_title;
+        let course_info = searchResults.appendChild(document.createElement('course-result'));
+        course_info.innerHTML = `<span slot="courseName">${result.rows[i].course_title}</span>`;
     }
 }
 
@@ -114,15 +165,14 @@ deselectAllAttributes.addEventListener('click', (e) => {
 
 // Leftover code from prior page implementation (may still be useful)
 var coll = document.getElementsByClassName('collapsible');
-      var i;
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener('click', function () {
-          this.classList.toggle('active');
-          var content = this.nextElementSibling;
-          if (content.style.display === 'block') {
+for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener('click', function () {
+        this.classList.toggle('active');
+        var content = this.nextElementSibling;
+        if (content.style.display === 'block') {
             content.style.display = 'none';
-          } else {
+        } else {
             content.style.display = 'block';
-          }
-        });
-      }
+        }
+    });
+}
