@@ -16,14 +16,41 @@ class Pagination extends HTMLElement {
         this.shadowRoot.innerHTML = this.template;
     }
 
+    // callbacks
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log('Custom square element attributes changed.');
+        switch (name) {
+            case 'totalpages':
+                this.#totalPages = newValue;
+                break; 
+            case 'currentpage':
+                this.#currentPage = newValue;
+                break;
+        }
+        this.render();
+    }      
+
     // getters and setters
+    static get observedAttributes() {
+        return ["currentpage","totalpages"];
+    }
 
     set currentPage(value) {
-        this.currentPage = value;
+        this.#currentPage = value;
+        this.render();
+    }
+
+    get currentPage() {
+        return this.#currentPage;
     }
 
     set totalPages(value) {
-        this.totalPages = value;
+        this.#totalPages = value;
+        this.render()
+    }
+
+    get totalPages() {
+        return this.#totalPages;
     }
 
     get template() {
@@ -94,12 +121,15 @@ export class SearchResults extends HTMLElement {
     #totalPages = 0;
     #numResults = 0;
     #currentPage = 0;
+    #pagination = '';
 
     // constructor
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.render();
+        this.#pagination = this.shadowRoot.getElementById('pagination');
+        console.log(this.#pagination.currentPage);
     }
 
     // methods
@@ -143,12 +173,7 @@ export class SearchResults extends HTMLElement {
     set totalPages(value) {
         console.log('setting totalpages');
         this.#totalPages = value;
-        let pagination = this.shadowRoot.getElementById('pagination');
-        pagination.innerHTML = '';
-        let pageInfo = document.createElement('pagination-element');
-        pageInfo.currentPage = this.#currentPage;
-        pageInfo.totalPages = this.#totalPages;
-        pagination.append(pageInfo);
+        this.#pagination.setAttribute('totalpages', value);
     }
 
     get totalPages() {
@@ -166,12 +191,7 @@ export class SearchResults extends HTMLElement {
     set currentPage(value) {
         console.log('setting currentpage');
         this.#currentPage = value;
-        let pagination = this.shadowRoot.getElementById('pagination');
-        pagination.innerHTML = '';
-        let pageInfo = document.createElement('pagination-element');
-        pageInfo.currentPage = this.#currentPage;
-        pageInfo.totalPages = this.#totalPages;
-        pagination.append(pageInfo);
+        this.#pagination.setAttribute('currentpage', value);
     }
 
     get currentPage() {
@@ -182,7 +202,7 @@ export class SearchResults extends HTMLElement {
         return `
             <h1>Results</h1>
             <div id="resultBox" class="col"></div>
-            <div id="pagination" class="row"></div>
+            <pagination-element id="pagination"></pagination-element>
         `;
     }
 }

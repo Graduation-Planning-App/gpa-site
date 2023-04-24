@@ -80,6 +80,7 @@ async function search(query) {
 
     searchResults.results = jsonResponse.rows;
     searchResults.totalPages = jsonResponse.totalPages;
+    searchResults.currentPage = jsonResponse.currentPage;
     searchResults.numResults = jsonResponse.count;
 
     return;
