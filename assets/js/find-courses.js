@@ -1,29 +1,9 @@
-/****************** Re-usable HTML Components **************************/
+import ('./web-components/find-courses-components.js')
 
-const courseResultTemplate = document.createElement('template');
-
-courseResultTemplate.innerHTML = `
-    <div class="row mb-3 mx-3">
-        <slot name="courseName">Placeholder</slot>
-    </div>
-`;
-
-class CourseResult extends HTMLElement {
-    constructor() {
-        super();
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.appendChild(courseResultTemplate.content.cloneNode(true));
-    }
-}
-  
-customElements.define('course-result', CourseResult);
-
-/***************** Page Logic *****************************************/
-
-// search results
-const searchResults = document.getElementById('searchResults');
 // search form
 const searchForm = document.getElementById('searchForm');
+// search results
+const searchResults = document.getElementById('searchResults');
 
 // Gets unfiltered list of courses on page load
 document.addEventListener("DOMContentLoaded", async (e) => {
@@ -41,24 +21,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         option.value = tAndD.disciplines[i].discipline_code;
         option.innerHTML = tAndD.disciplines[i].discipline_code;
     }
+    await search(searchResults.query);
 
-    const data = {
-        "title":"",
-        "discipline":"",
-        "crn":"", 
-        "year":"", 
-        "term":"", 
-        "credits":"", 
-        "attributes":[],
-        "start_time":"",
-        "end_time":"",
-        "instruct_methods":"", 
-        "instructors":""
-    };
-    const response = await sendSearch(data);
-
-    // Display results on screen
-    displayResults(response);
     return;
 });
 
@@ -84,7 +48,7 @@ searchForm.addEventListener('submit', async (e) => {
             attributes.push(checkBoxes[i].value);
         }
     }
-    const data = {
+    searchResults.query = {
         "title":title.value, // keyword will yield more results, full title will narrow search results
         "discipline":discipline.value, // discipline code
         "crn":crn.value, // course crn
@@ -97,21 +61,28 @@ searchForm.addEventListener('submit', async (e) => {
         "instruct_methods":"", 
         "instructors":instructor.value
     };
-    const response = await sendSearch(data);
+    await search(searchResults.query);
 
-    // Display results on screen
-    displayResults(response);
-    return 
+    return
 });
 
 // Sends request to api
-async function sendSearch(data) {
+async function search(query) {
     // TODO: for production, replace http://localhost:3000 with the url of the api
     const response = await fetch(
-        "http://localhost:3000" + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(data)),
+        "http://localhost:3000" + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(query)),
         { method: "GET" }
     );
-    return await response.json();
+
+    let jsonResponse = await response.json();
+    
+    console.log(jsonResponse);
+
+    searchResults.results = jsonResponse.rows;
+    searchResults.totalPages = jsonResponse.totalPages;
+    searchResults.numResults = jsonResponse.count;
+
+    return;
 }
 
 // Gets teachers and discipline codes
@@ -130,17 +101,6 @@ async function getTeachersAndDisciplines() {
     retVal.teachers = await teachers.json();
     retVal.disciplines = await disciplines.json();
     return retVal;
-}
-
-// Displays results on the results div
-function displayResults(result) {
-    // clear previous results
-    searchResults.innerHTML = "";
-    // put results of search into the search results div
-    for (let i = 0; i < result.rows.length; i++) {
-        let course_info = searchResults.appendChild(document.createElement('course-result'));
-        course_info.innerHTML = `<span slot="courseName">${result.rows[i].course_title}</span>`;
-    }
 }
 
 // checks all attribute boxes
@@ -162,17 +122,3 @@ deselectAllAttributes.addEventListener('click', (e) => {
         checkBoxes[i].checked = false;
     }
 });
-
-// Leftover code from prior page implementation (may still be useful)
-var coll = document.getElementsByClassName('collapsible');
-for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener('click', function () {
-        this.classList.toggle('active');
-        var content = this.nextElementSibling;
-        if (content.style.display === 'block') {
-            content.style.display = 'none';
-        } else {
-            content.style.display = 'block';
-        }
-    });
-}
