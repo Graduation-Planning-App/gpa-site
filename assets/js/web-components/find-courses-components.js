@@ -1,8 +1,8 @@
 
 class Pagination extends HTMLElement {
     // fields (attributes)
-    #currentPage = '';
-    #totalPages = '';
+    #currentPage = 0;
+    #totalPages = 0;
 
     // constructor
     constructor() {
@@ -18,16 +18,23 @@ class Pagination extends HTMLElement {
 
     // callbacks
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log('Custom square element attributes changed.');
         switch (name) {
             case 'totalpages':
                 this.#totalPages = newValue;
+                let listPages = this.shadowRoot.getElementById('pageButtons');
+                listPages.innerHTML = '';
+                for (let i = 0; i < this.#totalPages; i++) {
+                    let pageButton = document.createElement('button');
+                    pageButton.value = i + 1;
+                    pageButton.setAttribute('class', 'btn');
+                    pageButton.innerHTML = `${i + 1}`;
+                    listPages.append(pageButton);
+                }
                 break; 
             case 'currentpage':
                 this.#currentPage = newValue;
                 break;
         }
-        this.render();
     }      
 
     // getters and setters
@@ -35,18 +42,8 @@ class Pagination extends HTMLElement {
         return ["currentpage","totalpages"];
     }
 
-    set currentPage(value) {
-        this.#currentPage = value;
-        this.render();
-    }
-
     get currentPage() {
         return this.#currentPage;
-    }
-
-    set totalPages(value) {
-        this.#totalPages = value;
-        this.render()
     }
 
     get totalPages() {
@@ -55,9 +52,13 @@ class Pagination extends HTMLElement {
 
     get template() {
         return `
-            <div class="row justify-content-evenly">
-                <h3>${this.#currentPage || 'Placeholder'}</h3>
-                <h4>${this.#totalPages || 'Placeholder'}</h4>
+            <style>
+                @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
+            </style>
+            <div class="d-flex justify-content-center my-3">
+                <button id="firstPage" class="btn"><<</button>
+                <div id="pageButtons"></div>
+                <button id="lastPage" class="btn">>></button>
             </div>
         `;
     }
@@ -74,7 +75,7 @@ class CourseInfo extends HTMLElement {
         this.attachShadow({ mode: "open" });
         this.addEventListener('click', function () {
             // TODO: make it so clicking this reveals more information about the course
-            console.log(this.#info.course_title);
+            this.toggleInfo();
         });
         this.render();
     }
@@ -82,6 +83,15 @@ class CourseInfo extends HTMLElement {
     // methods
     render() {
         this.shadowRoot.innerHTML = this.template;
+    }
+
+    toggleInfo() {
+        let moreInfo = this.shadowRoot.getElementById('moreInfo');
+        if (moreInfo.innerHTML === "") {
+            moreInfo.innerHTML = this.infoTemplate;
+        } else {
+            moreInfo.innerHTML = '';
+        }
     }
 
     // getters and setters
@@ -93,9 +103,22 @@ class CourseInfo extends HTMLElement {
 
     get template() {
         return `
-            <div class="row justify-content-evenly">
-                <h2>${this.#info.course_title}</h2>
-                <h3>${this.#info.class_time}</h3>
+            <style>
+                @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
+            </style>
+            <div class="row mb-2 mx-5 px-5 py-2 justify-content-between rounded border">
+                <div class="">${this.#info.course_title}</div>
+                <div class="">${this.#info.class_time}</div>
+            </div>
+            <div id="moreInfo" class="row"></div>
+        `;
+    }
+
+    get infoTemplate() {
+        return `
+            <div class="row mb-2 mx-5 px-5 py-2 justify-content-between rounded border">
+                <div class="">${this.#info.attributes.toString()}</div>
+                <div class="">${this.#info.class_time}</div>
             </div>
         `;
     }
@@ -129,7 +152,6 @@ export class SearchResults extends HTMLElement {
         this.attachShadow({ mode: "open" });
         this.render();
         this.#pagination = this.shadowRoot.getElementById('pagination');
-        console.log(this.#pagination.currentPage);
     }
 
     // methods
@@ -171,7 +193,6 @@ export class SearchResults extends HTMLElement {
     }
 
     set totalPages(value) {
-        console.log('setting totalpages');
         this.#totalPages = value;
         this.#pagination.setAttribute('totalpages', value);
     }
@@ -189,7 +210,6 @@ export class SearchResults extends HTMLElement {
     }
 
     set currentPage(value) {
-        console.log('setting currentpage');
         this.#currentPage = value;
         this.#pagination.setAttribute('currentpage', value);
     }
@@ -200,8 +220,10 @@ export class SearchResults extends HTMLElement {
 
     get template() {
         return `
-            <h1>Results</h1>
-            <div id="resultBox" class="col"></div>
+            <style>
+                @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
+            </style>
+            <div id="resultBox"></div>
             <pagination-element id="pagination"></pagination-element>
         `;
     }
