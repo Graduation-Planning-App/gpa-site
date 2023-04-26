@@ -3,12 +3,12 @@
 [Edit on StackBlitz (Vite.js)](https://stackblitz.com/edit/gpa)
 
 To run web container run `npx lite-server`
-    - IF running locally:
-        - clone the repo
-        - open a terminal and navigate to the repo directory
-        - run `npm install`
-        - run `npm run dev`
-        - to test with the api, make sure that you are running the backend at the same time
+- IF running locally:
+    - clone the repo
+    - open a terminal and navigate to the repo directory
+    - run `npm install`
+    - run `npm run dev`
+    - to test with the api, make sure that you are running the backend at the same time
 
 # Color Pallete
 
