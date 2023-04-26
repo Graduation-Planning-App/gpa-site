@@ -79,8 +79,8 @@ async function search(query) {
     console.log(jsonResponse);
 
     searchResults.results = jsonResponse.rows;
+    searchResults.currentPage = jsonResponse.currentPage + 1;
     searchResults.totalPages = jsonResponse.totalPages;
-    searchResults.currentPage = jsonResponse.currentPage;
     searchResults.numResults = jsonResponse.count;
 
     return;
