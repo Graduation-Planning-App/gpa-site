@@ -136,7 +136,6 @@ class CourseInfo extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         this.addEventListener('click', function () {
-            // TODO: make it so clicking this reveals more information about the course
             this.toggleInfo();
         });
         this.render();

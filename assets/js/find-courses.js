@@ -68,7 +68,6 @@ searchForm.addEventListener('submit', async (e) => {
 
 // Sends request to api
 async function search(query) {
-    // TODO: for production, replace http://localhost:3000 with the url of the api
     const response = await fetch(
         import.meta.env.VITE_API_BASEURL + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(query)),
         { method: "GET" }
@@ -87,12 +86,10 @@ async function search(query) {
 // Gets teachers and discipline codes
 async function getTeachersAndDisciplines() {
     let retVal = {};
-    // TODO: for production, replace http://localhost:3000 with the url of the api
     const teachers = await fetch(
         import.meta.env.VITE_API_BASEURL + "/api/courses/teachers",
         { method: "GET" }
     );
-    // TODO: for production, replace http://localhost:3000 with the url of the api
     const disciplines = await fetch(
         import.meta.env.VITE_API_BASEURL + "/api/courses/disciplines",
         { method: "GET" }
