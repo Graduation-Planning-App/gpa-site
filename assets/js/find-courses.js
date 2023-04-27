@@ -75,8 +75,6 @@ async function search(query) {
     );
 
     let jsonResponse = await response.json();
-    
-    console.log(jsonResponse);
 
     searchResults.results = jsonResponse.rows;
     searchResults.currentPage = jsonResponse.currentPage + 1;

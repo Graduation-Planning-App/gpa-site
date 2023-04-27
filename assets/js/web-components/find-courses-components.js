@@ -279,7 +279,6 @@ export class SearchResults extends HTMLElement {
         let json = await response.json();
         this.#results = json.rows
         this.#currentPage = json.currentPage + 1;
-        console.log(this.#results);
         this.fillResults();
     }
 
