@@ -70,7 +70,7 @@ searchForm.addEventListener('submit', async (e) => {
 async function search(query) {
     // TODO: for production, replace http://localhost:3000 with the url of the api
     const response = await fetch(
-        "http://localhost:3000" + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(query)),
+        import.meta.env.VITE_API_BASEURL + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(query)),
         { method: "GET" }
     );
 
@@ -91,12 +91,12 @@ async function getTeachersAndDisciplines() {
     let retVal = {};
     // TODO: for production, replace http://localhost:3000 with the url of the api
     const teachers = await fetch(
-        "http://localhost:3000" + "/api/courses/teachers",
+        import.meta.env.VITE_API_BASEURL + "/api/courses/teachers",
         { method: "GET" }
     );
     // TODO: for production, replace http://localhost:3000 with the url of the api
     const disciplines = await fetch(
-        "http://localhost:3000" + "/api/courses/disciplines",
+        import.meta.env.VITE_API_BASEURL + "/api/courses/disciplines",
         { method: "GET" }
     );
     retVal.teachers = await teachers.json();

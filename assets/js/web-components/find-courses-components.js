@@ -273,7 +273,7 @@ export class SearchResults extends HTMLElement {
     async changePage (pageNumber) {
         this.#query.page = pageNumber - 1;
         const response = await fetch(
-            "http://localhost:3000" + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(this.#query)),
+            import.meta.env.VITE_API_BASEURL + "/api/courses/search?input=" + encodeURIComponent(JSON.stringify(this.#query)),
             { method: "GET" }
         );
         let json = await response.json();
