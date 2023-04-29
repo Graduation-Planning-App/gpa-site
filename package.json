@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^4.0.4"
+  },
+  "dependencies": {
+    "cytoscape": "^3.24.0",
+    "graphology": "^0.25.1"
   }
 }
