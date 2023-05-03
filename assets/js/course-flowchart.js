@@ -2,10 +2,10 @@
 import cytoscape from 'cytoscape';
 
 import DirectedGraph from 'graphology';
+import {topologicalSort} from 'graphology-dag';
+
 
 const graph = new DirectedGraph();
-
-
 
 // Get course plan courses from api
 async function search(query) {
@@ -16,7 +16,7 @@ async function search(query) {
 
     let jsonResponse = await response.json();
 
-    console.log(jsonResponse);
+    console.log(jsonResponse)
 
     return jsonResponse;
 }
@@ -24,25 +24,47 @@ async function search(query) {
 function buildCourseGraph(coursePlan) {
 
     // add graph vertices
-    coursePlan[0].courses.forEach(element => {
+    coursePlan.courses.forEach(element => {
         graph.addNode(element.course_title, element);
     });
 
     // add graph edges
     graph.forEachNode( (node, attributes) => {
-        const prereqsList = getPrereqs(attributes);
-        console.log(prereqsList);
+        console.log("course: ", node);
+        const selected = getPrereqs(attributes.prerequisites, coursePlan);
+        let prereqs = new Array(selected);
+        console.log("selected prereqs: ", prereqs);
+        for (let i = 0; i < prereqs.length; i++) {
+            const source = graph.findNode( (e) => {
+                if (e.toString().includes(prereqs[i])) {
+                    return e;
+                } else {
+                    return undefined;
+                }
+            });
+            if (source) {
+                console.log("prereq: ", source);
+                graph.addDirectedEdge(source, node);
+            }
+        }
     });
+
+    // Topological sort graph
+    console.log(topologicalSort(graph));
+
+    // display graph in browser
+
 }
 
 // returns a list of prerequisites for a course
-function getPrereqs(attributes) {
-    let prereqs = [];
-    if (!attributes.prerequisites) {
+function getPrereqs(prerequisites, coursePlan) {
+    let retVal = [];
+    if (!prerequisites) {
         return;
     } else {
         // put prereqs, ANDs, and ORs into an array
-        let possiblePrereqs = attributes.prerequisites.match(/\w\w\w?\w? \d\d\d\d|AND|OR|\(|\)/g);
+        let possiblePrereqs = prerequisites.match(/\w\w\w?\w? \d\d\d\d|AND|OR|\(|\)/g);
+        console.log("possible prereqs: ", possiblePrereqs);
         // loop thru array to handle ANDs and ORs
         while (possiblePrereqs.length > 0) {
             const currentElement = possiblePrereqs.shift();
@@ -58,59 +80,72 @@ function getPrereqs(attributes) {
                 if (nextElement === "(") {
                     possiblePrereqs.unshift("(");
                     const list = possiblePrereqs.slice(possiblePrereqs.indexOf('('), possiblePrereqs.indexOf(')'));
-                    prereqs.push(chooseFromList(list));
+                    retVal.push(chooseFromList(list, coursePlan));
                     possiblePrereqs = possiblePrereqs.slice(possiblePrereqs.indexOf(')') + 1);
                 } else {
-                    prereqs.push(nextElement);
+                    retVal.push(nextElement);
                 }
             } else if (currentElement === "OR") {
                 // handle group
                 if (nextElement === "(") {
                     possiblePrereqs.unshift("(");
                     const list = possiblePrereqs.slice(possiblePrereqs.indexOf('('), possiblePrereqs.indexOf(')'));
-                    prereqs.push(chooseFromList(list));
+                    retVal.push(chooseFromList(list, coursePlan));
                     possiblePrereqs = possiblePrereqs.slice(possiblePrereqs.indexOf(')') + 1);
                 } else {
                     break;
                 }
             }
             if (!nextElement) {
-                prereqs.push(currentElement);
+                retVal.push(currentElement);
             } else if (nextElement === "AND") {
-                prereqs.push(currentElement);
+                retVal.push(currentElement);
                 const thirdElement = possiblePrereqs.shift();
                 if (thirdElement === "(") {
                     // put parentheses back into array
                     possiblePrereqs.unshift("(");
                     const list = possiblePrereqs.slice(possiblePrereqs.indexOf('('), possiblePrereqs.indexOf(')'));
-                    prereqs.push(chooseFromList(list));
+                    retVal.push(chooseFromList(list, coursePlan));
                     possiblePrereqs = possiblePrereqs.slice(possiblePrereqs.indexOf(')') + 1);
                 } else {
-                    prereqs.push(thirdElement);
+                    retVal.push(thirdElement);
                 }
             } else if (nextElement === "OR") {
-                // TODO: make this part smarter, for now, it will just choose the first option
-                prereqs.push(currentElement);
-                possiblePrereqs.shift();
-            } else {
+                // TODO: make this part smarter, for now, it will just choose the first option or skip if it is not found in the plan
+                const correspondingCourse = coursePlan.courses.find( e => {
+                    if (e.course_title.includes(currentElement)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                })
+                if (correspondingCourse) {
+                    retVal.push(currentElement);
+                    possiblePrereqs.shift();
+                }
                 
+            } else {
+
             }
         }
     }
-    return prereqs;
+    return retVal;
 }
 
 // returns a prereq or list of prereqs from a list bound by parentheses
-function chooseFromList(prereqList) {
-    // TODO: make this function smarter, right now, will only choose the first prereq (or group of prereqs)
+function chooseFromList(prereqList, coursePlan) {
+    // TODO: make this part smarter, for now, it will just choose the first option or skip if it is not found in the plan
+
     return prereqList.at(1);
 }
 
 // Gets users course plans on page load and generate flowcharts
 document.addEventListener("DOMContentLoaded", async (e) => {
 
-    const courses = await search('kyle.telnes@outlook.com');
-    buildCourseGraph(courses);
+    const coursePlans = await search('kyle.telnes@outlook.com');
+    for (let i = 0; i < coursePlans.length; i++) {
+        buildCourseGraph(coursePlans[i]);
+    }
 
     return;
 });
