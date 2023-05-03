@@ -1,6 +1,3 @@
-// TODO: figure out how to make cytoscape work
-import cytoscape from 'cytoscape';
-
 import DirectedGraph from 'graphology';
 import {topologicalSort} from 'graphology-dag';
 
