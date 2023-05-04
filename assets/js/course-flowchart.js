@@ -1,5 +1,8 @@
 import DirectedGraph from 'graphology';
 import {topologicalSort} from 'graphology-dag';
+// unused imports (for now)
+//import * as d3 from 'd3';
+//import * as d3Dag from 'd3-dag';
 
 
 const graph = new DirectedGraph();
@@ -13,8 +16,6 @@ async function search(query) {
 
     let jsonResponse = await response.json();
 
-    console.log(jsonResponse)
-
     return jsonResponse;
 }
 
@@ -27,10 +28,8 @@ function buildCourseGraph(coursePlan) {
 
     // add graph edges
     graph.forEachNode( (node, attributes) => {
-        console.log("course: ", node);
         const selected = getPrereqs(attributes.prerequisites, coursePlan);
         let prereqs = new Array(selected);
-        console.log("selected prereqs: ", prereqs);
         for (let i = 0; i < prereqs.length; i++) {
             const source = graph.findNode( (e) => {
                 if (e.toString().includes(prereqs[i])) {
@@ -40,16 +39,26 @@ function buildCourseGraph(coursePlan) {
                 }
             });
             if (source) {
-                console.log("prereq: ", source);
                 graph.addDirectedEdge(source, node);
             }
         }
     });
 
     // Topological sort graph
-    console.log(topologicalSort(graph));
+    const topo = topologicalSort(graph);
 
-    // display graph in browser
+    // Put courses into a sequence
+    const courseSequence = getCourseSequence(topo, coursePlan.courses)
+
+    const displayBox = document.getElementById('course-plans');
+    for (let i = 0; i < courseSequence.length; i++) {
+        const newElement = document.createElement('div');
+        newElement.innerHTML = `${i + 1}: ${courseSequence[i].toLocaleString()};`
+        displayBox.append(newElement);
+
+    }
+
+
 
 }
 
@@ -61,7 +70,6 @@ function getPrereqs(prerequisites, coursePlan) {
     } else {
         // put prereqs, ANDs, and ORs into an array
         let possiblePrereqs = prerequisites.match(/\w\w\w?\w? \d\d\d\d|AND|OR|\(|\)/g);
-        console.log("possible prereqs: ", possiblePrereqs);
         // loop thru array to handle ANDs and ORs
         while (possiblePrereqs.length > 0) {
             const currentElement = possiblePrereqs.shift();
@@ -131,9 +139,91 @@ function getPrereqs(prerequisites, coursePlan) {
 
 // returns a prereq or list of prereqs from a list bound by parentheses
 function chooseFromList(prereqList, coursePlan) {
-    // TODO: make this part smarter, for now, it will just choose the first option or skip if it is not found in the plan
+    // TODO: make this part smarter, for now, it will just choose the first option
 
     return prereqList.at(1);
+}
+
+function getCourseSequence(topoOrder, courses) {
+    // map topoOrder to course list to have complete info for each course
+    let courseList = topoOrder.map( (e) => {
+        return courses.find(element => element.course_title === e);
+    });
+
+    let layers = [];
+
+    let currentQuarter = 1;
+    let currentYear = 1;
+
+    while (currentYear < 5) {
+        let currCredits = 0;
+        let quarterCourses = [];
+        while (findNextAddableCourse(courseList, currentQuarter, currentYear) && currCredits < 11) {
+            
+            // find the next available course
+            const currentCourse = findNextAddableCourse(courseList, currentQuarter, currentYear);
+
+            // remove currentCourse from list
+            courseList.splice(courseList.findIndex(e => {
+                if (e === currentCourse) {
+                    return e;
+                }
+            }), 1);
+
+            currCredits += currentCourse.credits;
+
+            // add course to current quarter
+            quarterCourses.push(currentCourse);
+        }
+        // add the quarter to the layer
+        layers.push(quarterCourses);
+
+        // updates the current quarter
+        currentQuarter = changeQuarter(currentQuarter);
+        // updates the current year
+        if ((currentQuarter - 1) % 4 === 0) {
+            currentYear++;
+        }
+    }
+    return layers;
+}
+
+function getQtrNum(quarterString) {
+    if (quarterString === 'Autumn') {
+        return 1;
+    } else if (quarterString === 'Winter') {
+        return 2;
+    } else if (quarterString === 'Spring') {
+        return 3;
+    } else if (quarterString === 'Summer') {
+        return 4;
+    } else {
+        return null;
+    }
+}
+
+function getCorrectYear(course) {
+    if (course.attributes.includes("Upper-Division")) {
+        return 3;
+    } else {
+        return 1;
+    }
+}
+
+function findNextAddableCourse(courseList, currentQuarter, currentYear) {
+    return courseList.find( e => {
+        if ( (getQtrNum(e.term) === currentQuarter) && (getCorrectYear(e) <= currentYear) ) {
+            return e;
+        }
+    });
+}
+
+function changeQuarter(currentQuarter) {
+    if (currentQuarter < 4) {
+        return currentQuarter + 1
+    } else {
+        return 1;
+    }
 }
 
 // Gets users course plans on page load and generate flowcharts
