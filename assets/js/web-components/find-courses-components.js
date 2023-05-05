@@ -196,7 +196,7 @@ class CourseInfo extends HTMLElement {
                         <th scope="row" class="col-3">Location:</th>
                         <td class="col-3">${this.#info.location}</td>
                         <th scope="row" class="col-3">Instructors:</th>
-                        <td class="col-3">${this.#info.instructors.toString()}</td>
+                        <td class="col-3">${this.#info.instructors ? this.#info.instructors.toString() : 'N/A'}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="col-3">Prerequisites:</th>

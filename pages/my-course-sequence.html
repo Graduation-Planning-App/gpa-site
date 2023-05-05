@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/my-course-sequence/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/my-course-sequence.css" />
     <link rel="stylesheet" href="../assets/css/w3.css" />
     <!--Bootstrap-->
     <link
@@ -15,6 +15,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <script type="module" src="../assets/js/course-flowchart.js"></script>
   </head>
   <body>
     <!--Navbar-->
@@ -39,15 +40,14 @@
           ></a>
           <a
             href="../index.html"
-            class="w3-bar-item w3-button w3-padding-large w3-white"
+            class="w3-bar-item w3-button w3-hide-small w3-padding-large
+              hover-accent
+            "
             ><b>GPA</b></a
           >
           <a
             href="./my-course-sequence.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
+            class="w3-bar-item w3-button w3-padding-large w3-white"
             >My Course Sequence</a
           >
           <a
@@ -95,183 +95,8 @@
         </div>
       </div>
     </div>
-
-    <div class="row top">
-      <div class="col-10 center">
-        <h1>My Course Sequence<br /></h1>
-        <h3>
-          <mark>
-            Andrew and Jonathan are working on a dynamic method of displaying
-            course sequences for Algorithms but that will only be a front-end
-            tool
-          </mark>
-        </h3>
-        <h3>Quarter 1</h3>
-        <div class="center">
-          <button type="button" class="collapsible">
-            <span class="course-name">Course 1</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>MWF 9:00-10:20</td>
-              </tr>
-              <tr>
-                <td>OMH 138</td>
-              </tr>
-            </table>
-          </div>
-          <br />
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 2</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>MWF 10:30-11:50</td>
-              </tr>
-              <tr>
-                <td>OMH 241</td>
-              </tr>
-            </table>
-          </div>
-          <br />
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 3</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>Tues/Thur 1:00-1:50</td>
-              </tr>
-              <tr>
-                <td>OMH 245</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <br />
-        <h3>Quarter 2</h3>
-        <div class="center">
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 1</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>MWF 9:00-10:20</td>
-              </tr>
-              <tr>
-                <td>OMH 138</td>
-              </tr>
-            </table>
-          </div>
-          <br />
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 2</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>MWF 10:30-11:50</td>
-              </tr>
-              <tr>
-                <td>OMH 241</td>
-              </tr>
-            </table>
-          </div>
-          <br />
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 3</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>Tues/Thur 1:00-1:50</td>
-              </tr>
-              <tr>
-                <td>OMH 245</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <br />
-        <h3>Quarter 3</h3>
-        <div class="center">
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 1</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>MWF 9:00-10:20</td>
-              </tr>
-              <tr>
-                <td>OMH 138</td>
-              </tr>
-            </table>
-          </div>
-          <br />
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 2</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>MWF 10:30-11:50</td>
-              </tr>
-              <tr>
-                <td>OMH 241</td>
-              </tr>
-            </table>
-          </div>
-          <br />
-          <button type="button" class="collapsible">
-            <span class="left course-name">Course 3</span>
-          </button>
-          <div class="content">
-            <table>
-              <tr>
-                <td>Professor First Last</td>
-              </tr>
-              <tr>
-                <td>Tues/Thur 1:00-1:50</td>
-              </tr>
-              <tr>
-                <td>OMH 241</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-2 sidebar center">
+    <div class="row">
+      <div class="col-2 sidebar center my-4">
         <img
           src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400"
           alt="Profile Pic"
@@ -285,6 +110,10 @@
           Expected Graduation<br />
           Spring 20XX
         </p>
+      </div>
+      <div class="col-10 my-4">
+        <h1>My Course Sequence</h1>
+        <div id="course-plans" class="mx-4 px-4"></div>
       </div>
     </div>
   </body>
