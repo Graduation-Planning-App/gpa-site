@@ -1,5 +1,7 @@
 import DirectedGraph from 'graphology';
 import {topologicalSort} from 'graphology-dag';
+// import custom html elements
+import ('./web-components/course-flowchart-components.js');
 // unused imports (for now)
 //import * as d3 from 'd3';
 //import * as d3Dag from 'd3-dag';
@@ -51,15 +53,9 @@ function buildCourseGraph(coursePlan) {
     const courseSequence = getCourseSequence(topo, coursePlan.courses)
 
     const displayBox = document.getElementById('course-plans');
-    for (let i = 0; i < courseSequence.length; i++) {
-        const newElement = document.createElement('div');
-        newElement.innerHTML = `${i + 1}: ${courseSequence[i].toLocaleString()};`
-        displayBox.append(newElement);
-
-    }
-
-
-
+    const plan = document.createElement('course-plan');
+    plan.coursePlan = courseSequence;
+    displayBox.append(plan);
 }
 
 // returns a list of prerequisites for a course
