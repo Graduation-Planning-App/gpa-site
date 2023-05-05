@@ -224,7 +224,7 @@ function changeQuarter(currentQuarter) {
 
 // Gets users course plans on page load and generate flowcharts
 document.addEventListener("DOMContentLoaded", async (e) => {
-
+    // Replace 'kyle.telnes@outlook.com' with an account on your database
     const coursePlans = await search('kyle.telnes@outlook.com');
     for (let i = 0; i < coursePlans.length; i++) {
         buildCourseGraph(coursePlans[i]);
