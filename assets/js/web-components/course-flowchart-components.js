@@ -96,7 +96,7 @@ class YearCourses extends HTMLElement {
         <style>
             @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
         </style>
-        <div class="center">${this.#yearName}</div>`
+        <div><h2>${this.#yearName}</h2></div>`
     }
 }
 customElements.define('year-courses', YearCourses);
@@ -131,9 +131,8 @@ class QuarterCourses extends HTMLElement {
         this.#courses = value;
         if (this.#courses.length === 0) {
             let element = document.createElement('div');
-            element.innerHTML = `
-                No courses this quarter
-            `;
+            element.setAttribute('class', "row mb-2 mx-5 px-5 py-2 justify-content-center rounded border");
+            element.innerHTML = `No courses this quarter`;
             this.shadowRoot.append(element);
         }
         for (let i = 0; i < this.#courses.length; i++) {
@@ -148,7 +147,7 @@ class QuarterCourses extends HTMLElement {
         <style>
             @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
         </style>
-        <div>${this.#term}</div>`
+        <div><h3>${this.#term}</h3></div>`
     }
 }
 customElements.define('qtr-courses', QuarterCourses);
