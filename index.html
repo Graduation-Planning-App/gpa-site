@@ -4,92 +4,16 @@
   <head>
   <link rel="icon" href="https://lh3.googleusercontent.com/s3ESMnbvkRuEk63iS8aQaayL1b9-Zht45JJShThz-E5W-MHnx2vAbWZV7VvbWecw_RTI_t9b2ZhEZscO7MBJD17qifsEs1OUKl1yz8ZqI_imb6JmPLuPWBsEeZZ3gI-qxPzNZAMh7O4=s128-p-k">
     <title>GPA</title>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/index.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/w3.css" />
+    <script type="module" src="./assets/js/web-components/navbar.js"></script>
   </head>
-
   <body>
     <!--Navbar-->
-    <div class="row">
-      <div class="col">
-        <div class="w3-bar w3-card w3-left-align w3-large nav">
-          <a
-            class="
-              w3-bar-item
-              w3-button
-              w3-hide-medium
-              w3-hide-large
-              w3-right
-              w3-padding-large
-              hover-accent
-            "
-            href="javascript:void(0);"
-            onclick="myFunction()"
-            title="Toggle Navigation Menu"
-            ><i class="fa fa-bars"></i
-          ></a>
-          <a
-            href="./index.html"
-            class="w3-bar-item w3-button w3-padding-large w3-white"
-            ><b>GPA</b></a
-          >
-          <a
-            href="./pages/my-course-sequence.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
-            >My Course Sequence</a
-          >
-          <a
-            href="./pages/find-courses.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
-            >Find Courses</a
-          >
-          <a
-            href="./pages/resources.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
-            >Resources</a
-          >
-          <!-- Navbar on small screens -->
-          <div
-            id="navDemo"
-            class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-large"
-          >
-            <a
-              href="./index.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >GPA</a
-            >
-            <a
-              href="./pages/my-course-sequence.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >My Course Sequence</a
-            >
-            <a
-              href="./pages/find-courses.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >Find Courses</a
-            >
-            <a
-              href="./pages/resources.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >Resources</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <nav-bar page="index.html"></nav-bar>
+  
     <!-- Header -->
     <header
       class="w3-animate-opacity w3-container w3-center w3-text-white"
