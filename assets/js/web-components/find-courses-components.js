@@ -27,7 +27,11 @@ class Pagination extends HTMLElement {
         // append new buttons to button container
         this.#pageNumbers.forEach(e => {
             const button = document.createElement('button');
-            button.className = 'btn';
+            if (e === this.#currentPage) {
+                button.className = 'btn btn-light'
+            } else {
+                button.className = 'btn btn-dark';
+            }
             button.innerHTML = e;
             button.value = e;
             button.addEventListener('click', () => this.changePage(e) );
@@ -112,15 +116,29 @@ class Pagination extends HTMLElement {
         return `
             <style>
                 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
+                .btn-light {
+                    background-color: white;
+                    border-color: #021b2e;
+                    color: #021b2e;
+                }
+                .btn-dark {
+                    background-color: #021b2e;
+                    border-color: #021b2e;
+                }
+                .btn {
+                    border-radius: 0;
+                }
+                .btn:hover {
+                    border-color: #021b2e;
+                    background-color: #bb0f00;
+                }
             </style>
             <div class="d-flex justify-content-center my-3">
-                <button id="first" class="btn"><<</button>
-                <button id="prev" class="btn">Prev</button>
-                <div id="buttonContainer">
-
-                </div>
-                <button id="next" class="btn">Next</button>
-                <button id="last" class="btn">>></button>
+                <button id="first" class="btn btn-dark"><<</button>
+                <button id="prev" class="btn btn-dark">Prev</button>
+                <div id="buttonContainer"></div>
+                <button id="next" class="btn btn-dark">Next</button>
+                <button id="last" class="btn btn-dark">>></button>
             </div>
         `;
     }
