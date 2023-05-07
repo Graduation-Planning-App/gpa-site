@@ -45,9 +45,6 @@ class Navbar extends HTMLElement {
         return `
             <style>
                 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
-                a {
-                    font-size: 20;
-                }
                 .navbar {
                     background-color: #021b2e;
                     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -83,33 +80,6 @@ class Navbar extends HTMLElement {
                     </div>
                 <div>
             </nav>
-        `
-    }
-
-    get smallScreen() {
-        return `
-            <div id="navSmall" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-large">
-                <a
-                href="./index.html"
-                class="w3-bar-item w3-button w3-padding-large"
-                >GPA</a
-                >
-                <a
-                href="./pages/my-course-sequence.html"
-                class="w3-bar-item w3-button w3-padding-large"
-                >My Course Sequence</a
-                >
-                <a
-                href="./pages/find-courses.html"
-                class="w3-bar-item w3-button w3-padding-large"
-                >Find Courses</a
-                >
-                <a
-                href="./pages/resources.html"
-                class="w3-bar-item w3-button w3-padding-large"
-                >Resources</a
-                >
-            </div>
         `
     }
 }
