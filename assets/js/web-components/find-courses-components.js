@@ -111,7 +111,7 @@ class Pagination extends HTMLElement {
     get template() {
         return `
             <style>
-                @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
+                @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
             </style>
             <div class="d-flex justify-content-center my-3">
                 <button id="first" class="btn"><<</button>
