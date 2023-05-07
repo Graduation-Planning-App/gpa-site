@@ -5,97 +5,15 @@
     <title>Find Courses</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/find-courses.css" />
-    <link rel="stylesheet" href="../assets/css/w3.css" />
     <!--Bootstrap-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <!--Necessary JS modules-->
+    <script type="module" src="../assets/js/web-components/navbar.js"></script>
   </head>
   <body>
     <!--Navbar-->
-    <div class="row">
-      <div class="col">
-        <div class="w3-bar w3-card w3-left-align w3-large nav">
-          <a
-            class="
-              w3-bar-item
-              w3-button
-              w3-hide-medium
-              w3-hide-large
-              w3-right
-              w3-padding-large
-              hover-accent
-              w3-large
-            "
-            href="javascript:void(0);"
-            onclick="myFunction()"
-            title="Toggle Navigation Menu"
-            ><i class="fa fa-bars"></i
-          ></a>
-          <a
-            href="../index.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
-            ><b>GPA</b></a
-          >
-          <a
-            href="./my-course-sequence.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
-            >My Course Sequence</a
-          >
-          <a
-            href="./find-courses.html"
-            class="w3-bar-item w3-button w3-padding-large w3-white"
-            >Find Courses</a
-          >
-          <a
-            href="./resources.html"
-            class="
-              w3-bar-item w3-button w3-hide-small w3-padding-large
-              hover-accent
-            "
-            >Resources</a
-          >
-          <!-- Navbar on small screens -->
-          <div
-            id="navDemo"
-            class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-large"
-          >
-            <a
-              href="../index.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >GPA</a
-            >
-            <a
-              href="./my-course-sequence.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >My Course Sequence</a
-            >
-            <a
-              href="./find-courses.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >Find Courses</a
-            >
-            <a
-              href="./resources.html"
-              class="w3-bar-item w3-button w3-padding-large"
-              >Resources</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <nav-bar page="find-courses.html"></nav-bar>
     <div class="row top">
       <!--Sidebar-->
       <div class="col-2 sidebar center">
@@ -147,102 +65,83 @@
       <div class="col-10">
 
         <!--Search Tool-->
-        <div class="container pt-2 px-3">
+        <div class="flexbox pt-2 px-4 mx-4">
           <form action="" id="searchForm">
             <div class="row row-gap-4">
-              <div class="col border">
+              <div class="col-7 border">
                 <fieldset>
                   <legend>Course</legend>
                   <div class="row mb-3 justify-content-evenly">
+                    <label for="inputTitle" class="col-form-label col-2">Title:</label>
                     <div class="col">
-                      <div class="d-flex align-items-center">
-                        <label for="inputTitle" class="form-label col-2">Title:</label>
-                        <input class="form-control" id="inputTitle" type="search">
-                      </div>
+                      <input class="form-control" id="inputTitle" type="search">
                     </div>
                   </div>
                   <div class="row mb-3">
+                    <label for="inputDiscipline" class="col-form-label col-2">Discipline:</label>
                     <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputDiscipline" class="form-label col">Discipline:</label>
-                        <select class="form-select form-select-lg col-5" aria-label=".form-select-lg example" id="inputDiscipline">
-                          <option value="">Any</option>
-                        </select>
-                      </div>
+                      <select class="form-select form-select col-5" aria-label=".form-select example" id="inputDiscipline">
+                        <option value="">Any</option>
+                      </select>
                     </div>
+                    <label for="inputCRN" class="col-form-label col-2">CRN:</label>
                     <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputCRN" class="form-label col">CRN:</label>
-                        <input class="form-control col" id="inputCRN">
-                      </div>
+                      <input class="form-control col" id="inputCRN">
                     </div>
                   </div>
                   <div class="row mb-3">
+                    <label for="inputInstructor" class="col-form-label col-2">Instructor:</label>
                     <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputInstructor" class="form-label col">Instructor:</label>
-                        <select class="form-select form-select-lg mb-3" id="inputInstructor">
-                          <option value="">Any</option>
-                        </select>
-                      </div>
+                      <select class="form-select mb-3" id="inputInstructor">
+                        <option value="">Any</option>
+                      </select>
                     </div>
-                    <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputCredits" class="form-label col">Credits:</label>
-                        <select class="form-select form-select-lg mb-3" id="inputCredits">
-                          <option value="">Any</option>
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      </div>
+                    <label for="inputCredits" class="col-form-label col-2">Credits:</label>
+                    <div class="col-2">
+                      <select class="form-select form-select mb-3" id="inputCredits">
+                        <option value="">Any</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
                     </div>
                   </div>
-                  
                 </fieldset>
               </div>
               <div class="col border">
                 <fieldset>
                   <legend>Time</legend>
-                  <div class="row mb-3 mt-3 justify-content-evenly">
+                  <div class="row py-3">
+                    <label for="inputTerm" class="col-form-label col-2">Term:</label>
                     <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputTerm" class="form-label col">Term:</label>
-                        <select class="form-select form-select-lg mb-3" id="inputTerm">
-                          <option value="">Any</option>
-                          <option value="Autumn">Autumn</option>
-                          <option value="Winter">Winter</option>
-                          <option value="Spring">Spring</option>
-                          <option value="Summer">Summer</option>
-                        </select>
-                      </div>
+                      <select class="form-select form-select mb-3" id="inputTerm">
+                        <option value="">Any</option>
+                        <option value="Autumn">Autumn</option>
+                        <option value="Winter">Winter</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                      </select>
                     </div>
+                    <label for="inputYear" class="col-form-label col-2">Year:</label>
                     <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputYear" class="form-label col">Year:</label>
-                        <select class="form-select form-select-lg mb-3" id="inputYear">
-                          <option value="">Any</option>
-                          <option value="2022">2022</option>
-                          <option value="2023">2023</option>
-                        </select>
-                      </div>
+                      <select class="form-select form-select mb-3" id="inputYear">
+                        <option value="">Any</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                      </select>
                     </div>
                   </div>
-                  <div class="row mt-3 justify-content-evenly">
-                    <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputStartTime" class="form-label col">From:</label>
-                        <input type="time" class="form-control" value="09:00" min="09:00" max="18:00" id="inputStartTime">
-                      </div>
+                  <div class="row mb-3">
+                    <label for="inputStartTime" class="col-form-label col-2">From:</label>
+                    <div class="col-4">
+                      <input type="time" class="form-control col" value="09:00" min="09:00" max="18:00" id="inputStartTime">
                     </div>
-                    <div class="col">
-                      <div class="d-inline-flex align-items-center">
-                        <label for="inputEndTime" class="form-label col">To:</label>
-                        <input type="time" class="form-control" value="18:00" min="10:00" max="20:00" id="inputEndTime">
-                      </div>
+                    <label for="inputEndTime" class="col-form-label col-2">To:</label>
+                    <div class="col-4">
+                      <input type="time" class="form-control" value="18:00" min="10:00" max="20:00" id="inputEndTime">
                     </div>
                   </div>
                 </fieldset>
@@ -384,17 +283,19 @@
                   </div>
                   <div class="container row mb-3 justify-content-evenly">
                     <div class="col-2">
-                      <button class="btn" id="selectAllAttributes" type="button">Select All</button>
+                      <button class="btn btn-dark" id="selectAllAttributes" type="button">Select All</button>
                     </div>
                     <div class="col-2">
-                      <button class="btn" id="removeAllAttributes" type="button">Remove All</button>
+                      <button class="btn btn-dark" id="removeAllAttributes" type="button">Remove All</button>
                     </div>
                   </div>
                 </fieldset>
               </div>
             </div>
-            <div class="container row">
-              <button class="btn" id="searchButton" type="submit">Search</button>
+            <div class="row">
+              <div class="col-3"></div>
+              <button class="btn btn-dark col-6" id="searchButton" type="submit">Search</button>
+              <div class="col-3"></div>
             </div>
           </form>
         </div>

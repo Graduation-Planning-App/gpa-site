@@ -49,3 +49,17 @@ a {
   color: #bb0f00;
   background-color: #bb0f00;
 }
+
+.btn-dark {
+  background-color: #021b2e;
+  border-color: #021b2e;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn:hover {
+  border-color: #021b2e;
+  background-color: #bb0f00;
+}
