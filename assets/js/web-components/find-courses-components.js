@@ -1,4 +1,4 @@
-import './course-components';
+import './course-info';
 class Pagination extends HTMLElement {
     // fields (attributes)
     #currentPage = 1;

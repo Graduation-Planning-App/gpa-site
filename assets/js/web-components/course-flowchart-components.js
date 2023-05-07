@@ -1,4 +1,4 @@
-import ('./course-components');
+import './course-info';
 
 class CoursePlan extends HTMLElement {
     // fields
