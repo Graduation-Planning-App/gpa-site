@@ -116,22 +116,7 @@ class Pagination extends HTMLElement {
         return `
             <style>
                 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
-                .btn-light {
-                    background-color: white;
-                    border-color: #021b2e;
-                    color: #021b2e;
-                }
-                .btn-dark {
-                    background-color: #021b2e;
-                    border-color: #021b2e;
-                }
-                .btn {
-                    border-radius: 0;
-                }
-                .btn:hover {
-                    border-color: #021b2e;
-                    background-color: #bb0f00;
-                }
+                @import url("/assets/css/main.css");
             </style>
             <div class="d-flex justify-content-center my-3">
                 <button id="first" class="btn btn-dark"><<</button>

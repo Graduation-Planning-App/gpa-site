@@ -50,6 +50,12 @@ a {
   background-color: #bb0f00;
 }
 
+.btn-light {
+  background-color: white;
+  border-color: #021b2e;
+  color: #021b2e;
+}
+
 .btn-dark {
   background-color: #021b2e;
   border-color: #021b2e;
