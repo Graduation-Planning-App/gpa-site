@@ -26,6 +26,13 @@ class LoginModal extends HTMLElement {
                 this.closeModal();
             }
         });
+
+        // configure form
+        const loginForm = this.shadowRoot.getElementById('loginForm');
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            this.login();
+        });
     }
 
     displayModal() {
@@ -36,8 +43,31 @@ class LoginModal extends HTMLElement {
         this.#modal.style.display = "none";
     }
 
-    login() {
-
+    async login() {
+        // get form data
+        const form = this.shadowRoot.getElementById('loginForm');
+        const formData = new FormData(form);
+        // create request JSON
+        let request = {};
+        request.email = formData.get('uname').toString();
+        request.password = formData.get('psw').toString();
+        // attempt login
+        const response = await fetch(
+            import.meta.env.VITE_API_BASEURL + "/api/users/login", { 
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                mode: "cors",
+                body: JSON.stringify(request)
+            }
+        );
+        if (response.status !== 200) {
+            console.log(await response.json());
+        } else {
+            this.closeModal();
+        }
+        console.log(await response.json());
     }
 
     // setters and getters
@@ -89,7 +119,7 @@ class LoginModal extends HTMLElement {
             <div id="loginModal" class="modal">
                 <div class="modal-head row"><h2>Login</h2></div>
                 <div class="modal-main">
-                    <form>
+                    <form id="loginForm" method="dialog">
                         <div class="row mb-3 px-5">
                             <div class="row mb-3">
                                 <label for="uname" class="col-form-label col-xxl-2"><b>Email</b></label>
@@ -105,7 +135,7 @@ class LoginModal extends HTMLElement {
                                 </label>
                                 <a class="col-lg-6" href="/pages/password.html">Forgot Password?</a>
                             </div>
-                            <button type="submit" class="btn btn-dark">Login</button>
+                            <button id="loginButton" type="submit" class="btn btn-dark">Login</button>
                         </div>
                     </form>
                 </div>
