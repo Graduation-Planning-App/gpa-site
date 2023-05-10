@@ -13,7 +13,10 @@ const graph = new DirectedGraph();
 async function search(query) {
     const response = await fetch(
         import.meta.env.VITE_API_BASEURL + "/api/courses/plan?email=" + query,
-        { method: "GET" }
+        {   
+            method: "GET",
+            credentials: "include"
+        }
     );
 
     let jsonResponse = await response.json();
