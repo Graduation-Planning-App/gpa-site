@@ -64,11 +64,14 @@ class LoginModal extends HTMLElement {
             }
         );
         if (response.status !== 200) {
-            console.log(await response.json());
+            const error = await response.json();
+            // put error message into modal footer
+            let errorBox = this.shadowRoot.getElementById('error');
+            errorBox.innerHTML = '';
+            errorBox.innerHTML = error.message;
         } else {
             this.closeModal();
         }
-        console.log(await response.json());
     }
 
     // setters and getters
@@ -104,9 +107,26 @@ class LoginModal extends HTMLElement {
                     background-color: white;
                     border: 2px solid black;
                     border-top-style: none;
+                    border-bottom-style: none;
                     padding: 20px;
                     margin: auto; 
                     width: 50%;
+                }
+                .modal-foot {
+                    position: relative; 
+                    background-color: white;
+                    border: 2px solid black;
+                    border-top-style: none;
+                    color: red;
+                    padding: 10px;
+                    margin: auto; 
+                    width: 50%;
+                }
+                .link {
+                    color: #bb0f00;
+                }
+                .checkbox {
+                    color: #bb0f00;
                 }
             </style>
         `;
@@ -132,14 +152,15 @@ class LoginModal extends HTMLElement {
                             </div>
                             <div class="row mb-3">
                                 <label class="col-lg-6">
-                                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                                    <input class="checkbox" type="checkbox" checked="checked" name="remember"> Remember me
                                 </label>
-                                <a class="col-lg-6" href="/pages/password.html">Forgot Password?</a>
+                                <a class="col-lg-6 link" href="/pages/password.html">Forgot Password?</a>
                             </div>
                             <button id="loginButton" type="submit" class="btn btn-dark">Login</button>
                         </div>
                     </form>
                 </div>
+                <div class="modal-foot row"><p id="error"></p></div>
             </div>
         `
     }
