@@ -151,7 +151,7 @@ class LoginModal extends HTMLElement {
                         <div class="row mb-3 px-5">
                             <div class="row mb-3">
                                 <label for="uname" class="col-form-label col-xxl-2"><b>Email</b></label>
-                                <input type="text" class="form-control col" placeholder="Enter Your Email" name="uname" required>
+                                <input type="email" class="form-control col" placeholder="Enter Your Email" name="uname" required>
                             </div>
                             <div class="row mb-3">
                                 <label for="psw" class="col-form-label col-xxl-2"><b>Password</b></label>
