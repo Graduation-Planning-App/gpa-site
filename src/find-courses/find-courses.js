@@ -1,4 +1,4 @@
-import ('./web-components/find-courses-components.js')
+import ('../web-components/find-courses-components.js')
 
 // search form
 const searchForm = document.getElementById('searchForm');

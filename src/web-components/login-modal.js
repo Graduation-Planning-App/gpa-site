@@ -80,7 +80,6 @@ class LoginModal extends HTMLElement {
         return `
             <style>
                 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
-                @import url("/assets/css/main.css");
                 .modal {
                     display: none;
                     position: fixed; 
@@ -125,8 +124,16 @@ class LoginModal extends HTMLElement {
                 .link {
                     color: #bb0f00;
                 }
-                .checkbox {
-                    color: #bb0f00;
+                .btn-dark {
+                    background-color: #021b2e;
+                    border-color: #021b2e;
+                }
+                .btn {
+                    border-radius: 0;
+                }
+                .btn:hover {
+                    border-color: #021b2e;
+                    background-color: #bb0f00;
                 }
             </style>
         `;

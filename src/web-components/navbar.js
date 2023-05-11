@@ -65,7 +65,7 @@ class Navbar extends HTMLElement {
             </style>
             <nav class="navbar navbar-expand-lg my-0 py-0 sticky-top">
                 <div class="container-fluid">
-                    <a id="index.html" class="navbar-brand" href="/index.html">
+                    <a id="index.html" class="navbar-brand" href="/">
                         <img 
                             src="https://lh3.googleusercontent.com/tyq4-F2H9R5u9VQvquALlMpbJObqgVO-beWDeKu6UtilcCowVyRXj-3c5AJ8HUngDNlb018VK8ozGk3WMGL96nI0TVKx9CdQ3_xEKqycqCJd8aR4FjdpHUXVa3opqnN_8p7BYd0Kjnw=w2400"
                             alt="GPA Logo" height="30" class="d-inline-block align-text-top px-3"
@@ -73,9 +73,9 @@ class Navbar extends HTMLElement {
                     </a>
                     <div class="collapse navbar-collapse">
                         <div class="navbar-nav">
-                            <a id="my-course-sequence.html" href="/pages/my-course-sequence.html" class="nav-item nav-link py-3 px-3">My Course Sequence</a>
-                            <a id="find-courses.html" href="/pages/find-courses.html" class="nav-item nav-link py-3 px-3">Find Courses</a>
-                            <a id="resources.html" href="/pages/resources.html" class="nav-item nav-link py-3 px-3">Resources</a>
+                            <a id="my-course-sequence.html" href="/course-sequence/" class="nav-item nav-link py-3 px-3">My Course Sequence</a>
+                            <a id="find-courses.html" href="/find-courses/" class="nav-item nav-link py-3 px-3">Find Courses</a>
+                            <a id="resources.html" href="/resources/" class="nav-item nav-link py-3 px-3">Resources</a>
                         </div>
                     </div>
                 <div>
