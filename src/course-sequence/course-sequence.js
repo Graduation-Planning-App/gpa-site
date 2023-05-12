@@ -1,12 +1,16 @@
+// since this page should require login, make sure that user is authenticated
+import Auth from '../js/auth';
+
 import DirectedGraph from 'graphology';
 import {topologicalSort} from 'graphology-dag';
+
 // import custom html elements
-import ('../web-components/course-flowchart-components.js');
+import ('../js/web-components/course-flowchart-components.js');
 // unused imports (for now)
 //import * as d3 from 'd3';
 //import * as d3Dag from 'd3-dag';
 
-
+const auth = new Auth();
 const graph = new DirectedGraph();
 
 // Get course plan courses from api
@@ -227,10 +231,12 @@ function changeQuarter(currentQuarter) {
 
 // Gets users course plans on page load and generate flowcharts
 document.addEventListener("DOMContentLoaded", async (e) => {
-    // Replace 'kyle.telnes@outlook.com' with an account on your database
-    const coursePlans = await search('kyle.telnes@outlook.com');
-    for (let i = 0; i < coursePlans.length; i++) {
-        buildCourseGraph(coursePlans[i]);
+    // Replace 'kyle.telnes@outlook.com' with logged in account
+    if (auth.isLoggedIn()) {
+        const coursePlans = await search('kyle.telnes@outlook.com');
+        for (let i = 0; i < coursePlans.length; i++) {
+            buildCourseGraph(coursePlans[i]);
+        }
     }
 
     return;

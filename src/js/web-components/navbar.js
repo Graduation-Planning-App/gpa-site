@@ -21,8 +21,6 @@ class Navbar extends HTMLElement {
                 let pageTab = this.shadowRoot.getElementById(newValue);
                 if (newValue !== 'index.html') {
                     pageTab.setAttribute("class", "nav-item nav-link py-3 px-3 active");
-                } else {
-                    //pageTab.setAttribute("class", "navbar-brand active");
                 }
         }
     }
@@ -62,8 +60,11 @@ class Navbar extends HTMLElement {
                 .navbar-brand.active {
                     background-color: #003176;
                 }
+                .navbar-toggler {
+                    background-color: white;
+                }
             </style>
-            <nav class="navbar navbar-expand-lg my-0 py-0 sticky-top">
+            <nav class="navbar navbar-expand-md my-0 py-0 sticky-top">
                 <div class="container-fluid">
                     <a id="index.html" class="navbar-brand" href="/">
                         <img 
@@ -71,7 +72,7 @@ class Navbar extends HTMLElement {
                             alt="GPA Logo" height="30" class="d-inline-block align-text-top px-3"
                         >
                     </a>
-                    <div class="collapse navbar-collapse">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="navbar-nav">
                             <a id="my-course-sequence.html" href="/course-sequence/" class="nav-item nav-link py-3 px-3">My Course Sequence</a>
                             <a id="find-courses.html" href="/find-courses/" class="nav-item nav-link py-3 px-3">Find Courses</a>
@@ -79,6 +80,11 @@ class Navbar extends HTMLElement {
                         </div>
                     </div>
                 <div>
+                <div class="py-3 px-3">
+                    <button class="navbar-toggler" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
             </nav>
         `
     }

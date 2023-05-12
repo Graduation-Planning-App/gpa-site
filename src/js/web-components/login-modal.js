@@ -70,6 +70,7 @@ class LoginModal extends HTMLElement {
             errorBox.innerHTML = '';
             errorBox.innerHTML = error.message;
         } else {
+            localStorage.setItem('isLoggedIn', 'true');
             this.closeModal();
         }
     }
