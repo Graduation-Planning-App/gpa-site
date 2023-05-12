@@ -231,6 +231,8 @@ function changeQuarter(currentQuarter) {
 
 // Gets users course plans on page load and generate flowcharts
 document.addEventListener("DOMContentLoaded", async (e) => {
+    // make sure that user is logged in
+    auth.validateAuth();
     // Replace 'kyle.telnes@outlook.com' with logged in account
     if (auth.isLoggedIn()) {
         const coursePlans = await search('kyle.telnes@outlook.com');

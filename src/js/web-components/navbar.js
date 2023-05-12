@@ -1,3 +1,5 @@
+import Auth from "../auth";
+
 class Navbar extends HTMLElement {
     // fields/attributes
     #currentPage = '';
@@ -7,6 +9,12 @@ class Navbar extends HTMLElement {
         super();
         this.attachShadow({ mode: "open"});
         this.render();
+
+        // hide elements that should be shown after login
+        const auth = new Auth();
+        if (!auth.isLoggedIn()) {
+            this.shadowRoot.getElementById('my-course-sequence.html').style.display = 'none';
+        }
     }
 
     // methods

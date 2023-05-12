@@ -1,13 +1,10 @@
 export default class Auth {
-    // setup the class and hide the body by default
-    constructor() {
-        document.querySelector("body").style.display = "none";
-        const auth = localStorage.getItem("isLoggedIn");
-        this.validateAuth(auth);
-    }
+    // setup the class
+    constructor() {}
     // check to see if the localStorage item passed to the function is valid and set
-    validateAuth(auth) {
-        if (auth !== 'true') {
+    validateAuth() {
+        document.querySelector("body").style.display = "none";
+        if (!this.isLoggedIn()) {
            window.location.replace("/");
         } else {
            document.querySelector("body").style.display = "block";
@@ -16,8 +13,12 @@ export default class Auth {
 
     isLoggedIn() {
         const auth = localStorage.getItem("isLoggedIn");
-        return auth !== 'true' && auth !== null;
+        if (auth === null) {
+            return false;
+        }
+        return auth === 'true';
     }
+    
     // will remove the localStorage item and redirect to main page
     logOut() {
         localStorage.removeItem("isLoggedIn");
