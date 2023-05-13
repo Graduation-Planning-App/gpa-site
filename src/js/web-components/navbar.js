@@ -87,8 +87,8 @@ class Navbar extends HTMLElement {
                             <a id="find-courses.html" href="/find-courses/" class="nav-item nav-link py-3 px-3">Find Courses</a>
                             <a id="resources.html" href="/resources/" class="nav-item nav-link py-3 px-3">Resources</a>
                         </div>
-                        <div class="nav-item col-md-1">
-                            <a id="profile.html" href="/profile/" class="nav-item nav-link py-3 px-3">
+                        <div class="col-md-1 d-flex">
+                            <a id="profile.html" href="/profile/" class="d-flex nav-item nav-link py-3 px-3">
                                 <img
                                     src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400"
                                     alt="Profile Pic"
