@@ -18,7 +18,8 @@ export default defineConfig({
                 main: resolve(root, 'index.html'),
                 resources: resolve(root, 'resources', 'index.html'),
                 findCourses: resolve(root, 'find-courses', 'index.html'),
-                courseSequence: resolve(root, 'course-sequence', 'index.html')
+                courseSequence: resolve(root, 'course-sequence', 'index.html'),
+                profile: resolve(root, 'profile', 'index.html')
             }
         }
     }

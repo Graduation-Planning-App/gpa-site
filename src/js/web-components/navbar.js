@@ -14,6 +14,7 @@ class Navbar extends HTMLElement {
         const auth = new Auth();
         if (!auth.isLoggedIn()) {
             this.shadowRoot.getElementById('my-course-sequence.html').style.display = 'none';
+            this.shadowRoot.getElementById('profile.html').style.display = 'none';
         }
     }
 
@@ -80,11 +81,20 @@ class Navbar extends HTMLElement {
                             alt="GPA Logo" height="30" class="d-inline-block align-text-top px-3"
                         >
                     </a>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-nav">
+                    <div class="row collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                        <div class="navbar-nav col-md">
                             <a id="my-course-sequence.html" href="/course-sequence/" class="nav-item nav-link py-3 px-3">My Course Sequence</a>
                             <a id="find-courses.html" href="/find-courses/" class="nav-item nav-link py-3 px-3">Find Courses</a>
                             <a id="resources.html" href="/resources/" class="nav-item nav-link py-3 px-3">Resources</a>
+                        </div>
+                        <div class="nav-item col-md-1">
+                            <a id="profile.html" href="/profile/" class="nav-item nav-link py-3 px-3">
+                                <img
+                                    src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400"
+                                    alt="Profile Pic"
+                                    height="30"
+                                />
+                            </a>
                         </div>
                     </div>
                 <div>
