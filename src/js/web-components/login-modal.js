@@ -72,6 +72,8 @@ class LoginModal extends HTMLElement {
         } else {
             localStorage.setItem('isLoggedIn', 'true');
             this.closeModal();
+            // redirect to main page (causes a reload)
+            window.location.replace("/");
         }
     }
 

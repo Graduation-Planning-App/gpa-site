@@ -1,0 +1,1 @@
+document.addEventListener('login', () => console.log('login detected!'))
