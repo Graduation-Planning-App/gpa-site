@@ -14,9 +14,9 @@ const auth = new Auth();
 const graph = new DirectedGraph();
 
 // Get course plan courses from api
-async function search(query) {
+async function search() {
     const response = await fetch(
-        import.meta.env.VITE_API_BASEURL + "/api/courses/plan?email=" + query,
+        import.meta.env.VITE_API_BASEURL + "/api/courses/plan",
         {   
             method: "GET",
             credentials: "include"
@@ -233,9 +233,8 @@ function changeQuarter(currentQuarter) {
 document.addEventListener("DOMContentLoaded", async (e) => {
     // make sure that user is logged in
     auth.validateAuth();
-    // Replace 'kyle.telnes@outlook.com' with logged in account
     if (auth.isLoggedIn()) {
-        const coursePlans = await search('kyle.telnes@outlook.com');
+        const coursePlans = await search();
         for (let i = 0; i < coursePlans.length; i++) {
             buildCourseGraph(coursePlans[i]);
         }
