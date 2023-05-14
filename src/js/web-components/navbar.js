@@ -14,8 +14,10 @@ class Navbar extends HTMLElement {
         const auth = new Auth();
         if (!auth.isLoggedIn()) {
             this.shadowRoot.getElementById('my-course-sequence.html').style.display = 'none';
-            this.shadowRoot.getElementById('profile.html').style.display = 'none';
+            this.shadowRoot.getElementById('profile').style.display = 'none';
         }
+        const logout = this.shadowRoot.getElementById('logout');
+        logout.addEventListener('click', () => auth.logOut());
     }
 
     // methods
@@ -61,6 +63,7 @@ class Navbar extends HTMLElement {
                 }
                 .nav-item.active {
                     background-color: white;
+                    color: #021b2e;
                 }
                 .nav-item:hover {
                     background-color: #bb0f00;
@@ -71,6 +74,27 @@ class Navbar extends HTMLElement {
                 }
                 .navbar-toggler {
                     background-color: white;
+                }
+                .profile {
+                    justify-content: center;
+                }
+                .profile ul {
+                    list-style-type: none;
+                    background-color: #021b2e;
+                    margin: 0;
+                    padding: 0;
+                    position: absolute;
+                    top: 100%;
+                    display: none;
+                }
+                .profile ul li {
+                    display: block;
+                } 
+                .profile:hover ul {
+                    display: inline-block;
+                }
+                .profile ul li a:hover {
+                    background-color: #bb0f00;
                 }
             </style>
             <nav class="navbar navbar-expand-md my-0 py-0 sticky-top">
@@ -87,14 +111,16 @@ class Navbar extends HTMLElement {
                             <a id="find-courses.html" href="/find-courses/" class="nav-item nav-link py-3 px-3">Find Courses</a>
                             <a id="resources.html" href="/resources/" class="nav-item nav-link py-3 px-3">Resources</a>
                         </div>
-                        <div class="col-md-1 d-flex">
-                            <a id="profile.html" href="/profile/" class="nav-item nav-link py-3 px-3">
-                                <img
-                                    src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400"
-                                    alt="Profile Pic"
-                                    height="30"
-                                />
-                            </a>
+                        <div class="col-md-1 d-flex profile px-3 center">
+                            <img id="profile"
+                                src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400"
+                                alt="Profile Pic"
+                                height="56"
+                            />
+                            <ul>
+                                <li><a id="profile.html" href="/profile/" class="nav-item nav-link py-3 px-3">Profile</a></li>
+                                <li><a id="logout" href="#" class="nav-item nav-link py-3 px-3">Logout</a></li>
+                            </ul>
                         </div>
                     </div>
                 <div>
