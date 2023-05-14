@@ -146,6 +146,7 @@ class QuarterCourses extends HTMLElement {
         return `
         <style>
             @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
+            @import url("../css/main.css");
         </style>
         <div><h3>${this.#term}</h3></div>`
     }
