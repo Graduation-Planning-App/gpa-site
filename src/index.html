@@ -73,34 +73,44 @@
       </h1>
     </div>
 
-    <section action="" id="signup">
-      <form method="post" id="signupForm">
-        <div class="container" >
-          <h1>Sign Up</h1>
-          <p>Please fill in this form to create an account.</p>
-          <hr>
-      
-          <label for="email"><b>Email</b></label>
-          <input type="text" formmethod="post" placeholder="Enter Email" id="email" name="email" required>
-      
-          <label for="email"><b>Username</b></label>
-          <input type="text" formmethod="post" placeholder="Enter Username" id="uname" name="uname" required>
-      
-          <label for="psw"><b>Password</b></label>
-          <input type="password" formmethod="post" placeholder="Enter Password" id="psw" name="psw" required>
-      
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input type="password" formmethod="post" placeholder="Repeat Password" id="psw-repeat" name="psw-repeat" required>
-      
-          <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-          </label>
-      
-          <div class="clearfix">
-            <button type="submit" class="btn btn-dark">Sign Up</button>
-          </div>
-        </div>
-      </form>
-    </section>
+	<section action="" id="signup">
+		<form method="post" id="signupForm">
+			<div class="container" >
+				<div class="form-group">
+					<h1>Sign Up</h1>
+					<p>Please fill in this form to create an account.</p>
+					<hr>
+					<div class="row">
+						<div class="col">
+							<label for="email" class="col-form-label" ><b>Email</b></label>
+							<input style="display: inline-block; padding: 12px 20px; margin: 8px 0px; border-width: 1.6px;" type="email" class="form-control" formmethod="post" placeholder="Enter Email" id="email" name="email" required>
+						</div>
+						<div class="col">
+							<label for="uname" class="col-form-label"><b>Username</b></label>
+							<input type="text" class="form-control" formmethod="post" placeholder="Enter Username" id="uname" name="uname" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label for="psw" class="col-form-label"><b>Password</b></label>
+							<input type="password" class="form-control" formmethod="post" placeholder="Enter Password" id="psw" name="psw" required>
+						</div>
+						<div class="col">
+							<label for="psw-repeat" class="col-form-label"><b>Repeat Password</b></label>
+							<input type="password" class="form-control" formmethod="post" placeholder="Repeat Password" id="psw-repeat" name="psw-repeat" required>
+						</div>
+					</div>
+					<label>
+						<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+					</label>
+
+					<div class="clearfix">
+						<button type="submit" class="btn btn-dark">Sign Up</button>
+						<p id="error"></p>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
   </body>
 </html>
