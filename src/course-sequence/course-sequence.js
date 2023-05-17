@@ -28,8 +28,7 @@ async function search() {
     return jsonResponse;
 }
 
-function buildCourseGraph(coursePlan) {
-
+function buildCourseGraph(coursePlan, planId) {
     // add graph vertices
     coursePlan.courses.forEach(element => {
         graph.addNode(element.course_title, element);
@@ -61,6 +60,7 @@ function buildCourseGraph(coursePlan) {
 
     const displayBox = document.getElementById('course-plans');
     const plan = document.createElement('course-plan');
+    plan.planId = planId;
     plan.coursePlan = courseSequence;
     displayBox.append(plan);
 }
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     if (auth.isLoggedIn()) {
         const coursePlans = await search();
         for (let i = 0; i < coursePlans.length; i++) {
-            buildCourseGraph(coursePlans[i]);
+            buildCourseGraph(coursePlans[i], coursePlans[i].id);
         }
     }
 

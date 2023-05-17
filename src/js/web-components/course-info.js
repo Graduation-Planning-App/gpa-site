@@ -1,6 +1,10 @@
+import Auth from "../auth";
+
 class CourseInfo extends HTMLElement {
     // fields
     #info = {};
+    #component;
+    #planId;
 
     // constructor
     constructor() {
@@ -26,11 +30,66 @@ class CourseInfo extends HTMLElement {
         }
     }
 
+    addToPlan() {
+        console.log('add ', this.#info.id);
+    }
+
+    removeFromPlan() {
+        console.log('remove ', this.#info.id, ' from ', this.#planId);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        // make sure that the user is signed in so that they can use the buttons
+        const auth = new Auth();
+        if (name === 'component') {
+            if ((oldValue !== newValue) && auth.isLoggedIn()) {
+                const button = this.shadowRoot.getElementById('edit-course-plan');
+                switch (newValue) {
+                    case 'find-course':
+                        // place an add to plan btn in the component
+                        let addBtn = document.createElement('button');
+                        addBtn.type = 'button';
+                        addBtn.setAttribute('class', 'btn btn-dark');
+                        addBtn.innerHTML = 'Add to Plan';
+                        button.append(addBtn);
+                        button.addEventListener('click', () => this.addToPlan());
+                        break;
+                    case 'course-plan':
+                        // hide the add button if this is on the course-plan page
+                        let remBtn = document.createElement('button');
+                        remBtn.type = 'button';
+                        remBtn.setAttribute('class', 'btn btn-dark');
+                        remBtn.innerHTML = 'Remove';
+                        button.append(remBtn);
+                        button.addEventListener('click', () => this.removeFromPlan());
+                        break;
+                }
+            }
+        }
+    }
+
     // getters and setters
+
+    static get observedAttributes() {
+        return ["component"];
+    }
 
     set info(value) {
         this.#info = value;
         this.render();
+    }
+
+    set planId(value) {
+        this.#planId = value;
+    }
+
+    set component(value) {
+        this.#component = value;
+        this.render();
+    }
+
+    get component() {
+        return this.#component;
     }
 
     get template() {
@@ -40,9 +99,9 @@ class CourseInfo extends HTMLElement {
                 @import url("../css/main.css");
             </style>
             <div class="row mb-2 mx-5 px-5 py-2 justify-content-between rounded border">
-                <div class="col-7">${this.#info.course_title ? this.#info.course_title : 'N/A'}</div>
+                <div class="col-6">${this.#info.course_title ? this.#info.course_title : 'N/A'}</div>
                 <div class="col-4">${this.#info.class_time ? this.#info.class_time : 'N/A'}</div>
-                <div class="col-1"></div>
+                <div id="edit-course-plan" class="col-2"></div>
             </div>
             <div id="moreInfo" class="row mx-5 px-5 justify-content-between"></div>
         `;
