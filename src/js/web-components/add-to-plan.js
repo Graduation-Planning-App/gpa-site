@@ -38,10 +38,10 @@ class AddToPlan extends HTMLElement {
                 let row = document.createElement('button');
                 row.setAttribute('class', 'row px-4 btn btn-dark');
                 row.setAttribute('id', plans[i].name);
-                // event listener will add a course to 
-                row.addEventListener('click', async () => {
+                // event listener will add a course to the plan
+                row.onclick = async () => {
                     const request = {
-                        plan_name: plans[i].name,
+                        plan_id: plans[i].id,
                         courses: [this.#course]
                     };
                     const response = await fetch(
@@ -58,8 +58,12 @@ class AddToPlan extends HTMLElement {
                     );
                     if (response.ok) {
                         this.closeModal();
+                    } else {
+                        let error = this.shadowRoot.getElementById('error');
+                        error.innerHTML = "";
+                        error.innerHTML = "An error occurred";
                     }
-                });
+                };
                 row.innerHTML = plans[i].name;
                 content.append(row);
             }

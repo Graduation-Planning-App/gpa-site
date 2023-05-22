@@ -35,8 +35,16 @@ class CourseInfo extends HTMLElement {
         this.shadowRoot.append(modal);
     }
 
-    removeFromPlan() {
-        console.log('remove ', this.#info.id, ' from ', this.#planId);
+    async removeFromPlan() {
+        const response = await fetch(
+            import.meta.env.VITE_API_BASEURL + "/api/courses/remove-course" + `?plan_id=${this.#planId}&course=${this.#info.id}`,
+            {
+                method: "DELETE", 
+                credentials: 'include', 
+                mode: "cors",
+            }
+        );
+        console.log(await response.json());
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
