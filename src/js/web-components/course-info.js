@@ -44,7 +44,10 @@ class CourseInfo extends HTMLElement {
                 mode: "cors",
             }
         );
-        console.log(await response.json());
+        // this code is here so that the removal is reflected in the course plan sequence on the page
+        if (response.ok) {
+            window.location.reload();
+        }
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
