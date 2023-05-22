@@ -12,12 +12,62 @@ class AddToPlan extends HTMLElement {
         this.shadowRoot.addEventListener('click', (e) => {
             if (e.target.id === 'modal') {
                 this.closeModal();
+            } else {
+                e.stopPropagation();
             }
         });
     }
 
-    render() {
+    async render() {
+        // render template html
         this.shadowRoot.innerHTML = this.style + this.template;
+        // get list of plans
+        const response = await fetch(
+            import.meta.env.VITE_API_BASEURL + "/api/courses/plan",
+            { method: "GET", credentials: 'include', mode: "cors" }
+        );
+        const plans = await response.json();
+        // if there aren't any plans, show a create plan modal instead
+        if (!plans) {
+            this.shadowRoot.innerHTML = this.style + this.createPlanTemplate; 
+            // TODO: remember to implement create plan
+        } else {
+            const content = this.shadowRoot.getElementById('content');
+            // iterate through list and attach the plans to the content portion of the modal
+            for (let i = 0; i < plans.length; i++) {
+                let row = document.createElement('button');
+                row.setAttribute('class', 'row px-4 btn btn-dark');
+                row.setAttribute('id', plans[i].name);
+                // event listener will add a course to 
+                row.addEventListener('click', async () => {
+                    const request = {
+                        plan_name: plans[i].name,
+                        courses: [this.#course]
+                    };
+                    const response = await fetch(
+                        import.meta.env.VITE_API_BASEURL + "/api/courses/add-course",
+                        {
+                            method: "POST", 
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            credentials: 'include', 
+                            mode: "cors",
+                            body: JSON.stringify(request)
+                        }
+                    );
+                    if (response.ok) {
+                        this.closeModal();
+                    }
+                });
+                row.innerHTML = plans[i].name;
+                content.append(row);
+            }
+        }
+    }
+
+    async createPlan() {
+
     }
 
     closeModal() {
@@ -33,7 +83,7 @@ class AddToPlan extends HTMLElement {
             <style>
                 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
                 .modal {
-                    display: none;
+                    display: block;
                     position: fixed; 
                     padding-top: 75px;
                     left: 0; 
@@ -95,7 +145,19 @@ class AddToPlan extends HTMLElement {
         return `
             <div id="modal" class="modal">
                 <div class="modal-head row"><h2>Choose Which Plan to Add to</h2></div>
-                <div class="modal-main">
+                <div id="content" class="modal-main row justify-content-center">
+                    <h3>My Plans:</h3>
+                </div>
+                <div class="modal-foot row"><p id="error"></p></div>
+            </div>
+        `
+    }
+
+    get createPlanTemplate() {
+        return `
+            <div id="modal" class="modal">
+                <div class="modal-head row"><h2>Create a plan</h2></div>
+                <div id="content" class="modal-main">
                     <div>Content</div>
                 </div>
                 <div class="modal-foot row"><p id="error"></p></div>

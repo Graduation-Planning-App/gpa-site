@@ -5,7 +5,7 @@ class CourseInfo extends HTMLElement {
     // fields
     #info = {};
     #component;
-    #planId;
+    #planId; // only used for removing course from plan
 
     // constructor
     constructor() {
@@ -30,8 +30,9 @@ class CourseInfo extends HTMLElement {
     }
 
     addToPlan() {
-        console.log('add ', this.#info.id);
-        
+        let modal = document.createElement('addto-plan');
+        modal.course = this.#info.id;
+        this.shadowRoot.append(modal);
     }
 
     removeFromPlan() {
