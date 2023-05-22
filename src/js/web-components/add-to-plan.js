@@ -103,4 +103,4 @@ class AddToPlan extends HTMLElement {
         `
     }
 }
-customElements.define('addto-plan', QuarterCourses);
+customElements.define('addto-plan', AddToPlan);
