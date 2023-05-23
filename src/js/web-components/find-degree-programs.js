@@ -6,6 +6,8 @@ TODO:
 -See if it works with more classes (only tested with 4)
 -CORS issues?
 
+-CHANGE LINE 40 TO ACTUALLY DISPLAY PROPER COURSE INFORMATION! Only displays CRN and Prereq
+
 */
 
 
