@@ -254,7 +254,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         // show user's course plans
         const coursePlans = await search();
         for (let i = 0; i < coursePlans.length; i++) {
-            buildCourseGraph(coursePlans[i], coursePlans[i].id);
+            if (coursePlans[i].courses.length !== 0) {
+                buildCourseGraph(coursePlans[i], coursePlans[i].id);
+            }
         }
     }
 
