@@ -195,6 +195,7 @@ export class SearchResults extends HTMLElement {
             for (let i = 0; i < this.#results.length; i++) {
                 let courseInfo = document.createElement('course-info');
                 courseInfo.info = this.#results[i];
+                courseInfo.setAttribute('component', 'find-course');
                 resultBox.append(courseInfo);
             }
         }
