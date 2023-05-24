@@ -7,9 +7,6 @@ import {topologicalSort} from 'graphology-dag';
 
 // import custom html elements
 import ('../js/web-components/course-flowchart-components.js');
-// unused imports (for now)
-//import * as d3 from 'd3';
-//import * as d3Dag from 'd3-dag';
 
 const auth = new Auth();
 
