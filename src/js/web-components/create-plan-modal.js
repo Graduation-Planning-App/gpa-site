@@ -6,25 +6,47 @@ class CreatePlan extends HTMLElement {
         this.attachShadow({ mode: "open" });
         this.render();
         this.shadowRoot.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (e.target.id === 'modal') {
-                this.closeModal();
-            } else {
-                e.stopPropagation();
+                this.parentNode.removeChild(this);
             }
         });
+        // set up form button
+        this.shadowRoot.getElementById('inputForm').onsubmit = async (e) => {
+            e.preventDefault();
+            await this.createPlan();
+        };
     }
 
-    async render() {
+    render() {
         // render template html
         this.shadowRoot.innerHTML = this.style + this.template;
     }
 
     async createPlan() {
-
-    }
-
-    closeModal() {
-        this.shadowRoot.innerHTML = '';
+        // get form data
+        const form = this.shadowRoot.getElementById('inputForm');
+        const formData = new FormData(form);
+        // create request JSON
+        let request = {
+            plan_name: formData.get('plan_name').toString(),
+            courses: [] // no courses will be added
+        };
+        // attempt to create a new plan
+        const response = await fetch(
+            import.meta.env.VITE_API_BASEURL + "/api/courses/plan", { 
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: 'include',
+                mode: "cors",
+                body: JSON.stringify(request)
+            }
+        );
+        if (!response.ok) {
+            console.log('an error occurred');
+        }
     }
 
     get style() {
@@ -95,7 +117,15 @@ class CreatePlan extends HTMLElement {
             <div id="modal" class="modal">
                 <div class="modal-head row"><h2>Create a plan</h2></div>
                 <div id="content" class="modal-main">
-                    <div>Content</div>
+                    <form id="inputForm">
+                        <div class="row mb-3 justify-content-evenly">
+                            <label for="inputName" class="col-form-label col-2">Name:</label>
+                            <div class="col">
+                            <input class="form-control" id="inputName" type="input" name="plan_name" required>
+                            </div>
+                        </div>
+                        <button id="submitButton" class="btn btn-dark" type="submit">Create Plan</button>
+                    </form>
                 </div>
                 <div class="modal-foot row"><p id="error"></p></div>
             </div>

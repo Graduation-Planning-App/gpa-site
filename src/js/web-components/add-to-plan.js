@@ -10,10 +10,9 @@ class AddToPlan extends HTMLElement {
         this.attachShadow({ mode: "open" });
         this.render();
         this.shadowRoot.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (e.target.id === 'modal') {
-                this.closeModal();
-            } else {
-                e.stopPropagation();
+                this.parentNode.removeChild(this);
             }
         });
     }
@@ -38,7 +37,7 @@ class AddToPlan extends HTMLElement {
             // iterate through list and attach the plans to the content portion of the modal
             for (let i = 0; i < plans.length; i++) {
                 let row = document.createElement('button');
-                row.setAttribute('class', 'row px-4 btn btn-dark');
+                row.setAttribute('class', 'row px-4 my-2 btn btn-dark');
                 row.setAttribute('id', plans[i].name);
                 // event listener will add a course to the plan
                 row.onclick = async () => {
@@ -146,7 +145,7 @@ class AddToPlan extends HTMLElement {
     get template() {
         return `
             <div id="modal" class="modal">
-                <div class="modal-head row"><h2>Choose Which Plan to Add to</h2></div>
+                <div class="modal-head row center"><h2>Choose Which Plan to Add to</h2></div>
                 <div id="content" class="modal-main row justify-content-center">
                     <h3>My Plans:</h3>
                 </div>
