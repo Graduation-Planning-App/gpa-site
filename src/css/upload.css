@@ -7,7 +7,7 @@
   padding-top: 17.5%;
 }
 
-form label,
+form label.upload,
 form button {
   background-color: #006e31;
   color: white;
@@ -18,13 +18,13 @@ form button {
   border: none;
 }
 
-form label:hover,
+form label.upload:hover,
 form button:hover {
   background-color: #021b2e;
   color: white;
 }
 
-form label:active,
+form label.upload:active,
 form button:active {
   background-color: #021b2e;
   color: white;
