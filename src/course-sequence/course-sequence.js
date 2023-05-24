@@ -58,7 +58,15 @@ function buildCourseGraph(coursePlan, planId) {
     // Put courses into a sequence
     const courseSequence = getCourseSequence(topo, coursePlan.courses)
 
+    // Display sequence in list form
     const displayBox = document.getElementById('course-plans');
+
+    // Display plan title
+    const planName = document.createElement('h2');
+    planName.innerHTML = "<b>" + coursePlan.name + ":" + "</b>";
+    displayBox.append(planName);
+
+    // Display plan details
     const plan = document.createElement('course-plan');
     plan.planId = planId;
     plan.coursePlan = courseSequence;
