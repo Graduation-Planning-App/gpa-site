@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="../css/upload.css"/>
 		<!--Necessary JS modules-->
 		<script type="module" src="./profile.js"></script>
+		<script type="module" src="./major-minor-add.js"></script>
 		<script type="module" src="../js/web-components/navbar.js"></script>
 	</head>
 	<body>
@@ -46,7 +47,7 @@
 					far instead of starting from scratch!
 				</h6>
 				<ol>
-					<li>Navigate to Banner</li>
+					<li>Open Banner</li>
 					<p>
 					We know, we hate Banner too. But it stores info that we want to
 					bring over here
@@ -59,22 +60,20 @@
 					<li>Find your course summary</li>
 					<p>
 					This should be the third button in the center of the top of the
-					screen. It should reload the page with a new view. Now
+					screen. It should reload the page with a new view.
 					</p>
-					<li>Download the course summary</li>
+					<li>Download the course summary page</li>
 					<p>
-					For Windows/Linux users, press CTL+S<br />
+					For Windows/Linux users, press CTRL+S<br />
 					For Mac users, press CMD+S<br /><br />
-					<i
-							>Make sure you save the file as "HTML" or "Webpage, HTML Only."</i
-						>
-						You should get one file that downloads.
+					<i> Make sure you save the file as "HTML" or "Webpage, HTML Only." </i> 
+					You should get one file that downloads.
 					</p>
-						<li>Upload it here!</li>
-						<p>See the sidebar on the left</p>
+					<li>Upload it here!</li>
+					<p>See the sidebar on the left</p>
 				</ol>
 				<h1 class="center">Add/Remove Major/Minor</h1>
-				<form>
+				<form id="modifyMajorsorMinors">
 					<div class="row">
 						<div class="col">
 							<label for="addOrRemove">Add or Remove</label>
@@ -84,11 +83,15 @@
 							</select>
 						</div>
 						<div class="col">
+							<label for="majorOrMinor">Major or Minor</label>
+							<select id="majorOrMinor" class="form-control form-control">
+								<option value="major">Major</option>
+								<option value="minor">Minor</option>
+							</select>
+						</div>
+						<div class="col">
 							<label for="degreePrograms">Degree</label>
-							<select id="degreePrograms" class="form-control form-control">
-								<% options.forEach(option => { %>
-								<option value="<%= option.id %>"><%= option.name %></option>
-								<% }); %>
+							<select name="degreePrograms" id="degreePrograms" class="form-control form-control">
 							</select>
 						</div>
 					</div>

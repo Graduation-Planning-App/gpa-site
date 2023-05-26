@@ -1,6 +1,6 @@
 // this will handle the initial stuff, then this function will call either add or remove depending on what is requested
 async function majorModify() {
-	const form = document.getElementById(''); // fill in the quotes with the form name
+	const form = document.getElementById('modifyMajorsorMinors'); // fill in the quotes with the form name
 	const formData = new FormData(form);
 	let errorBox = document.getElementById('error');
 	errorBox.innerHTML = '';
@@ -10,7 +10,7 @@ async function majorModify() {
 	// - the name of the program
 	// - if it's a major or minor (this might be determined by the ID)
 	// also get the user info
-	const addOrRemove = '';
+	let addOrRemove = '';
 	if (request.add) {
 		addOrRemove = "add-to-account";
 	}
@@ -38,6 +38,39 @@ async function majorModify() {
 	}
 }
 
+const selectedElement = document.getElementById("majorOrMinor");
+
+selectedElement.addEventListener('change', async(e) => {
+	e.preventDefault();
+	const selectedOption = selectedElement.value;
+	let curRoute = "";
+	if (selectedOption === 'major') {
+		curRoute = "getMajors";
+	}
+	else {
+		curRoute = "getMinors";
+	}
+	const response = await fetch(
+		import.meta.env.VITE_API_BASEURL + "/api/degrees/" + curRoute, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: 'include',
+			mode: "cors"
+		}
+	);
+	if (response.status !== 200) {
+		const error = await response.json();
+		// error message
+		errorBox.innerHTML = error.message;
+	}
+	else {
+		const data = await response.json();
+		// the above data will need to be parsed and put into select tags so the user can select which major/minor they want to add/remove
+		window.location.replace("/");
+	}
+})
 const form = document.getElementById("") // this ID will match whatever is at the top of the file
 form.addEventListener("submit", async (e) => {
 	e.preventDefault();
