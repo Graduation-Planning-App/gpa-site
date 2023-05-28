@@ -110,6 +110,7 @@ class Navbar extends HTMLElement {
                             <a id="my-course-sequence.html" href="/course-sequence/" class="nav-item nav-link py-3 px-3">My Course Sequence</a>
                             <a id="find-courses.html" href="/find-courses/" class="nav-item nav-link py-3 px-3">Find Courses</a>
                             <a id="resources.html" href="/resources/" class="nav-item nav-link py-3 px-3">Resources</a>
+                            <a id="profile.html" href="/profile/" class="nav-item nav-link py-3 px-3">Upload</a>
                         </div>
                         <div class="col-md-1 d-flex profile px-3 center">
                             <img id="profile"
