@@ -52,26 +52,24 @@ selectedElement.addEventListener('change', async(e) => {
 	}
 	const response = await fetch(
 		import.meta.env.VITE_API_BASEURL + "/api/degrees/" + curRoute, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			credentials: 'include',
-			mode: "cors"
+			method: "GET"
 		}
 	);
+	let data = JSON.parse(JSON.stringify(response));
 	if (response.status !== 200) {
-		const error = await response.json();
+		const error = data;
 		// error message
-		errorBox.innerHTML = error.message;
+		// errorBox.innerHTML = error.message;
 	}
 	else {
-		const data = await response.json();
+		// const data = await response.json();
+		console.log("trying to change innerhtml");
+		document.getElementById("modifyMajorsorMinors").innerHTML = data;
 		// the above data will need to be parsed and put into select tags so the user can select which major/minor they want to add/remove
 		window.location.replace("/");
 	}
 })
-const form = document.getElementById("") // this ID will match whatever is at the top of the file
+const form = document.getElementById("modifyMajorsorMinors") // this ID will match whatever is at the top of the file
 form.addEventListener("submit", async (e) => {
 	e.preventDefault();
 	await majorModify();
