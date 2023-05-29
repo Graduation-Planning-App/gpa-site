@@ -45,7 +45,7 @@ class CreatePlan extends HTMLElement {
             }
         );
         if (!response.ok) {
-            console.log('an error occurred');
+            this.shadowRoot.getElementById('error').innerHTML = 'Something went wrong; Course Plan could not be created.'
         }
     }
 
