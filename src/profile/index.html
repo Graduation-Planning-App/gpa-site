@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
   <head>
   <link rel="icon" href="https://lh3.googleusercontent.com/s3ESMnbvkRuEk63iS8aQaayL1b9-Zht45JJShThz-E5W-MHnx2vAbWZV7VvbWecw_RTI_t9b2ZhEZscO7MBJD17qifsEs1OUKl1yz8ZqI_imb6JmPLuPWBsEeZZ3gI-qxPzNZAMh7O4=s128-p-k">
     <title>Profile</title>
@@ -224,154 +223,52 @@
     //Code borrowed from https://github.com/mdn/learning-area/blob/main/html/forms/file-examples/file-example.html
     const input = document.querySelector('input');
     const preview = document.querySelector('.preview');
-=======
-	<head>
-		<link rel="icon" href="https://lh3.googleusercontent.com/s3ESMnbvkRuEk63iS8aQaayL1b9-Zht45JJShThz-E5W-MHnx2vAbWZV7VvbWecw_RTI_t9b2ZhEZscO7MBJD17qifsEs1OUKl1yz8ZqI_imb6JmPLuPWBsEeZZ3gI-qxPzNZAMh7O4=s128-p-k">
-		<title>Upload</title>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--Bootstrap-->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-		<!--CSS-->
-		<link rel="stylesheet" href="../css/main.css">
-		<link rel="stylesheet" href="../css/upload.css"/>
-		<!--Necessary JS modules-->
-		<script type="module" src="./profile.js"></script>
-		<script type="module" src="./major-minor-add.js"></script>
-		<script type="module" src="../js/web-components/navbar.js"></script>
-	</head>
-	<body>
-		<!--Navbar-->
-		<nav-bar page="profile.html"></nav-bar>
->>>>>>> 3eabfa8b7bcd9f5063a611a3f3c14d3c2a6c681d
 
-		<div class="row top">
-			<div class="col-2 sidebar" id="sidebar">
-				<form class="center">
-					<div>
-						<label for="image_uploads" class="center upload">Select file</label>
-						<input
-								type="file"
-								id="image_uploads"
-								name="image_uploads"
-								accept=".html"
-								/>
-					</div>
-					<div class="preview">
-						<p>No file selected</p>
-					</div>
-					<div>
-						<button class="btn btn-dark">Submit</button>
-					</div>
-				</form>
-			</div>
-			<div class="col-9">
-				<h1 class="center">Import Completed Courses</h1>
-				<br />
-				<h6 class="center">
-					Follow these instructions to let us know what courses you've taken so
-					far instead of starting from scratch!
-				</h6>
-				<ol>
-					<li>Open Banner</li>
-					<p>
-					We know, we hate Banner too. But it stores info that we want to
-					bring over here
-					</p>
-					<li>Navigate to your UG Degree Check</li>
-					<p>
-					You should be in the Student Menu tab when you login. Then click on
-					the Academic Records menu and from there on UG Degree Check.
-					</p>
-					<li>Find your course summary</li>
-					<p>
-					This should be the third button in the center of the top of the
-					screen. It should reload the page with a new view.
-					</p>
-					<li>Download the course summary page</li>
-					<p>
-					For Windows/Linux users, press CTRL+S<br />
-					For Mac users, press CMD+S<br /><br />
-					<i> Make sure you save the file as "HTML" or "Webpage, HTML Only." </i> 
-					You should get one file that downloads.
-					</p>
-					<li>Upload it here!</li>
-					<p>See the sidebar on the left</p>
-				</ol>
-				<h1 class="center">Add/Remove Major/Minor</h1>
-				<form id="modifyMajorsorMinors">
-					<div class="row">
-						<div class="col">
-							<label for="addOrRemove">Add or Remove</label>
-							<select id="addOrRemove" class="form-control form-control">
-								<option value="add">Add</option>
-								<option value="remove">Remove</option>
-							</select>
-						</div>
-						<div class="col">
-							<label for="majorOrMinor">Major or Minor</label>
-							<select id="majorOrMinor" class="form-control form-control">
-								<option value="major">Major</option>
-								<option value="minor">Minor</option>
-							</select>
-						</div>
-						<div class="col">
-							<label for="degreePrograms">Degree</label>
-							<select name="degreePrograms" id="degreePrograms" class="form-control form-control">
-							</select>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</body>
-	<script>
-		//Code borrowed from https://github.com/mdn/learning-area/blob/main/html/forms/file-examples/file-example.html
-		const input = document.querySelector('input');
-		const preview = document.querySelector('.preview');
+    input.style.opacity = 0;
 
-		input.style.opacity = 0;
+    input.addEventListener('change', updateImageDisplay);
 
-		input.addEventListener('change', updateImageDisplay);
+    function updateImageDisplay() {
+      while (preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+      }
 
-		function updateImageDisplay() {
-			while (preview.firstChild) {
-				preview.removeChild(preview.firstChild);
-			}
+      const curFiles = input.files;
+      if (curFiles.length === 0) {
+        const para = document.createElement('p');
+        para.textContent = 'No files currently selected for upload';
+        preview.appendChild(para);
+      } else {
+        const list = document.createElement('ol');
+        preview.appendChild(list);
 
-			const curFiles = input.files;
-			if (curFiles.length === 0) {
-				const para = document.createElement('p');
-				para.textContent = 'No files currently selected for upload';
-				preview.appendChild(para);
-			} else {
-				const list = document.createElement('ol');
-				preview.appendChild(list);
+        for (const file of curFiles) {
+          const listItem = document.createElement('li');
+          const para = document.createElement('p');
 
-				for (const file of curFiles) {
-					const listItem = document.createElement('li');
-					const para = document.createElement('p');
+          if (validFileType(file)) {
+            para.textContent = `File name ${
+              file.name
+            }, file size ${returnFileSize(file.size)}.`;
+            const image = document.createElement('img');
+            image.src = URL.createObjectURL(file);
 
-					if (validFileType(file)) {
-						para.textContent = `File name ${
-							file.name
-						}, file size ${returnFileSize(file.size)}.`;
-						const image = document.createElement('img');
-						image.src = URL.createObjectURL(file);
+            listItem.appendChild(image);
+            listItem.appendChild(para);
+          } else {
+            para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+            listItem.appendChild(para);
+          }
 
-						listItem.appendChild(image);
-						listItem.appendChild(para);
-					} else {
-						para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-						listItem.appendChild(para);
-					}
+          list.appendChild(listItem);
+        }
+      }
+    }
 
-					list.appendChild(listItem);
-				}
-			}
-		}
+    function validFileType(file) {
+      return fileTypes.includes(file.type);
+    }
 
-<<<<<<< HEAD
     function returnFileSize(number) {
       if (number < 1024) {
         return number + 'bytes';
@@ -406,20 +303,4 @@ window.onclick = function(event) {
   }
 }
   </script>
-=======
-		function validFileType(file) {
-			return fileTypes.includes(file.type);
-		}
-
-		function returnFileSize(number) {
-			if (number < 1024) {
-				return number + 'bytes';
-			} else if (number > 1024 && number < 1048576) {
-				return (number / 1024).toFixed(1) + 'KB';
-			} else if (number > 1048576) {
-				return (number / 1048576).toFixed(1) + 'MB';
-			}
-		}
-	</script>
->>>>>>> 3eabfa8b7bcd9f5063a611a3f3c14d3c2a6c681d
 </html>
