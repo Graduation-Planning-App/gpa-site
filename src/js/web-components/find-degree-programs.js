@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
                     courses.forEach(course => {
                         if (degreeCourse.course_id.toString() === course.id.toString()) {
                             const add = document.createElement('li');
-                            const info = `Course CRN: ${course.crn} - Course PreReq: ${course.prerequisites}`;
+                            const info = `Course Title: ${course.course_title} - Course CRN: ${course.crn}`;
                             add.textContent = info;
                             courseList.appendChild(add);
                         }
@@ -51,20 +51,20 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 });
 
 async function getDegrees() {
-    const res = await fetch("http://localhost:3000/api/courses/degree-program");
+    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/degree-program");
     const degrees = await res.json();
     return degrees;
 }
 
 async function getDegreeCourses() {
-    const res = await fetch("http://localhost:3000/api/courses/degree-courses");
+    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/degree-courses");
     const degreeCourses = await res.json();
     console.log(degreeCourses)
     return degreeCourses;
 }
 
 async function getCourses() {
-    const res = await fetch("http://localhost:3000/api/courses/get-course");
+    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/get-course");
     const courses = await res.json();
     console.log(courses)
     return courses;

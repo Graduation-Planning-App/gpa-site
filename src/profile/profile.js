@@ -9,5 +9,5 @@ document.addEventListener("DOMContentLoaded", () => {
     auth.validateAuth();
 
     return;
-}
-);
+});
+
