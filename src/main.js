@@ -6,7 +6,6 @@ const auth = new Auth();
 document.addEventListener("DOMContentLoaded", () => {
     // if user is logged in, hide login and sign up
     if (auth.isLoggedIn()) {
-        console.log(auth.isLoggedIn());
         let signUp = document.getElementById('signup');
         let loginAndSignup = document.getElementById('loginAndSignup');
         signUp.style.display = "none";
