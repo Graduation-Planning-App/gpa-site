@@ -58,9 +58,14 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 });
 
 async function getDegrees() {
-    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/degree-program");
-    const degrees = await res.json();
-    return degrees;
+    let retVal = {};
+    const degrees = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/courses/degree-program",
+        { method: "GET" }
+    );
+    retVal.degrees = await degrees.json();
+    console.log(retVal);
+    return retVal;
 }
 
 async function getDegreeCourses() {
