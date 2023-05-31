@@ -23,11 +23,11 @@
     - Hex: #021B2E
     - RGBA: (2, 27, 46, 18)
 - <b>Silver</b><br>
-    - Hex: #D2C6C4 | 
+    - Hex: #D2C6C4
     - RGBA: (210, 198, 196, 82)
 - <b>Alert Red</b><br>
-    - Hex: #BB0F00 | 
+    - Hex: #BB0F00
     - RGBA: (187, 15, 0, 73)
 - <b>CTA Green</b><br>
-    - Hex: #006E31 | 
+    - Hex: #006E31
     - RGBA: (0, 110, 49, 43)
