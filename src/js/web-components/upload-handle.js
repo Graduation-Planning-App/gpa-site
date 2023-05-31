@@ -6,6 +6,7 @@ const fileInput = document.getElementById('file_input');
 let file = null;
 const form = document.getElementById('uploadForm');
 const submitButton = document.getElementById('submit');
+var courseList = document.getElementById('course-list');
 
 
 
@@ -30,7 +31,21 @@ fileInput.addEventListener('change', () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            
+            var p = document.getElementById('6-p');
+            var courselist = document.getElementById('course-list');
+            p.textContent = '';
+
+
+            for (let i = 0; i < data.length; i++) {
+                let li = courselist.appendChild(document.createElement("li"));
+                const innerArray = data[i];
+                const crn = innerArray[4];
+                const name = innerArray[2];
+                li.value = crn, name;
+                li.innerHTML = `[Course Name: ${name} CRN: ${crn}]`;
+            }
+            console.log(typeof data, data);
         })
         .catch(err => {
             console.error('Error:', err);
@@ -39,6 +54,7 @@ fileInput.addEventListener('change', () => {
     return;
     }
 });
+
 
 
 /*

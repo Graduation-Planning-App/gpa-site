@@ -11,7 +11,6 @@ TODO:
 */
 
 
-
 document.addEventListener("DOMContentLoaded", async (e) => {
     e.preventDefault;
     var degreeList = document.querySelector('#degree-list');
@@ -19,55 +18,67 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     const degrees = await getDegrees();
     const degreeCourses = await getDegreeCourses();
     const courses = await getCourses();
+    
 
-    degrees.forEach(degree => {
-        const li = document.createElement('li');
-        li.textContent = degree.name;
-        const liID = `li-${degree.id}`;
+    for (let i = 0; i < degrees.degrees.length; i++) {
+        let li = degreeList.appendChild(document.createElement("li"));
+        li.value = degrees.degrees[i].name;
+        li.innerHTML = degrees.degrees[i].name;
+        const liID = degrees.degrees[i].id;
         li.setAttribute('id', liID);
-        degreeList.appendChild(li);
+        
 
         li.addEventListener('click', () => {
             const checkID = li.getAttribute('id');
-            const degreeID = checkID.split('-')[1];
             courseList.innerHTML = "";
-            
-            degreeCourses.forEach(degreeCourse => {
-                if (degreeID === degreeCourse.degree_program_id.toString()) {
-                    courses.forEach(course => {
-                        if (degreeCourse.course_id.toString() === course.id.toString()) {
-                            const add = document.createElement('li');
-                            const info = `Course Title: ${course.course_title} - Course CRN: ${course.crn}`;
-                            add.textContent = info;
-                            courseList.appendChild(add);
-                        }
-                    })
-                } else {
-                    return;
+
+            for (let i = 0; i < degreeCourses.degreeCourse.length; i++) {
+                if (checkID == degreeCourses.degreeCourse[i].degree_program_id) {
+                    if (degreeCourses.degreeCourse[i].course_id == courses.courses[i].id) {
+                        const add = document.createElement('li');
+                        const info = `Course Title: ${courses.courses[i].name} 
+                        - Course CRN: ${courses.courses[i].crn}`; //CHANGE
+                        add.textContent = info;
+                        courseList.appendChild(add);
+                    }
                 }
-            })
+            }
         })
-    });
+    }
+    return;
 });
 
 async function getDegrees() {
-    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/degree-program");
-    const degrees = await res.json();
-    return degrees;
+    let retVal = {};
+    const degrees = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/courses/degree-program", //"?degreeProg=" +
+        { method: "GET" }
+    );
+    retVal.degrees = await degrees.json();
+    console.log(retVal);
+    return retVal;
 }
 
 async function getDegreeCourses() {
-    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/degree-courses");
-    const degreeCourses = await res.json();
-    console.log(degreeCourses)
-    return degreeCourses;
+    let retVal = {};
+    const degreeCourse = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/courses/degree-courses",
+        { method: "GET" }
+    );
+    retVal.degreeCourse = await degreeCourse.json();
+    console.log(retVal)
+    return retVal;
 }
 
 async function getCourses() {
-    const res = await fetch(import.meta.env.VITE_API_BASEURL + "/api/courses/get-course");
-    const courses = await res.json();
-    console.log(courses)
-    return courses;
+    let retVal = {};
+    const courses = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/courses/get-course",
+        { method: "GET" }
+    );
+    retVal.courses = await courses.json();
+    console.log(retVal)
+    return retVal;
 }
 
 
