@@ -161,10 +161,7 @@ class LoginModal extends HTMLElement {
                                 <input type="password" class="form-control col" placeholder="Enter Password" name="psw" required>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-lg-6">
-                                    <input class="checkbox" type="checkbox" checked="checked" name="remember"> Remember me
-                                </label>
-                                <a class="col-lg-6 link" href="/pages/password.html">Forgot Password?</a>
+                                <a class="col-lg-6 link" href="/pages/forgot-password.html">Forgot Password?</a>
                             </div>
                             <button id="loginButton" type="submit" class="btn btn-dark">Login</button>
                         </div>

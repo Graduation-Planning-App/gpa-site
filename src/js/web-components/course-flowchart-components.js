@@ -3,6 +3,7 @@ import './course-info';
 class CoursePlan extends HTMLElement {
     // fields
     #coursePlan;
+    #planId;
 
     // constructor
 
@@ -27,10 +28,15 @@ class CoursePlan extends HTMLElement {
         this.shadowRoot.innerHTML = '';
         for (let i = 1; i <= numYears; i++) {
             let newYear = document.createElement('year-courses');
+            newYear.planId = this.#planId;
             newYear.yearName = 'Year ' + i;
             newYear.quarters = this.#coursePlan.splice(0, 4);
             this.shadowRoot.append(newYear);
         }
+    }
+
+    set planId(value) {
+        this.#planId = value;
     }
 
     get template() {
@@ -47,6 +53,7 @@ class YearCourses extends HTMLElement {
     // fields
     #yearName = '';
     #quarters;
+    #planId;
 
     // constructor
 
@@ -81,11 +88,17 @@ class YearCourses extends HTMLElement {
         this.#quarters = value;
         for (let i = 0; i < this.#quarters.length; i++) {
             let newQtr = document.createElement('qtr-courses');
+            newQtr.planId = this.#planId;
             newQtr.term = this.getQuarterName(i);
             newQtr.courses = this.#quarters[i];
             this.shadowRoot.append(newQtr);
         }
     }
+
+    set planId(value) {
+        this.#planId = value;
+    }
+
     set yearName(value) {
         this.#yearName = value;
         this.render();
@@ -105,6 +118,7 @@ class QuarterCourses extends HTMLElement {
     // fields
     #term = '';
     #courses;
+    #planId;
 
     // constructor
 
@@ -127,6 +141,10 @@ class QuarterCourses extends HTMLElement {
         this.render();
     }
 
+    set planId(value) {
+        this.#planId = value;
+    }
+
     set courses(value) {
         this.#courses = value;
         if (this.#courses.length === 0) {
@@ -137,7 +155,9 @@ class QuarterCourses extends HTMLElement {
         }
         for (let i = 0; i < this.#courses.length; i++) {
             let courseInfo = document.createElement('course-info');
+            courseInfo.planId = this.#planId;
             courseInfo.info = this.#courses[i];
+            courseInfo.setAttribute('component', 'course-plan');
             this.shadowRoot.append(courseInfo);
         }
     }

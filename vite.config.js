@@ -19,7 +19,9 @@ export default defineConfig({
                 resources: resolve(root, 'resources', 'index.html'),
                 findCourses: resolve(root, 'find-courses', 'index.html'),
                 courseSequence: resolve(root, 'course-sequence', 'index.html'),
-                profile: resolve(root, 'profile', 'index.html')
+                profile: resolve(root, 'profile', 'index.html'),
+                forgotPassword: resolve(root, 'pages', 'forgot-password.html'),
+                resetPassword: resolve(root, 'pages', 'reset-password.html'),
             }
         }
     }

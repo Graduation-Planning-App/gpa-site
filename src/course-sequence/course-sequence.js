@@ -1,17 +1,14 @@
 // since this page should require login, make sure that user is authenticated
 import Auth from '../js/auth';
+import "../js/web-components/create-plan-modal";
 
 import DirectedGraph from 'graphology';
 import {topologicalSort} from 'graphology-dag';
 
 // import custom html elements
 import ('../js/web-components/course-flowchart-components.js');
-// unused imports (for now)
-//import * as d3 from 'd3';
-//import * as d3Dag from 'd3-dag';
 
 const auth = new Auth();
-const graph = new DirectedGraph();
 
 // Get course plan courses from api
 async function search() {
@@ -28,8 +25,8 @@ async function search() {
     return jsonResponse;
 }
 
-function buildCourseGraph(coursePlan) {
-
+function buildCourseGraph(coursePlan, planId) {
+    const graph = new DirectedGraph();
     // add graph vertices
     coursePlan.courses.forEach(element => {
         graph.addNode(element.course_title, element);
@@ -59,8 +56,17 @@ function buildCourseGraph(coursePlan) {
     // Put courses into a sequence
     const courseSequence = getCourseSequence(topo, coursePlan.courses)
 
+    // Display sequence in list form
     const displayBox = document.getElementById('course-plans');
+
+    // Display plan title
+    const planName = document.createElement('h2');
+    planName.innerHTML = "<b>" + coursePlan.name + ":" + "</b>";
+    displayBox.append(planName);
+
+    // Display plan details
     const plan = document.createElement('course-plan');
+    plan.planId = planId;
     plan.coursePlan = courseSequence;
     displayBox.append(plan);
 }
@@ -234,9 +240,20 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     // make sure that user is logged in
     auth.validateAuth();
     if (auth.isLoggedIn()) {
+        // set up create new plan button
+        const createBtn = document.getElementById('createNewPlan');
+        createBtn.onclick = () => {
+            const modal = document.createElement('create-plan');
+            modal.id = 'createPlanModal';
+            document.getElementById('main').append(modal);
+        };
+
+        // show user's course plans
         const coursePlans = await search();
         for (let i = 0; i < coursePlans.length; i++) {
-            buildCourseGraph(coursePlans[i]);
+            if (coursePlans[i].courses.length !== 0) {
+                buildCourseGraph(coursePlans[i], coursePlans[i].id);
+            }
         }
     }
 
