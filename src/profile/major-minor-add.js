@@ -38,11 +38,42 @@ async function majorModify() {
 	}
 }
 
-const selectedElement = document.getElementById("majorOrMinor");
-
-selectedElement.addEventListener('change', async(e) => {
-	e.preventDefault();
-	const selectedOption = selectedElement.value;
+const selectAddorRemove = document.getElementById("addOrRemove");
+const selectMajororMinor = document.getElementById("majorOrMinor");
+async function handleAddRemoveOptions() {
+	const selectedOption = selectAddorRemove.value;
+	request = {};
+	// we need to get the ID of the user that's logged in, so we can send it off to the backend to retrieve the degrees the user has
+	if (selectedOption === 'remove') {
+		const response = await fetch(
+			import.meta.env.VITE_API_BASEURL + "/api/degrees/getUserDegrees", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: 'include',
+				mode: "cors",
+				body: JSON.stringify(request)
+			}
+		)
+		const data = await response.json();
+		if (response.status !== 200) {
+			const error = data;
+			const errorBox = document.getElementById("errorBox");
+			errorBox.innerHTML = error.message;
+		}
+		else {
+			// const data = await response.json();
+			for (let i = 0; i < data.length; i++) {
+				// console.log(data[i].name);
+				document.getElementById("degreePrograms").innerHTML = "<option value=\"" + data[i].name + "\">" + data[i].name + "</option>\n";
+			}
+		}
+	}
+	// if it's not remove, doesn't matter since we won't need to change the select options
+}
+async function handleMajorMinorOptions() {
+	const selectedOption = selectMajororMinor.value;
 	let curRoute = "";
 	if (selectedOption === 'major') {
 		curRoute = "getMajors";
@@ -55,19 +86,32 @@ selectedElement.addEventListener('change', async(e) => {
 			method: "GET"
 		}
 	);
-	let data = JSON.parse(JSON.stringify(response));
+	const data = await response.json();
 	if (response.status !== 200) {
 		const error = data;
-		// error message
-		// errorBox.innerHTML = error.message;
+		const errorBox = document.getElementById("errorBox");
+		errorBox.innerHTML = error.message;
 	}
 	else {
 		// const data = await response.json();
-		console.log("trying to change innerhtml");
-		document.getElementById("modifyMajorsorMinors").innerHTML = data;
-		// the above data will need to be parsed and put into select tags so the user can select which major/minor they want to add/remove
-		window.location.replace("/");
+		for (let i = 0; i < data.length; i++) {
+			// console.log(data[i].name);
+			document.getElementById("degreePrograms").innerHTML = "<option value=\"" + data[i].name + "\">" + data[i].name + "</option>\n";
+		}
 	}
+}
+
+selectAddorRemove.addEventListener('change', (e) => {
+	e.preventDefault();
+	handleAddRemoveOptions();
+})
+window.addEventListener('load', (e) => {
+	e.preventDefault();
+	handleMajorMinorOptions();
+})
+selectMajororMinor.addEventListener('change', (e) => {
+	e.preventDefault();
+	handleMajorMinorOptions();
 })
 const form = document.getElementById("modifyMajorsorMinors") // this ID will match whatever is at the top of the file
 form.addEventListener("submit", async (e) => {
