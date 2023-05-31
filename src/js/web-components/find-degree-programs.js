@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     const degreeCourses = await getDegreeCourses();
     const courses = await getCourses();
 
-      for (let i = 0; i < degrees; i++) {
+      for (let i = 0; i < degrees.length; i++) {
         let li = degreeList.appendChild(document.createElement("li"));
         li.value = degrees.degreeList[i].id;
         li.innerHTML = degree.degreeList[i].id;
