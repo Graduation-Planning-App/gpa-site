@@ -1,13 +1,29 @@
 #sidebar {
-  background-color: #21b2eb;
+  background-color: #52a0bead;
   height: 100vh;
   overflow-y: none;
-  box-shadow: 10px 0 8px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: -2px 0 5px 4px rgba(21, 3, 77, 0.575);
   border-radius: 15px;
-  padding-top: 17.5%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-form label,
+.center-heading {
+  text-align: center;
+  line-height: 100px; /* Adjust the line height value as needed */
+  height: 100px; 
+}
+.custom-btn {
+  background-color: #f5f5f5;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+form label.upload,
 form button {
   background-color: #006e31;
   color: white;
@@ -18,13 +34,13 @@ form button {
   border: none;
 }
 
-form label:hover,
+form label.upload:hover,
 form button:hover {
   background-color: #021b2e;
   color: white;
 }
 
-form label:active,
+form label.upload:active,
 form button:active {
   background-color: #021b2e;
   color: white;
