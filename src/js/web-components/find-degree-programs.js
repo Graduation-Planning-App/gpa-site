@@ -20,7 +20,13 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     const degreeCourses = await getDegreeCourses();
     const courses = await getCourses();
 
-    degrees.forEach(degree => {
+      for (let i = 0; i < degrees; i++) {
+        let li = degreeList.appendChild(document.createElement("li"));
+        li.value = degrees.degreeList[i].id;
+        li.innerHTML = degree.degreeList[i].id;
+    }
+
+    /*degrees.forEach(degree => {
         const li = document.createElement('li');
         li.textContent = degree.name;
         const liID = `li-${degree.id}`;
@@ -47,7 +53,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
                 }
             })
         })
-    });
+    });*/
+    return;
 });
 
 async function getDegrees() {
