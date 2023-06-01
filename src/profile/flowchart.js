@@ -116,12 +116,12 @@ function getNodesAndEdges(courseList) {
 
 /*Define all variables*/
 //Read major 1
-var major1 = await readLocalFile('major1.txt').then(function (response) {
+var major1 = readLocalFile('major1.txt').then(function (response) {
   return response;
 });
 
 //Read major 2
-var major2 = await readLocalFile('major2.txt').then(function (response) {
+var major2 = readLocalFile('major2.txt').then(function (response) {
   return response;
 });
 
