@@ -50,6 +50,7 @@ async function handleAddRemoveOptions() {
 			}
 		);
 		const data = await response.json();
+		console.log(data);
 		if (response.status !== 200) {
 			const error = data;
 			const errorBox = document.getElementById("errorBox");
@@ -62,6 +63,9 @@ async function handleAddRemoveOptions() {
 				document.getElementById("degreePrograms").innerHTML = "<option value=\"" + data[i].name + "\">" + data[i].name + "</option>\n";
 			}
 		}
+	}
+	else {
+		handleMajorMinorOptions();
 	}
 	// if it's not remove, doesn't matter since we won't need to change the select options
 }
