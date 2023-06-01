@@ -181,14 +181,3 @@ cy.add(course1Edges);
 //Layout styling (needs to be called after elements are added)
 var layout = cy.layout({ name: 'grid' });
 layout.run();
-
-for (let i = 0; i < 8; i++) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 4096;
-    canvas.height = 4096;
-    const ctx = canvas.getContext('2d');
-    ctx && ctx.fillRect(0, 0, 100, 100);
-
-    // Force release each canvas
-    releaseCanvas(canvas);
-}
