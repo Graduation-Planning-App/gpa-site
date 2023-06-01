@@ -42,18 +42,13 @@ const selectAddorRemove = document.getElementById("addOrRemove");
 const selectMajororMinor = document.getElementById("majorOrMinor");
 async function handleAddRemoveOptions() {
 	const selectedOption = selectAddorRemove.value;
-	// we need to get the ID of the user that's logged in, so we can send it off to the backend to retrieve the degrees the user has
 	if (selectedOption === 'remove') {
 		const response = await fetch(
 			import.meta.env.VITE_API_BASEURL + "/api/degrees/getUserDegrees", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				credentials: 'include',
-				mode: "cors"
+				method: "GET",
+				credentials: "include"
 			}
-		)
+		);
 		const data = await response.json();
 		if (response.status !== 200) {
 			const error = data;
