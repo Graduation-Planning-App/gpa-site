@@ -55,13 +55,14 @@ li {
 }
 
 #cy-container {
-  position: relative;
+  position: inherit;
 }
 
 #cy {
-  width: 100%;
+  width: 75%;
+  max-width: 75%;
   height: 100%;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 75%;
+  left: 25%;
 }
