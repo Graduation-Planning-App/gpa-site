@@ -103,9 +103,10 @@ selectAddorRemove.addEventListener('change', (e) => {
 	e.preventDefault();
 	handleAddRemoveOptions();
 })
-window.addEventListener('load', (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
 	e.preventDefault();
 	handleMajorMinorOptions();
+	handleAddRemoveOptions();
 })
 selectMajororMinor.addEventListener('change', (e) => {
 	e.preventDefault();
