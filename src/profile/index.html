@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="../css/upload.css"/>
     <!--Necessary JS modules-->
     <script type="module" src="./profile.js"></script>
+    <script type="module" src="./major-minor-add.js"></script>
     <script type="module" src="../js/web-components/navbar.js"></script>
   </head>
   <body>
     <!--Navbar-->
+	<nav-bar page="profile.html"></nav-bar>
     <div class="container ">
       <div class="row">
     <nav class="col-lg-2" id="sidebar" page="profile.html">
@@ -81,26 +83,28 @@
           <p class="text-muted mb-1">Seattle Pacific University</p>
           <p class="text-muted mb-4">Seattle, WA</p>
         </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label for="addOrRemove">Add or Remove</label>
-            <select id="addOrRemove" class="form-control">
-              <option value="add">Add</option>
-              <option value="remove">Remove</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="majorOrMinor">Major or Minor</label>
-            <select id="majorOrMinor" class="form-control">
-              <option value="major">Major</option>
-              <option value="minor">Minor</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="degreePrograms">Degree</label>
-            <select name="degreePrograms" id="degreePrograms" class="form-control">
-            </select>
-          </div>
+		<div class="card-body">
+			<div class="form-group">
+				<label for="addOrRemove">Add or Remove</label>
+				<select id="addOrRemove" class="form-control">
+					<option value="add">Add</option>
+					<option value="remove">Remove</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="majorOrMinor">Major or Minor</label>
+				<select id="majorOrMinor" class="form-control">
+					<option value="major">Major</option>
+					<option value="minor">Minor</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="degreePrograms">Degree</label>
+				<select name="degreePrograms" id="degreePrograms" class="form-control">
+				</select>
+			</div>
+			<form></form>
+			<div id="errorBox"></div>
         </div>
       </div>
     </div>
