@@ -174,6 +174,7 @@ var cy = cytoscape({
       },
     },
   ],
+  userZoomingEnabled: false,
 });
 
 //Add nodes and edges for given course (best displayed one at a time)
