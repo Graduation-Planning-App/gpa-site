@@ -42,7 +42,6 @@ const selectAddorRemove = document.getElementById("addOrRemove");
 const selectMajororMinor = document.getElementById("majorOrMinor");
 async function handleAddRemoveOptions() {
 	const selectedOption = selectAddorRemove.value;
-	request = {};
 	// we need to get the ID of the user that's logged in, so we can send it off to the backend to retrieve the degrees the user has
 	if (selectedOption === 'remove') {
 		const response = await fetch(
@@ -52,8 +51,7 @@ async function handleAddRemoveOptions() {
 					"Content-Type": "application/json",
 				},
 				credentials: 'include',
-				mode: "cors",
-				body: JSON.stringify(request)
+				mode: "cors"
 			}
 		)
 		const data = await response.json();
