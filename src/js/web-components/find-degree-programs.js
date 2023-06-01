@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", async (e) => {
-    e.preventDefault;
+    e.preventDefault();
     var degreeList = document.querySelector('#degree-list');
     var courseList = document.querySelector('#course-list');
     const degrees = await getDegrees();
-    const degreeCourses = await getDegreeCourses();
-    const courses = await getCourses();
-    
 
     for (let i = 0; i < degrees.degrees.length; i++) {
         let li = degreeList.appendChild(document.createElement("li"));
@@ -15,20 +12,16 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         li.setAttribute('id', liID);
         
 
-        li.addEventListener('click', () => {
+        li.addEventListener('click', async () => {
             const checkID = li.getAttribute('id');
             courseList.innerHTML = "";
+            const degreeCourses = await getDegreeCourses(checkID);
+            for (let i = 0; i < degreeCourses.course_titles.length; i++) {
+                const add = document.createElement('li');
+                const info = `${course_titles[i].discipline_code}${course_titles[i].course_number}: ${course_titles[i].title}`; //CHANGE
+                add.textContent = info;
+                courseList.appendChild(add);
 
-            for (let i = 0; i < degreeCourses.degreeCourse.length; i++) {
-                if (checkID == degreeCourses.degreeCourse[i].degree_program_id) {
-                    if (degreeCourses.degreeCourse[i].course_id == courses.courses[i].id) {
-                        const add = document.createElement('li');
-                        const info = `Course Title: ${courses.courses[i].name} 
-                        - Course CRN: ${courses.courses[i].crn}`; //CHANGE
-                        add.textContent = info;
-                        courseList.appendChild(add);
-                    }
-                }
             }
         })
     }
@@ -38,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 async function getDegrees() {
     let retVal = {};
     const degrees = await fetch(
-        import.meta.env.VITE_API_BASEURL + "/api/courses/degree-program", //"?degreeProg=" +
+        import.meta.env.VITE_API_BASEURL + "/api/degrees/degree-programs",
         { method: "GET" }
     );
     retVal.degrees = await degrees.json();
@@ -46,25 +39,13 @@ async function getDegrees() {
     return retVal;
 }
 
-async function getDegreeCourses() {
+async function getDegreeCourses(id) {
     let retVal = {};
     const degreeCourse = await fetch(
-        import.meta.env.VITE_API_BASEURL + "/api/courses/degree-courses",
+        import.meta.env.VITE_API_BASEURL + "/api/degrees/degree-courses?degreeProg=" + id,
         { method: "GET" }
     );
     retVal.degreeCourse = await degreeCourse.json();
     console.log(retVal)
     return retVal;
 }
-
-async function getCourses() {
-    let retVal = {};
-    const courses = await fetch(
-        import.meta.env.VITE_API_BASEURL + "/api/courses/get-course",
-        { method: "GET" }
-    );
-    retVal.courses = await courses.json();
-    console.log(retVal)
-    return retVal;
-}
-

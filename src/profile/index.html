@@ -6,7 +6,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		<!--Bootstrap-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 		<!--CSS-->
@@ -15,8 +14,15 @@
 		<!--Necessary JS modules-->
 		<script type="module" src="./major-minor-add.js"></script>
 		<script type="module" src="./profile.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"
+			integrity="sha512-gEWKnYYa1/1c3jOuT9PR7NxiVI1bwn02DeJGsl+lMVQ1fWMNvtjkjxIApTdbJ/wcDjQmbf+McWahXwipdC9bGA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+    	<script type="module" src="./flowchart.js"></script>
 		<script type="module" src="../js/web-components/navbar.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<!--Navbar-->
@@ -41,19 +47,19 @@
 							<li>Find your course summary</li>
 							<p>This should be the third button in the center of the top of the screen. It should reload the page with a new view. Now</p>
 							<li>Download the course summary</li>
-							<p>For Windows/Linux users, press CTL+S<br />For Mac users, press CMD+S<br /><br /><i>Make sure you save the file as "HTML" or "Webpage, HTML Only."</i>You should get one file that downloads.</p>
+							<p>For Windows/Linux users, press CTL+S<br />For Mac users, press CMD+S<br /><br /><i>Make sure you save the file as "HTML" or "Webpage, HTML Only."</i> You should get one file that downloads.</p>
 							<li>Upload it here!</li>
 							<p>See the sidebar on the left</p>
 						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div><!--End modqal body-->
+				</div><!--End modal-content-->
+			</div><!--End modal-dialog-->
+		</div><!--End modal-->
 		<div class="container" style="margin-top: 10vh">
 			<div class="row">
 				<nav class="col-lg-2" id="sidebar" page="profile.html">
 					<h2 class="center-heading">UPLOAD </h2>
-					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal">How to Import Completed Courses</button>
+					<button type="button" class="btn" id="modal" data-bs-toggle="modal" data-bs-target="#myModal">How to Import Completed Courses</button>
 					<form class="center">
 						<div>
 							<label for="image_uploads" class="center">Select file</label>
@@ -83,7 +89,7 @@
 										<h5 class="my-3">John Smith</h5>
 										<p class="text-muted mb-1">Seattle Pacific University</p>
 										<p class="text-muted mb-4">Seattle, WA</p>
-									</div>
+									</div><!--End card-body-->
 									<div class="card-body">
 										<form id="modifyMajorsorMinors">
 											<div class="form-group">
@@ -92,23 +98,23 @@
 													<option value="add">Add</option>
 													<option value="remove">Remove</option>
 												</select>
-											</div>
+											</div><!--End form-group-->
 											<div class="form-group">
 												<label for="majorOrMinor">Major or Minor</label>
 												<select id="majorOrMinor" class="form-control">
 													<option value="major">Major</option>
 													<option value="minor">Minor</option>
 												</select>
-											</div>
+											</div><!--End form-group-->
 											<div class="form-group">
 												<label for="degreePrograms">Degree</label>
 												<select name="degreePrograms" id="degreePrograms" class="form-control">
 												</select>
-											</div>
+											</div><!--End form-group-->
 										</form>
-									</div>
-								</div>
-							</div>
+									</div><!--End card-body-->
+								</div><!--End card-->
+							</div><!--End col-lg-4-->
 							<div class="col-lg-8">
 								<div class="card mb-4">
 									<div class="card-body">
@@ -128,27 +134,27 @@
 											<div class="col-sm-9">
 												<p class="text-muted mb-0">example@spu.edu</p>
 											</div>
-										</div>
+										</div><!--End row-->
 										<hr>
 										<div class="row">
 											<div class="col-sm-3">
 												<p class="mb-0">Mobile</p>
-											</div>
+											</div><!--End col-sm-3-->
 											<div class="col-sm-9">
 												<p class="text-muted mb-0">(098) 765-4321</p>
-											</div>
-										</div>
+											</div><!--End col-sm-9-->
+										</div><!--End row-->
 										<hr>
 										<div class="row">
 											<div class="col-sm-3">
 												<p class="mb-0">Address</p>
-											</div>
+											</div><!--End col-sm-3-->
 											<div class="col-sm-9">
 												<p class="text-muted mb-0">Seattle, WA, USA</p>
-											</div>
-										</div>
-									</div>
-								</div>
+											</div><!--End col-sm-9-->
+										</div><!--End row-->
+									</div><!--End card-body-->
+								</div><!--End card-->
 								<div class="row">
 									<div class="col-md-6">
 										<div class="card mb-4 mb-md-0">
@@ -173,9 +179,9 @@
 													<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90"
 																													aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
-											</div>
-										</div>
-									</div>
+											</div><!--End card-body-->
+										</div><!--End card-->
+									</div><!--End col-md-6-->
 									<div class="col-md-6">
 										<div class="card mb-4 mb-md-0">
 											<div class="card-body">
@@ -199,18 +205,24 @@
 													<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
 																													aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+											
 							<div id="errorBox"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- <div id="cy"></div> -->
+
+											</div><!--End card-body-->
+										</div><!--End card-->
+									</div><!--End col-md-6-->
+								</div><!--End row (subcards)-->
+                <div class="row" id="cy-container">
+                  <div id="cy"></div>
+                </div><!--End row-->
+							</div><!--End col-lg-8-->
+						</div> <!--End row-->
+					</div><!--End container-->
+				</div><!--End col-lg-10-->
+			</div><!--End row-->
+		</div><!--End container-->
+
 	</body>
 
 	<script>

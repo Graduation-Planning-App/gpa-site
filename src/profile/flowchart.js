@@ -43,7 +43,9 @@ function courseList(major) {
       qoArray.push(qoQuarters[j]);
     }
     curCourse.quartersOffered = qoArray;
-      
+    
+    
+  /*  
     //Positioning data
     const courseNum = curCourse.courseCode.match(/[0-9]+/)[0];
     x = parseInt(courseNum.slice(0, 1)) * 10;
@@ -51,7 +53,9 @@ function courseList(major) {
     curCourse.x = x;
     curCourse.y = y;
     console.log(courseNum);
-
+    */
+    
+    
     coursesList.push(curCourse);
   }
   return coursesList;
@@ -112,13 +116,12 @@ function getNodesAndEdges(courseList) {
 
 /*Define all variables*/
 //Read major 1
-var major1 = await readLocalFile('major1.txt').then(function (response) {
+var major1 = readLocalFile('major1.txt').then(function (response) {
   return response;
 });
 
-
 //Read major 2
-var major2 = await readLocalFile('major2.txt').then(function (response) {
+var major2 = readLocalFile('major2.txt').then(function (response) {
   return response;
 });
 
@@ -134,6 +137,8 @@ let course1Edges = Course1NE[1];
 let Course2NE = getNodesAndEdges(coursesList2);
 let course2Nodes = Course2NE[0];
 let course2Edges = Course2NE[1];
+
+
 
 /*Graphical Rendering*/
 var cy = cytoscape({
@@ -169,6 +174,8 @@ var cy = cytoscape({
       },
     },
   ],
+  userZoomingEnabled: false,
+  userPanningEnabled: false,
 });
 
 //Add nodes and edges for given course (best displayed one at a time)
@@ -178,17 +185,8 @@ cy.add(course1Edges);
 //cy.add(course2Nodes);
 //cy.add(course2Edges);
 
+
+
 //Layout styling (needs to be called after elements are added)
 var layout = cy.layout({ name: 'grid' });
 layout.run();
-
-for (let i = 0; i < 8; i++) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 4096;
-    canvas.height = 4096;
-    const ctx = canvas.getContext('2d');
-    ctx && ctx.fillRect(0, 0, 100, 100);
-
-    // Force release each canvas
-    releaseCanvas(canvas);
-}

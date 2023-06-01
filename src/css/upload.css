@@ -54,10 +54,23 @@ li {
   font-weight: bold;
 }
 
+#modal {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding-left: -35%;
+  padding-right: -35%;
+  margin-bottom: 20px;
+}
+
+#cy-container {
+  position: inherit;
+}
+
 #cy {
-  width: 100%;
+  width: 75%;
+  max-width: 75%;
   height: 100%;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 75%;
+  left: 25%;
 }
