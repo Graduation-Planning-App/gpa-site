@@ -42,21 +42,15 @@ const selectAddorRemove = document.getElementById("addOrRemove");
 const selectMajororMinor = document.getElementById("majorOrMinor");
 async function handleAddRemoveOptions() {
 	const selectedOption = selectAddorRemove.value;
-	request = {};
-	// we need to get the ID of the user that's logged in, so we can send it off to the backend to retrieve the degrees the user has
 	if (selectedOption === 'remove') {
 		const response = await fetch(
 			import.meta.env.VITE_API_BASEURL + "/api/degrees/getUserDegrees", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				credentials: 'include',
-				mode: "cors",
-				body: JSON.stringify(request)
+				method: "GET",
+				credentials: "include"
 			}
-		)
+		);
 		const data = await response.json();
+		console.log(data);
 		if (response.status !== 200) {
 			const error = data;
 			const errorBox = document.getElementById("errorBox");
@@ -69,6 +63,9 @@ async function handleAddRemoveOptions() {
 				document.getElementById("degreePrograms").innerHTML = "<option value=\"" + data[i].name + "\">" + data[i].name + "</option>\n";
 			}
 		}
+	}
+	else {
+		handleMajorMinorOptions();
 	}
 	// if it's not remove, doesn't matter since we won't need to change the select options
 }
@@ -105,9 +102,10 @@ selectAddorRemove.addEventListener('change', (e) => {
 	e.preventDefault();
 	handleAddRemoveOptions();
 })
-window.addEventListener('load', (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
 	e.preventDefault();
 	handleMajorMinorOptions();
+	handleAddRemoveOptions();
 })
 selectMajororMinor.addEventListener('change', (e) => {
 	e.preventDefault();
