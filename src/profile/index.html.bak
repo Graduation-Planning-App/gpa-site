@@ -13,16 +13,17 @@
 		<link rel="stylesheet" href="../css/main.css">
 		<link rel="stylesheet" href="../css/upload.css"/>
 		<!--Necessary JS modules-->
-		<script type="module" src="./major-minor-add.js"></script>
 		<script type="module" src="./profile.js"></script>
+		<script type="module" src="./major-minor-add.js"></script>
 		<script type="module" src="../js/web-components/navbar.js"></script>
 	</head>
 	<body>
 		<!--Navbar-->
 		<nav-bar page="profile.html"></nav-bar>
-		<div class="container" style="margin-top: 10vh">
+		<div class="container ">
 			<div class="row">
 				<nav class="col-lg-2" id="sidebar" page="profile.html">
+
 					<h2 class="center-heading">UPLOAD </h2>
 					<div class="ml-auto">
 						<button class="btn custom-btn" >How to Import Completed Courses</button>
@@ -70,6 +71,7 @@
 								<p>See the sidebar on the left</p>
 							</ol>
 						</div>
+
 					</div>
 					<div class="container">
 						<div class="row">
@@ -82,27 +84,27 @@
 										<p class="text-muted mb-4">Seattle, WA</p>
 									</div>
 									<div class="card-body">
-										<form id="modifyMajorsorMinors">
-											<div class="form-group">
-												<label for="addOrRemove">Add or Remove</label>
-												<select id="addOrRemove" class="form-control">
-													<option value="add">Add</option>
-													<option value="remove">Remove</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="majorOrMinor">Major or Minor</label>
-												<select id="majorOrMinor" class="form-control">
-													<option value="major">Major</option>
-													<option value="minor">Minor</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="degreePrograms">Degree</label>
-												<select name="degreePrograms" id="degreePrograms" class="form-control">
-												</select>
-											</div>
-										</form>
+										<div class="form-group">
+											<label for="addOrRemove">Add or Remove</label>
+											<select id="addOrRemove" class="form-control">
+												<option value="add">Add</option>
+												<option value="remove">Remove</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="majorOrMinor">Major or Minor</label>
+											<select id="majorOrMinor" class="form-control">
+												<option value="major">Major</option>
+												<option value="minor">Minor</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="degreePrograms">Degree</label>
+											<select name="degreePrograms" id="degreePrograms" class="form-control">
+											</select>
+										</div>
+										<form></form>
+										<div id="errorBox"></div>
 									</div>
 								</div>
 							</div>
@@ -203,94 +205,68 @@
 							</div>
 						</div>
 					</div>
-					<div id="cy"></div>
-				</div>
-			</div>
-		</div>
+
+
 	</body>
 
 	<script>
-    //Code borrowed from https://github.com/mdn/learning-area/blob/main/html/forms/file-examples/file-example.html
-    const input = document.querySelector('input');
-    const preview = document.querySelector('.preview');
+		//Code borrowed from https://github.com/mdn/learning-area/blob/main/html/forms/file-examples/file-example.html
+		const input = document.querySelector('input');
+		const preview = document.querySelector('.preview');
 
-    input.style.opacity = 0;
+		input.style.opacity = 0;
 
-    input.addEventListener('change', updateImageDisplay);
+		input.addEventListener('change', updateImageDisplay);
 
-    function updateImageDisplay() {
-      while (preview.firstChild) {
-        preview.removeChild(preview.firstChild);
-      }
+		function updateImageDisplay() {
+			while (preview.firstChild) {
+				preview.removeChild(preview.firstChild);
+			}
 
-      const curFiles = input.files;
-      if (curFiles.length === 0) {
-        const para = document.createElement('p');
-        para.textContent = 'No files currently selected for upload';
-        preview.appendChild(para);
-      } else {
-        const list = document.createElement('ol');
-        preview.appendChild(list);
+			const curFiles = input.files;
+			if (curFiles.length === 0) {
+				const para = document.createElement('p');
+				para.textContent = 'No files currently selected for upload';
+				preview.appendChild(para);
+			} else {
+				const list = document.createElement('ol');
+				preview.appendChild(list);
 
-        for (const file of curFiles) {
-          const listItem = document.createElement('li');
-          const para = document.createElement('p');
+				for (const file of curFiles) {
+					const listItem = document.createElement('li');
+					const para = document.createElement('p');
 
-          if (validFileType(file)) {
-            para.textContent = `File name ${
-              file.name
-            }, file size ${returnFileSize(file.size)}.`;
-            const image = document.createElement('img');
-            image.src = URL.createObjectURL(file);
+					if (validFileType(file)) {
+						para.textContent = `File name ${
+							file.name
+						}, file size ${returnFileSize(file.size)}.`;
+						const image = document.createElement('img');
+						image.src = URL.createObjectURL(file);
 
-            listItem.appendChild(image);
-            listItem.appendChild(para);
-          } else {
-            para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-            listItem.appendChild(para);
-          }
+						listItem.appendChild(image);
+						listItem.appendChild(para);
+					} else {
+						para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+						listItem.appendChild(para);
+					}
 
-          list.appendChild(listItem);
-        }
-      }
-    }
+					list.appendChild(listItem);
+				}
+			}
+		}
 
-    function validFileType(file) {
-      return fileTypes.includes(file.type);
-    }
+		function validFileType(file) {
+			return fileTypes.includes(file.type);
+		}
 
-    function returnFileSize(number) {
-      if (number < 1024) {
-        return number + 'bytes';
-      } else if (number > 1024 && number < 1048576) {
-        return (number / 1024).toFixed(1) + 'KB';
-      } else if (number > 1048576) {
-        return (number / 1048576).toFixed(1) + 'MB';
-      }
-    }
-    var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-  </script>
+		function returnFileSize(number) {
+			if (number < 1024) {
+				return number + 'bytes';
+			} else if (number > 1024 && number < 1048576) {
+				return (number / 1024).toFixed(1) + 'KB';
+			} else if (number > 1048576) {
+				return (number / 1048576).toFixed(1) + 'MB';
+			}
+		}
+	</script>
 </html>
