@@ -37,3 +37,8 @@ form button:active {
 li {
   font-weight: bold;
 }
+
+#submitBtn {
+  position: sticky;
+  left: 58px;
+}
