@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     var courseList = document.querySelector('#course-list');
     const degrees = await getDegrees();
 
-    for (let i = 0; i < degrees.degrees.length; i++) {
+    for (let i = 0; i < degrees.length; i++) {
         let li = degreeList.appendChild(document.createElement("li"));
-        li.value = degrees.degrees[i].name;
-        li.innerHTML = degrees.degrees[i].name;
-        const liID = degrees.degrees[i].id;
+        li.value = degrees[i].name;
+        li.innerHTML = degrees[i].name;
+        const liID = degrees[i].id;
         li.setAttribute('id', liID);
         
 
@@ -16,12 +16,11 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             const checkID = li.getAttribute('id');
             courseList.innerHTML = "";
             const degreeCourses = await getDegreeCourses(checkID);
-            for (let i = 0; i < degreeCourses.course_titles.length; i++) {
+            for (let i = 0; i < degreeCourses.length; i++) {
                 const add = document.createElement('li');
-                const info = `${course_titles[i].discipline_code}${course_titles[i].course_number}: ${course_titles[i].title}`; //CHANGE
-                add.textContent = info;
+                const info = `${degreeCourses[i]}`;
+                add.innerHTML = info;
                 courseList.appendChild(add);
-
             }
         })
     }
@@ -29,23 +28,19 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 });
 
 async function getDegrees() {
-    let retVal = {};
     const degrees = await fetch(
         import.meta.env.VITE_API_BASEURL + "/api/degrees/degree-programs",
         { method: "GET" }
     );
-    retVal.degrees = await degrees.json();
-    console.log(retVal);
+    const retVal = await degrees.json();
     return retVal;
 }
 
 async function getDegreeCourses(id) {
-    let retVal = {};
     const degreeCourse = await fetch(
-        import.meta.env.VITE_API_BASEURL + "/api/degrees/degree-courses?degreeProg=" + id,
+        import.meta.env.VITE_API_BASEURL + "/api/degrees/requirements?degreeProg=" + id,
         { method: "GET" }
     );
-    retVal.degreeCourse = await degreeCourse.json();
-    console.log(retVal)
+    const retVal = await degreeCourse.json();
     return retVal;
 }
