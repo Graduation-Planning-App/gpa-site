@@ -46,6 +46,8 @@ class CreatePlan extends HTMLElement {
         );
         if (!response.ok) {
             this.shadowRoot.getElementById('error').innerHTML = 'Something went wrong; Course Plan could not be created.'
+        } else {
+            this.parentNode.removeChild(this);
         }
     }
 
