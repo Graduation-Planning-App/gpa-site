@@ -25,6 +25,20 @@ async function search() {
     return jsonResponse;
 }
 
+async function getProfile() {
+    const response = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/users/profile",
+        {   
+            method: "GET",
+            credentials: "include"
+        }
+    );
+
+    let jsonResponse = await response.json();
+
+    return jsonResponse;
+}
+
 function buildCourseGraph(coursePlan, planId) {
     const graph = new DirectedGraph();
     // add graph vertices
@@ -248,6 +262,26 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             document.getElementById('main').append(modal);
         };
 
+        // show profile information
+        const profileInfo = await getProfile();
+        if (profileInfo) {
+            // make profile sidebar visible
+            let profileSidebar = document.getElementById("profile");
+            profileSidebar.style.display = 'block';
+            profileSidebar.style.position = 'sticky';
+            profileSidebar.style.top = '10%';
+            // populate profile sidebar
+            let name = document.getElementById('name');
+            let majors = document.getElementById('majors');
+            let minors = document.getElementById('minors');
+            let gradYear = document.getElementById('graduation');
+            name.innerHTML = profileInfo.name || 'N/A';
+            majors.innerHTML = profileInfo.degreePrograms.toString() || 'N/A';
+            minors.innerHTML = profileInfo.degreePrograms.toString() || 'N/A';
+            gradYear.innerHTML = profileInfo.year || 'N/A'
+        }
+        
+
         // show user's course plans
         const coursePlans = await search();
         for (let i = 0; i < coursePlans.length; i++) {
@@ -256,6 +290,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             }
         }
     }
-
+    
     return;
 });
