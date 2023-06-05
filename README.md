@@ -23,8 +23,8 @@
     - Hex: #021B2E
     - RGBA: (2, 27, 46, 18)
 - <b>Silver</b><br>
-    - Hex: #D2C6C4
-    - RGBA: (210, 198, 196, 82)
+    - Hex: #6E879198
+    - RGBA: (110, 135, 145, 0.596)
 - <b>Alert Red</b><br>
     - Hex: #BB0F00
     - RGBA: (187, 15, 0, 73)
