@@ -86,8 +86,8 @@
 							<div class="col-lg-4">
 								<div class="card mb-4">
 									<div class="card-body text-center">
-										<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-										<h5 class="my-3">John Smith</h5>
+										<img src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+										<h5 id="profileName" class="my-3">N/A</h5>
 										<p class="text-muted mb-1">Seattle Pacific University</p>
 										<p class="text-muted mb-4">Seattle, WA</p>
 									</div><!--End card-body-->
@@ -121,51 +121,41 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-3">
-												<p class="mb-0">Full Name</p>
+												<p class="mb-0">Email</p>
 											</div>
 											<div class="col-sm-9">
-												<p class="text-muted mb-0">John Smith</p>
-											</div>
-										</div>
-										<hr>
-										<div class="row">
-											<div class="col-sm-3">
-												<p class="mb-0">School Email</p>
-											</div>
-											<div class="col-sm-9">
-												<p class="text-muted mb-0">example@spu.edu</p>
+												<p id="profileEmail" class="text-muted mb-0">example@spu.edu</p>
 											</div>
 										</div><!--End row-->
 										<hr>
 										<div class="row">
 											<div class="col-sm-3">
-												<p class="mb-0">Mobile</p>
+												<p class="mb-0">Degree Programs</p>
 											</div><!--End col-sm-3-->
 											<div class="col-sm-9">
-												<p class="text-muted mb-0">(098) 765-4321</p>
+												<p id="degreePrograms" class="text-muted mb-0">No degrees added</p>
 											</div><!--End col-sm-9-->
 										</div><!--End row-->
 										<hr>
 										<div class="row">
 											<div class="col-sm-3">
-												<p class="mb-0">Address</p>
+												<p class="mb-0">Completed Courses</p>
 											</div><!--End col-sm-3-->
 											<div class="col-sm-9">
-												<p class="text-muted mb-0">Seattle, WA, USA</p>
+												<p id="completedCourses" class="text-muted mb-0">No courses completed</p>
 											</div><!--End col-sm-9-->
 										</div><!--End row-->
 									</div><!--End card-body-->
 								</div><!--End card-->
-                <div class="row" id="cy-container">
-                  <div id="cy"></div>
-                </div><!--End row-->
 							</div><!--End col-lg-8-->
 						</div> <!--End row-->
 					</div><!--End container-->
 				</div><!--End col-lg-10-->
 			</div><!--End row-->
 		</div><!--End container-->
-
+		<div class="row" id="cy-container">
+			<div id="cy"></div>
+		</div><!--End row-->
 	</body>
 
 	<script>

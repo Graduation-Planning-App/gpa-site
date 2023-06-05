@@ -62,15 +62,11 @@ li {
   margin-bottom: 20px;
 }
 
-#cy-container {
-  position: inherit;
-}
-
 #cy {
   width: 75%;
   max-width: 75%;
   height: 100%;
-  position: absolute;
+  position: relative;
   top: 75%;
   left: 25%;
 }
