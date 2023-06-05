@@ -48,6 +48,7 @@ function buildCourseGraph(coursePlan, planId) {
 
     // add graph edges
     graph.forEachNode( (node, attributes) => {
+        // get a list of prerequisites
         const selected = getPrereqs(attributes.prerequisites, coursePlan);
         let prereqs = new Array(selected);
         for (let i = 0; i < prereqs.length; i++) {
@@ -74,15 +75,28 @@ function buildCourseGraph(coursePlan, planId) {
     const displayBox = document.getElementById('course-plans');
 
     // Display plan title
-    const planName = document.createElement('h2');
-    planName.innerHTML = "<b>" + coursePlan.name + ":" + "</b>";
+    const planName = document.createElement('div');
+    planName.innerHTML = `
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${coursePlan.name.replace(/\s/g, '')+coursePlan.id}" aria-expanded="true" aria-controls="collapseOne">
+                    ${coursePlan.name}
+                </button>
+            </h2>
+            <div id="${coursePlan.name.replace(/\s/g, '')+coursePlan.id}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body"></div>
+            </div>
+        </div>
+    `;
     displayBox.append(planName);
+
+    const planNameBody = planName.getElementsByClassName('accordion-body').item(0);
 
     // Display plan details
     const plan = document.createElement('course-plan');
     plan.planId = planId;
     plan.coursePlan = courseSequence;
-    displayBox.append(plan);
+    planNameBody.append(plan);
 }
 
 // returns a list of prerequisites for a course
@@ -93,6 +107,9 @@ function getPrereqs(prerequisites, coursePlan) {
     } else {
         // put prereqs, ANDs, and ORs into an array
         let possiblePrereqs = prerequisites.match(/\w\w\w?\w? \d\d\d\d|AND|OR|\(|\)/g);
+        if (!possiblePrereqs) {
+            return;
+        }
         // loop thru array to handle ANDs and ORs
         while (possiblePrereqs.length > 0) {
             const currentElement = possiblePrereqs.shift();
@@ -288,8 +305,28 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             if (coursePlans[i].courses.length !== 0) {
                 buildCourseGraph(coursePlans[i], coursePlans[i].id);
             }
+            else { // if empty show a accordion item with an empty message
+                // Display sequence in list form
+                const displayBox = document.getElementById('course-plans');
+
+                // Display plan title
+                const planName = document.createElement('div');
+                planName.innerHTML = `
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${coursePlans[i].name.replace(/\s/g, '')+coursePlans[i].id}" aria-expanded="true" aria-controls="collapseOne">
+                                ${coursePlans[i].name}
+                            </button>
+                        </h2>
+                        <div id="${coursePlans[i].name.replace(/\s/g, '')+coursePlans[i].id}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body"><p>This plan is empty</p></div>
+                        </div>
+                    </div>
+                `;
+                displayBox.append(planName);
+            }
         }
     }
-    
+
     return;
 });

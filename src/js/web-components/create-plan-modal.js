@@ -126,7 +126,7 @@ class CreatePlan extends HTMLElement {
                             <input class="form-control" id="inputName" type="input" name="plan_name" required>
                             </div>
                         </div>
-                        <button id="submitButton" class="btn btn-dark" type="submit">Create Plan</button>
+                        <div class="d-flex justify-content-center"><button id="submitButton" class="btn btn-dark" type="submit">Create Plan</button></div>
                     </form>
                 </div>
                 <div class="modal-foot row"><p id="error"></p></div>
