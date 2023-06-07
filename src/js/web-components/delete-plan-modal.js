@@ -1,4 +1,5 @@
-class CreatePlan extends HTMLElement {
+class DeletePlan extends HTMLElement {
+    #planId;
 
     // constructor
     constructor() {
@@ -11,10 +12,15 @@ class CreatePlan extends HTMLElement {
                 this.parentNode.removeChild(this);
             }
         });
-        // set up form button
-        this.shadowRoot.getElementById('inputForm').onsubmit = async (e) => {
+        // set up ok button
+        this.shadowRoot.getElementById('yes').onclick = async (e) => {
             e.preventDefault();
-            await this.createPlan();
+            await this.deletePlan();
+        };
+        // set up cancel button
+        this.shadowRoot.getElementById('no').onclick = async (e) => {
+            e.preventDefault();
+            this.parentNode.removeChild(this);
         };
     }
 
@@ -23,33 +29,23 @@ class CreatePlan extends HTMLElement {
         this.shadowRoot.innerHTML = this.style + this.template;
     }
 
-    async createPlan() {
-        // get form data
-        const form = this.shadowRoot.getElementById('inputForm');
-        const formData = new FormData(form);
-        // create request JSON
-        let request = {
-            plan_name: formData.get('plan_name').toString(),
-            courses: [] // no courses will be added
-        };
-        // attempt to create a new plan
+    async deletePlan() {
         const response = await fetch(
-            import.meta.env.VITE_API_BASEURL + "/api/courses/plan", { 
-                method: "POST", 
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
+            import.meta.env.VITE_API_BASEURL + "/api/courses/plan" + `?plan_id=${this.#planId}`,
+            {
+                method: "DELETE", 
+                credentials: 'include', 
                 mode: "cors",
-                body: JSON.stringify(request)
             }
         );
-        if (!response.ok) {
-            this.shadowRoot.getElementById('error').innerHTML = 'Something went wrong; Course Plan could not be created.'
-        } else {
-            this.parentNode.removeChild(this);
+        // this code is here so that the removal is reflected in the course plan sequence on the page
+        if (response.ok) {
             window.location.reload();
         }
+    }
+
+    set planId(value) {
+        this.#planId = value;
     }
 
     get style() {
@@ -118,21 +114,21 @@ class CreatePlan extends HTMLElement {
     get template() {
         return `
             <div id="modal" class="modal">
-                <div class="modal-head row"><h2>Create a plan</h2></div>
+                <div class="modal-head row"><h2>Delete a Plan</h2></div>
                 <div id="content" class="modal-main">
-                    <form id="inputForm">
+                    <div id="inputForm">
                         <div class="row mb-3 justify-content-evenly">
-                            <label for="inputName" class="col-form-label col-2">Name:</label>
-                            <div class="col">
-                            <input class="form-control" id="inputName" type="input" name="plan_name" required>
-                            </div>
+                            Are You Sure that You Want to Delete This Plan?
                         </div>
-                        <div class="d-flex justify-content-center"><button id="submitButton" class="btn btn-dark" type="submit">Create Plan</button></div>
-                    </form>
+                        <div class="d-flex justify-content-evenly">
+                            <button id="yes" class="btn btn-dark" type="button">Yes</button>
+                            <button id="no" class="btn btn-dark" type="button">Cancel</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-foot row"><p id="error"></p></div>
             </div>
         `
     }
 }
-customElements.define('create-plan', CreatePlan);
+customElements.define('delete-plan', DeletePlan);

@@ -1,4 +1,5 @@
 import './course-info';
+import './delete-plan-modal';
 
 class CoursePlan extends HTMLElement {
     // fields
@@ -19,32 +20,51 @@ class CoursePlan extends HTMLElement {
         this.shadowRoot.innerHTML = this.template;
     }
 
+    
+
     // getters and setters
 
     set coursePlan(value) {
         this.#coursePlan = value;
         const numYears = Math.ceil(this.#coursePlan.length / 4);
-        // erase existing content
-        this.shadowRoot.innerHTML = '';
+        // erase existing main content
+        this.shadowRoot.getElementById('mainContent').innerHTML = '';
+
+        // display course sequence content
         for (let i = 1; i <= numYears; i++) {
             let newYear = document.createElement('year-courses');
             newYear.planId = this.#planId;
             newYear.yearName = 'Year ' + i;
             newYear.quarters = this.#coursePlan.splice(0, 4);
-            this.shadowRoot.append(newYear);
+            this.shadowRoot.getElementById('mainContent').append(newYear);
         }
     }
 
     set planId(value) {
         this.#planId = value;
+
+        // set up delete plan button
+        let deletePlan = document.createElement('button');
+        deletePlan.setAttribute('class', 'btn, btn-dark py-2 mb-3');
+        deletePlan.innerHTML = "Delete This Plan";
+        deletePlan.onclick = () => {
+            let modal = document.createElement('delete-plan');
+            modal.planId = this.#planId;
+            this.shadowRoot.append(modal);
+        };
+        this.shadowRoot.getElementById('header').append(deletePlan);
     }
 
     get template() {
         return `
         <style>
-            @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')
+            @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css');
+            @import url("../css/main.css");
         </style>
-        <div>No course plan available</div>`
+        <div id="header" class="d-flex justify-content-between">
+            <h1>Details:</h1>
+        </div>
+        <div id="mainContent">No course plan available</div>`
     }
 }
 customElements.define('course-plan', CoursePlan);
