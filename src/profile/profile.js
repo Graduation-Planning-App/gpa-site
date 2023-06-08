@@ -113,7 +113,7 @@ async function editMyDegrees() {
     }
 
     // reload page to show changes
-    //window.location.reload();
+    window.location.reload();
 }
 
 // sets up the logic for "Edit My Degree Programs" form
