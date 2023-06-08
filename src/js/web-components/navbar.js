@@ -14,15 +14,34 @@ class Navbar extends HTMLElement {
         const auth = new Auth();
         if (!auth.isLoggedIn()) {
             this.shadowRoot.getElementById('my-course-sequence.html').style.display = 'none';
+            this.shadowRoot.getElementById('courseSeqMobile').style.display = 'none';
             this.shadowRoot.getElementById('profile').style.display = 'none';
+            this.shadowRoot.getElementById('profileMobile').style.display = 'none';
+            this.shadowRoot.getElementById('logoutMobile').style.display = 'none';
         }
+        // set up mobile menu
+        const mobileMenu = this.shadowRoot.getElementById('mobileMenu');
+        mobileMenu.addEventListener('click', () => this.toggleMobileMenu());
+
+        // set up logout buttons
         const logout = this.shadowRoot.getElementById('logout');
         logout.addEventListener('click', () => auth.logOut());
+        const logoutMobile = this.shadowRoot.getElementById('logoutMobile');
+        logoutMobile.addEventListener('click', () => auth.logOut());
     }
 
     // methods
     render() {
         this.shadowRoot.innerHTML = this.template;
+    }
+
+    toggleMobileMenu() {
+        let dropdownContent = this.shadowRoot.getElementById('mobileMenuContent');
+        if (dropdownContent.style.display === 'none') {
+            dropdownContent.style.display = 'block'
+        } else {
+            dropdownContent.style.display = 'none'
+        }
     }
 
     attributeChangedCallback(attributeName, _, newValue, __) {
@@ -96,6 +115,7 @@ class Navbar extends HTMLElement {
                 .profile ul li a:hover {
                     background-color: #bb0f00;
                 }
+                
             </style>
             <nav class="navbar navbar-expand-md my-0 py-0 sticky-top">
                 <div class="container-fluid">
@@ -125,9 +145,16 @@ class Navbar extends HTMLElement {
                     </div>
                 <div>
                 <div class="py-3 px-3">
-                    <button class="navbar-toggler" type="button">
+                    <button id="mobileMenu" class="navbar-toggler" type="button">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div id="mobileMenuContent" class="dropdown-content" style="display: none;">
+                        <a id="courseSeqMobile" href="/course-sequence/">Course Sequence</a>
+                        <a href="/find-courses/">Find Courses</a>
+                        <a href="/resources/">Resources</a>
+                        <a id="profileMobile" href="/profile/">Profile</a>
+                        <a id="logoutMobile" href="#">Logout</a>
+                    </div>
                 </div>
             </nav>
         `
