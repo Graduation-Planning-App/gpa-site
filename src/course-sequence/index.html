@@ -15,12 +15,12 @@
   <body>
     <!--Navbar-->
     <nav-bar page="my-course-sequence.html"></nav-bar>
-    <div class="d-flex">
-      <div id="profile" class="col-2 center my-4" style="display: none;">
+    <div class="row justify-content-center">
+      <div id="profile" class="col-md-3 center m-4" style="display: none;">
         <img
           src="https://lh3.googleusercontent.com/9DldeCdIt0TUrvLpBSX--rQDJAO-K5UkmBDFN6VBGiea7OaSoXH5-XJioRCxk182o6e2bBef9WTGPIOJYLm1E7n-4BTHzTQa2ExJPsI8wkBm6aa1f9gtyCtsB4a2_QWtLjniNAP9LBI=w2400"
           alt="Profile Pic"
-          style="width: 55%"
+          style="height: 175px;"
         />
         <h3>
           <div id="name"></div>
@@ -40,9 +40,9 @@
       <div id="main" class="col my-4">
         <div class="row mx-4 mb-4">
           <h1 class="col"><b>My Course Plans:</b></h1>
-          <button id="createNewPlan" class="btn btn-dark col-3" type="button">Create a New Course Plan</button>
+          <button id="createNewPlan" class="btn btn-dark col-3" type="button">Create</button>
         </div>
-        <div id="course-plans" class="accordion mx-4 px-4"></div>
+        <div id="course-plans" class="accordion mx-0 p-4"></div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

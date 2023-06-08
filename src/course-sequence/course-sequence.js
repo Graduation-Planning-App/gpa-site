@@ -285,7 +285,6 @@ document.addEventListener("DOMContentLoaded", async (e) => {
             // make profile sidebar visible
             let profileSidebar = document.getElementById("profile");
             profileSidebar.style.display = 'block';
-            profileSidebar.style.position = 'sticky';
             profileSidebar.style.top = '10%';
             // populate profile sidebar
             let name = document.getElementById('name');
