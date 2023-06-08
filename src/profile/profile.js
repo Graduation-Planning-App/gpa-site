@@ -184,7 +184,7 @@ async function setupDegreeForm() {
     document.getElementById('addOrRemove').addEventListener('change', async (e) => {
         // prevent default action
         e.preventDefault();
-        let options = document.getElementById("degreePrograms");
+        let options = document.getElementById("degreeProgramOptions");
         // if value is remove, get all profile degree programs
         if (e.target.value === 'remove') {
             const myPrograms = await getMyDegrees();
