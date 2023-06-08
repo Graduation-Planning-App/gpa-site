@@ -22,12 +22,20 @@ document.addEventListener("DOMContentLoaded", async (e) => {
         completedCourses.innerHTML = profileInfo.courses.toString() || 'No completed courses';
         degreePrograms.innerHTML = profileInfo.degreePrograms.toString() || 'No degrees added';
 
-        // generate graph too
-        await graph.generateMajor1();
+        // generate graph 
+        //await graph.generateMajor1();
+
+        // set up upload button
+
+        // set up edit degree programs form
+        await setupDegreeForm();
+
+        // add event listener to submit button
+        document.getElementById('editDegreeBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await editMyDegrees();
+        });
     }
-
-
-
     return;
 });
 
@@ -39,8 +47,112 @@ async function getProfile() {
             credentials: "include"
         }
     );
+    return await response.json();
+}
 
-    let jsonResponse = await response.json();
+async function getAllMajors() {
+    const response = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/degrees/get-majors",
+        {   
+            method: "GET",
+            credentials: "include"
+        }
+    );
+    return await response.json();
+}
 
-    return jsonResponse;
+async function getMyDegrees() {
+    const response = await fetch(
+        import.meta.env.VITE_API_BASEURL + "/api/degrees/get-user-degrees",
+        {   
+            method: "GET",
+            credentials: "include"
+        }
+    );
+    return await response.json();
+}
+
+async function addMyDegree(id) {
+    let request = {degreeId: id}
+    const response = await fetch(
+		import.meta.env.VITE_API_BASEURL + "/api/degrees/add-to-account", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: 'include',
+			mode: "cors",
+			body: JSON.stringify(request)
+		}
+	);
+    return await response.json();
+}
+
+async function removeMyDegree(id) {
+    const response = await fetch(
+		import.meta.env.VITE_API_BASEURL + "/api/degrees/remove-from-account?degreeProg="+id, {
+			method: "DELETE",
+			credentials: 'include',
+			mode: "cors",
+		}
+	);
+    return await response.json();
+}
+
+async function editMyDegrees() {
+    // get form data
+    const form = document.getElementById('editDegreeForm'); // fill in the quotes with the form name
+	const formData = new FormData(form);
+    const addOrRem = formData.get('addOrRemove');
+    const programId = formData.get('degreeProgramOptions');
+    // call the desired api endpoint
+    if (addOrRem === 'add') {
+        await addMyDegree(programId);
+    } else {
+        await removeMyDegree(programId);
+    }
+
+    // reload page to show changes
+    //window.location.reload();
+}
+
+// sets up the logic for "Edit My Degree Programs" form
+async function setupDegreeForm() {
+    // Default option (Add)
+    const programs = await getAllMajors();
+    let degProgOptions = document.getElementById('degreeProgramOptions');
+    for (let i = 0; i < programs.length; i++) {
+        let option = document.createElement('option');
+        option.value = programs[i].id;
+        option.innerHTML = programs[i].name;
+        degProgOptions.append(option);
+    }
+    // Add event listener
+    document.getElementById('addOrRemove').addEventListener('change', async (e) => {
+        // prevent default action
+        e.preventDefault();
+        let options = document.getElementById("degreePrograms");
+        // if value is remove, get all profile degree programs
+        if (e.target.value === 'remove') {
+            const myPrograms = await getMyDegrees();
+            // populate the degreePrograms group with the response
+            options.innerHTML = '';
+            for (let i = 0; i < myPrograms.length; i++) {
+                let option = document.createElement('option');
+                option.value = myPrograms[i].id;
+                option.innerHTML = myPrograms[i].name;
+                options.append(option);
+            }
+        } else { // if value is add, get all degree programs
+            const degPrograms = await getAllMajors();
+            // populate the degreePrograms group with the response
+            options.innerHTML = '';
+            for (let i = 0; i < degPrograms.length; i++) {
+                let option = document.createElement('option');
+                option.value = degPrograms[i].id;
+                option.innerHTML = degPrograms[i].name;
+                options.append(option);
+            }
+        }
+    });
 }
