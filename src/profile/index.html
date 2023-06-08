@@ -54,7 +54,10 @@
 				<div class="col-lg-3 mb-4 d-flex flex-column h-auto" id="sidebar">
 					<h2 class="center">Upload Completed Courses</h2>
 					<button type="button" class="btn m-4" id="modal" data-bs-toggle="modal" data-bs-target="#myModal">How to Import Completed Courses</button>
-					<input class="form-control form-control-sm" type="file" id="formFile">
+					<input class="form-control form-control-sm my-4" type="file" id="formFile">
+					<div class="d-flex flex-column">
+						<button id="uploadTranscript" class="btn btn-dark" type="button">Submit</button>
+					</div>
 				</div>
 
 				<div class="col-lg-9">
@@ -106,16 +109,16 @@
 												<p class="mb-0">Degree Programs</p>
 											</div><!--End col-sm-3-->
 											<div class="col-sm-9">
-												<p id="degreePrograms" class="text-muted mb-0">No degrees added</p>
+												<p id="degreePrograms" class="text-muted mb-0"></p>
 											</div><!--End col-sm-9-->
 										</div><!--End row-->
 										<hr>
 										<div class="row">
 											<div class="col-sm-3">
-												<p class="mb-0">Completed Courses</p>
+												<div class="mb-0">Completed Courses</div>
 											</div><!--End col-sm-3-->
 											<div class="col-sm-9">
-												<p id="completedCourses" class="text-muted mb-0">No courses completed</p>
+												<div id="completedCourses" class="text-muted mb-0"></div>
 											</div><!--End col-sm-9-->
 										</div><!--End row-->
 									</div><!--End card-body-->
