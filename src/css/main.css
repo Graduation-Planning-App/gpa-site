@@ -69,3 +69,13 @@ a {
   border-color: #021b2e;
   background-color: #bb0f00;
 }
+
+#profile {
+  background-color: #6E879198;
+  height: 85vh;
+  overflow-y: none;
+  box-shadow: -2px 0 5px 4px rgba(2, 27, 46, 18);
+  border-radius: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
