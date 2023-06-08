@@ -243,7 +243,7 @@ function getQtrNum(quarterString) {
 }
 
 function getCorrectYear(course) {
-    if (course.attributes.includes("Upper-Division")) {
+    if (course.course_title.match(/3\d\d\d/g)) {
         return 3;
     } else {
         return 1;
