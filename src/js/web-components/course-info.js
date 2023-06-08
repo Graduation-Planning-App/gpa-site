@@ -122,9 +122,9 @@ class CourseInfo extends HTMLElement {
                 @import url("../css/main.css");
             </style>
             <div id="infoBase" class="row mb-2 mx-5 px-5 py-2 justify-content-between rounded border">
-                <div class="col-6">${this.#info.course_title ? this.#info.course_title : 'N/A'}</div>
-                <div class="col-4">${this.#info.class_time ? this.#info.class_time : 'N/A'}</div>
-                <div id="edit-course-plan" class="col-2"></div>
+                <div class="col-md-6">${this.#info.course_title ? this.#info.course_title : 'N/A'}</div>
+                <div class="col-md-4">${this.#info.class_time ? this.#info.class_time : 'N/A'}</div>
+                <div id="edit-course-plan" class="col-md-2"></div>
             </div>
             <div id="moreInfo" class="row mx-5 px-5 justify-content-between"></div>
         `;
@@ -133,7 +133,7 @@ class CourseInfo extends HTMLElement {
     get infoTemplate() {
         return `
             <table class="table mb-2">
-                <tbody>
+                <tbody class="row">
                     <tr class="col">
                         <th scope="row" class="col-3">Credits:</th>
                         <td class="col-3">${this.#info.credits ? this.#info.credits : 'N/A'}</td>
