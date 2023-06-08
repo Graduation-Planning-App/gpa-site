@@ -243,7 +243,7 @@ function getQtrNum(quarterString) {
 }
 
 function getCorrectYear(course) {
-    if (course.course_title.match(/3\d\d\d/g)) {
+    if (course.course_title.match(/3\d\d\d/g) || course.course_title.match(/4\d\d\d/g)) {
         return 3;
     } else {
         return 1;
